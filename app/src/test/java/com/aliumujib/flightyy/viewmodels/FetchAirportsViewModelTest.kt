@@ -43,13 +43,13 @@ class FetchAirportsViewModelTest {
 
 
     @Test
-    fun `check that calling searchOrigin in viewModel executes FetchAirports when character size is more than 2`() {
+    fun `check that calling searchOrigin in viewModel filters search list when character size is more than 2`() {
         searchAirportsViewModel.searchOrigin("luke")
         verify(fetchAirports, times(1)).execute(any())
     }
 
     @Test
-    fun `check that calling search in viewModel doesn't executes FetchAirports when character size is less than 3`() {
+    fun `check that calling search in viewModel filters search list when character size is less than 3`() {
         searchAirportsViewModel.searchDestination("lu")
         verifyZeroInteractions(fetchAirports)
     }
@@ -82,23 +82,23 @@ class FetchAirportsViewModelTest {
             stubAirports(starWarsCharacter, listOfMappedCharacters[index])
         }
 
-        searchAirportsViewModel.searchAirports("luke")
-        verify(fetchAirports).execute(captor.capture(), eq(FetchAirports.Params("luke")))
+        searchAirportsViewModel.searchOrigin("NFC")
+        verify(fetchAirports).execute(captor.capture())
 
         captor.firstValue.onNext(listOfCharacters)
 
-        assertEquals(listOfMappedCharacters, searchAirportsViewModel.getAirportsLiveData().value?.data)
+        assertEquals(listOfMappedCharacters, searchAirportsViewModel.airportsData.value?.data)
     }
 
     @Test
     fun `check that calling search in viewModel returns error when an error occurs`() {
 
-        searchAirportsViewModel.searchAirports("luke")
-        verify(fetchAirports).execute(captor.capture(), eq(FetchAirports.Params("luke")))
+        searchAirportsViewModel.searchDestination("JFL")
+        verify(fetchAirports).execute(captor.capture())
 
         captor.firstValue.onError(RuntimeException())
 
-        assertEquals(Status.ERROR, searchAirportsViewModel.getAirportsLiveData().value?.status)
+        assertEquals(Status.ERROR, searchAirportsViewModel.airportsData.value?.status)
     }
 
     fun stubAirports(character: Airport, characterModel: AirportModel){

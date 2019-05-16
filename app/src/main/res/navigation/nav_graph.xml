@@ -15,9 +15,7 @@
     </fragment>
 
     <fragment android:id="@+id/airportSearchFragment" android:name="com.aliumujib.flightyy.ui.search.AirportSearchFragment"
-              android:label="">
-
-    </fragment>
+              android:label=""/>
 
     <fragment android:id="@+id/scheduleListFragment"
               android:name="com.aliumujib.flightyy.ui.flightlist.ScheduleListFragment"
@@ -26,7 +24,15 @@
         <argument android:name="origin" app:argType="com.aliumujib.flightyy.presentation.models.AirportModel"/>
         <argument android:name="destination" app:argType="com.aliumujib.flightyy.presentation.models.AirportModel"/>
         <argument android:name="date" app:argType="long"/>
+        <action android:id="@+id/action_scheduleListFragment_to_mapsFragment" app:destination="@id/mapsFragment"/>
 
+    </fragment>
+
+
+    <fragment android:id="@+id/mapsFragment" android:name="com.aliumujib.flightyy.ui.map.MapsFragment"
+              android:label="fragment_maps" tools:layout="@layout/fragment_maps">
+        <argument android:name="schedule"
+                  app:argType="com.aliumujib.flightyy.presentation.models.schedule.ScheduleModel"/>
     </fragment>
 
 </navigation>

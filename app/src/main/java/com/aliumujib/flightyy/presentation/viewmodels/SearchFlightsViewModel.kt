@@ -21,11 +21,11 @@ class SearchFlightsViewModel @Inject constructor(
     private val fetchFlights: FetchFlights,
     private val airportModelMapper: AirportMapper,
     private val scheduleModelMapper: ScheduleMapper
-    ) : BaseViewModel() {
+) : BaseViewModel() {
 
     private val _liveData: MutableLiveData<Resource<List<ScheduleModel>>> =
         MutableLiveData()
-     val liveData: LiveData<Resource<List<ScheduleModel>>> = _liveData
+    val liveData: LiveData<Resource<List<ScheduleModel>>> = _liveData
 
     override fun onCleared() {
         fetchFlights.dispose()
@@ -50,12 +50,16 @@ class SearchFlightsViewModel @Inject constructor(
                     Status.SUCCESS,
                     t.map {
                         scheduleModelMapper.mapToView(it)
-                    }, null
+                    }.sortedBy {
+                        it.flightModels.size
+                    }
+                    , null
                 )
             )
         }
 
         override fun onError(e: Throwable) {
+            e.printStackTrace()
             _liveData.postValue(
                 Resource(
                     Status.ERROR, null,

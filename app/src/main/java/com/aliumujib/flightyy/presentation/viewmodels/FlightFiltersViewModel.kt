@@ -53,7 +53,17 @@ class FlightFiltersViewModel @Inject constructor() : BaseViewModel() {
                 showSnackBarError(R.string.please_select_your_date)
                 return
             }
-            else -> navigate(FiltersFragmentDirections.actionFiltersFragmentToScheduleListFragment(selectedOriginAirport!!, selectedDestinationAirport!!, selectedDate!!.time))
+            selectedOriginAirport!!.name == selectedDestinationAirport!!.name -> {
+                showSnackBarError(R.string.please_select_two_airports)
+                return
+            }
+            else -> navigate(
+                FiltersFragmentDirections.actionFiltersFragmentToScheduleListFragment(
+                    selectedOriginAirport!!,
+                    selectedDestinationAirport!!,
+                    selectedDate!!.time
+                )
+            )
         }
     }
 

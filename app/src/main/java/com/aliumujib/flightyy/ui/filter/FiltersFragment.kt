@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.ActionOnlyNavDirections
 import com.aliumujib.flightyy.R
@@ -100,15 +99,25 @@ class FiltersFragment : BaseFragment(), NavigationResult {
 
     private fun showTimePicker(callback: (date: Date, string: String) -> Unit) {
         // Use the current date as the default date in the picker
-        val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         // Create a new instance of DatePickerDialog and return it
-        val dialog = DatePickerDialog(activity,
-            DatePickerDialog.OnDateSetListener { p0, p1, p2, p3 ->
-                callback.invoke(Date(year, month, day), "$day/$month/$year") }, year, month, day)
+        val dialog = DatePickerDialog(
+            activity,
+            DatePickerDialog.OnDateSetListener { view, calendar_year, monthOfYear, dayOfMonth ->
+
+                calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.MONTH, year)
+                calendar.set(Calendar.DAY_OF_MONTH, year)
+
+                callback.invoke(calendar.time, "$dayOfMonth/$monthOfYear/$calendar_year")
+            },
+
+            year, month, day
+        )
 
         dialog.show()
     }

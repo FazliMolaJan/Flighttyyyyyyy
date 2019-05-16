@@ -21,7 +21,7 @@ class FetchFlights @Inject constructor(
             throw IllegalStateException("Your params can't be null for this use case")
         }
 
-        val dateFormatter = SimpleDateFormat("yyyy-mm-dd")
+        val dateFormatter = SimpleDateFormat("yyyy-mm-dd", Locale.getDefault())
         return schedulesRepository.getFlightSchedules(params.origin, params.destination, dateFormatter.format(params.date))
     }
 

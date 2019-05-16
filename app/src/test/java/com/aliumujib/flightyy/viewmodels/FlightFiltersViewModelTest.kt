@@ -2,7 +2,6 @@ package com.aliumujib.flightyy.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.aliumujib.flightyy.PresentationDataFactory
-import com.aliumujib.flightyy.domain.interactors.airports.FetchCharacterDetails
 import com.aliumujib.flightyy.data.model.schedule.ScheduleEntity
 import com.aliumujib.flightyy.presentation.state.Status
 import com.aliumujib.flightyy.presentation.viewmodels.FlightFiltersViewModel

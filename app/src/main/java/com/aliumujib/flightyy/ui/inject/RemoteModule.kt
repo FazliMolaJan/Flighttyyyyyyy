@@ -15,7 +15,7 @@ class RemoteModule {
 
     @Provides
     fun provideService(): ApiService {
-        return APIServiceFactory.makeService(BuildConfig.DEBUG, BuildConfig.API_URL)
+        return APIServiceFactory.makeService(BuildConfig.DEBUG, BuildConfig.API_URL, BuildConfig.LUFT_API_KEY)
     }
 
 

@@ -3,7 +3,6 @@ package com.aliumujib.flightyy.ui.adapters.schedules
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +18,8 @@ import kotlinx.android.synthetic.main.schedule_item.view.*
 import kotlin.properties.Delegates
 import kotlin.random.Random
 
-class SchedulesListAdapter() : RecyclerView.Adapter<ScheduleViewHolder>(), BindableAdapter<ScheduleModel>{
+class SchedulesListAdapter(var clickListener: BindableItemClickListener<ScheduleModel>) :
+    RecyclerView.Adapter<ScheduleViewHolder>(), BindableAdapter<ScheduleModel> {
 
     private val viewPool = RecyclerView.RecycledViewPool()
 
@@ -29,7 +29,7 @@ class SchedulesListAdapter() : RecyclerView.Adapter<ScheduleViewHolder>(), Binda
     ): ScheduleViewHolder {
         val v = LayoutInflater.from(parent.context)
             .inflate(R.layout.schedule_item, parent, false)
-        return ScheduleViewHolder(v, viewPool)
+        return ScheduleViewHolder(v, clickListener, viewPool)
     }
 
     override fun getItemCount(): Int {
@@ -49,7 +49,6 @@ class SchedulesListAdapter() : RecyclerView.Adapter<ScheduleViewHolder>(), Binda
     }
 
 
-
     override fun setData(data: List<ScheduleModel>) {
         items = data
     }
@@ -59,6 +58,7 @@ class SchedulesListAdapter() : RecyclerView.Adapter<ScheduleViewHolder>(), Binda
 
 class ScheduleViewHolder(
     itemView: View,
+    var clickListener: BindableItemClickListener<ScheduleModel>,
     private var viewPool: RecyclerView.RecycledViewPool
 ) : RecyclerView.ViewHolder(itemView) {
 
@@ -66,25 +66,36 @@ class ScheduleViewHolder(
     fun bindViews(scheduleModel: ScheduleModel) {
 
         itemView.flights.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayout.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             setRecycledViewPool(viewPool)
-            val flightAdapter = SingleLayoutAdapter<FlightModel>(R.layout.flight_item)
+
+            //CLICKS
+            val flightAdapter = SingleLayoutAdapter(R.layout.flight_item,object :BindableItemClickListener<FlightModel>{
+                override fun onItemClicked(data: FlightModel) {
+                    clickListener.onItemClicked(scheduleModel)
+                }
+            })
+
             adapter = flightAdapter
             flightAdapter.setData(scheduleModel.flightModels)
         }
 
+        itemView.airlines.setOnClickListener {
+            clickListener.onItemClicked(scheduleModel)
+        }
         itemView.airlines.text = scheduleModel.flightModels[0].airlineModel.name
-        itemView.price.text = "$${Random(2000).nextInt()}"
+        itemView.price.text = "$${Random(100).nextInt(1001)}"
     }
 
     companion object {
         fun create(
             @LayoutRes layoutID: Int, parent: ViewGroup,
+            clickListener: BindableItemClickListener<ScheduleModel>,
             viewPool: RecyclerView.RecycledViewPool
         ): ScheduleViewHolder {
             val view = LayoutInflater.from(parent.context)
                 .inflate(layoutID, parent, false)
-            return ScheduleViewHolder(view, viewPool)
+            return ScheduleViewHolder(view, clickListener, viewPool)
         }
     }
 }

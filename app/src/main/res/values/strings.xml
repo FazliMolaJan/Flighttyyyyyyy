@@ -50,5 +50,6 @@
     <string name="please_select_your_date">please select your date of travel</string>
 
     <string name="city_format">%1$s, %2$s</string>
+    <string name="please_select_two_airports">Please select two different airports</string>
 
 </resources>

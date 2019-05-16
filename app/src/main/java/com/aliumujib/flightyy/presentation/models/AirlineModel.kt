@@ -1,6 +1,9 @@
 package com.aliumujib.flightyy.presentation.models
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class AirlineModel(
     val active: String,
     val alias: String,
@@ -10,4 +13,4 @@ data class AirlineModel(
     val icao: String,
     val id: String,
     val name: String
-)
+) : Parcelable

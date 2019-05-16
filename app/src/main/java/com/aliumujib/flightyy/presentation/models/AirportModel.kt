@@ -1,6 +1,7 @@
 package com.aliumujib.flightyy.presentation.models
 
 import android.os.Parcelable
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -13,8 +14,8 @@ data class AirportModel(
     val elev: String,
     val email: String,
     val icao: String,
-    val lat: String,
-    val lon: String,
+    val lat: Double,
+    val lon: Double,
     val name: String,
     val phone: String,
     val runway_length: String,
@@ -25,4 +26,6 @@ data class AirportModel(
     val woeid: String
 ) : Parcelable {
     fun location():String = "$city, $state, $country"
+
+    fun latlng(): LatLng = LatLng(lat, lon)
 }

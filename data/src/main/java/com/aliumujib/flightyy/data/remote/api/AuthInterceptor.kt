@@ -1,13 +1,14 @@
 package com.aliumujib.flightyy.data.remote.api
 
 import android.util.Log
+import com.aliumujib.flightyy.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
 
 
 
-class AuthInterceptor() : Interceptor {
+class AuthInterceptor(var apiKey: String) : Interceptor {
 
 
     @Throws(IOException::class)
@@ -17,7 +18,7 @@ class AuthInterceptor() : Interceptor {
 
         val requestBuilder = request.newBuilder()
 
-        requestBuilder.addHeader("Authorization", "Bearer " + "deh79r42z8bwypkwxjae79vm")
+        requestBuilder.addHeader("Authorization", "Bearer $apiKey")
 
         var response: Response? = null
 

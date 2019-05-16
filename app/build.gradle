@@ -27,9 +27,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "API_URL", '\"https://api.lufthansa.com/v1/\"'
+            buildConfigField 'String', "LUFT_API_KEY", Lufthansa_ApiKey
+            resValue 'string', "MAPS_API_KEY", Google_Maps_ApiKey
         }
         debug {
             buildConfigField "String", "API_URL", '\"https://api.lufthansa.com/v1/\"'
+            buildConfigField 'String', "LUFT_API_KEY", Lufthansa_ApiKey
+            resValue 'string', "MAPS_API_KEY", Google_Maps_ApiKey
         }
     }
 
@@ -74,7 +78,8 @@ dependencies {
             appDependencies.stetho,
             appDependencies.rxBindingPlatform,
             appDependencies.timber,
-            appDependencies.javaxAnnotation
+            appDependencies.javaxAnnotation,
+            appDependencies.playServicesMaps
     )
 
     implementation project(':domain')
@@ -85,6 +90,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.0.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0'
+    implementation 'com.google.maps.android:android-maps-utils:0.4+'
 
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

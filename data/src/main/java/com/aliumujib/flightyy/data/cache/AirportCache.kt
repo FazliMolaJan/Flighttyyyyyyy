@@ -19,7 +19,7 @@ open class AirportCache @Inject constructor(var context: Context) : ICache<Airpo
     init {
         listOfAirports = getAirports(context)
         listOfAirports.forEach {
-            mapOfAirports[it.icao] = it
+            mapOfAirports[it.code] = it
         }
     }
 

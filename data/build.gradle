@@ -21,7 +21,6 @@ android {
 }
 
 
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -43,6 +42,7 @@ dependencies {
     implementation dataDependencies.moshi
     implementation dataDependencies.gson
     implementation dataDependencies.rxJava
+    implementation dataDependencies.retrofitGson
 
 
     testImplementation testDependencies.konveyor

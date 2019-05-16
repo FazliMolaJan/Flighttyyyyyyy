@@ -71,4 +71,5 @@ data class MarketingCarrier(
 
 data class TotalJourney(
     val Duration: String
-)
+){
+}

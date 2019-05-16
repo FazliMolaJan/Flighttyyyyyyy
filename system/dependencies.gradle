@@ -32,6 +32,7 @@ ext {
     espressoVersion = '2.2.2'
     espressoRulesVersion = '0.5'
     playServicesVersion = '17.3.4'
+    mapsVersion = '16.0.0'
     okHttpLoggingVersion = '3.4.1'
     dateTimePicker = "3.5.1"
     greenRobotUtilsVersion = "1.1.6"
@@ -99,7 +100,7 @@ ext {
             fragmentArgs                           : "com.hannesdorfmann.fragmentargs:annotation:${fragmentArgsVersion}",
             fragmentArgsCompiler                   : "com.hannesdorfmann.fragmentargs:processor:${fragmentArgsVersion}",
             cardView                               : "androidx.cardview:cardview:${androidXVersion}",
-            playServicesMaps                       : "com.google.android.gms:play-services-maps:${playServicesVersion}",
+            playServicesMaps                       : "com.google.android.gms:play-services-maps:${mapsVersion}",
             playServicesLocation                   : "com.google.android.gms:play-services-location:${playServicesVersion}",
             firebaseCore                           : "com.google.firebase:firebase-core:${playServicesVersion}",
             firebaseMessaging                      : "com.google.firebase:firebase-messaging:${playServicesVersion}",

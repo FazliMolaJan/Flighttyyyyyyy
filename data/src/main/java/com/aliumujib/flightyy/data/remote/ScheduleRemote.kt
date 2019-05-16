@@ -9,6 +9,7 @@ import com.aliumujib.flightyy.data.model.schedule.ScheduleEntity
 import com.aliumujib.flightyy.data.remote.api.ApiService
 import com.aliumujib.flightyy.data.remote.models.Schedule
 import io.reactivex.Observable
+import org.joda.time.format.DateTimeFormat
 import java.text.SimpleDateFormat
 import javax.inject.Inject
 
@@ -23,7 +24,7 @@ class ScheduleRemote @Inject constructor(
         destination: String,
         fromDateTime: String
     ): Observable<List<ScheduleEntity>> {
-        return apiService.getCharacters(origin, destination, fromDateTime).map {
+        return apiService.getCharacters(origin, destination, "2019-11-12").map {
             it.ScheduleResource.Schedule
         }.map {
             createScheduleEntities(it)
@@ -32,7 +33,7 @@ class ScheduleRemote @Inject constructor(
 
     fun createScheduleEntities(list: List<Schedule>): List<ScheduleEntity> {
         var scheduleList = mutableListOf<ScheduleEntity>()
-        var dateTimeFormatter = SimpleDateFormat("YYYY-MM-DDTHH:MM")
+        var dateTimeFormatter = SimpleDateFormat("YYYY-MM-DD'T'HH:MM")
 
         list.forEach {
             var flights = mutableListOf<FlightEntity>()
@@ -58,7 +59,8 @@ class ScheduleRemote @Inject constructor(
                 flights.add(flightEntity)
             }
 
-            var scheduleEntity = ScheduleEntity(flights, it.TotalJourney.Duration.toLong())
+            var dtf = DateTimeFormat.forPattern("mm'H'ss'M'")
+            var scheduleEntity = ScheduleEntity(flights, 0L)
             scheduleList.add(scheduleEntity)
         }
 
