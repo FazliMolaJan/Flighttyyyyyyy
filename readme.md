@@ -24,7 +24,7 @@ I continued by writing concrete implementations of the Remote classes. The remot
 
 Finally I started work on the UI layer. I used the MVVM architecture supported by `ViewModel` and `LiveData` from the Android Architecture Components. I tested only the ViewModel classes and used the Navigation library to switch between destinations in the application and used Dagger2 to provide dependencies to the fragments and ViewModels.
 
-On the Flight result list screen of the app. I noticed that the `Schedule` object contains a list of `Flights` when there are multiple connecting flights and a single `Flight` object when there only one. To combat this issue, I wrote a `TypeAdapterClass` to deserialize the data correctly dependending on  the situation.
+On the Flight result list screen of the app. I noticed that the `Schedule` object contains a list of `Flights` when there are multiple connecting flights and a single `Flight` object when there only one. To combat this issue, I wrote a `TypeAdapterClass` to deserialize the data correctly dependending on  the situation. I also noticed another problem with the API tending to return flights that had multiple stops first, so I sorted the flights to show the cheapest and quickest `direct` flights first.
 
 
 ### Possible Improvements

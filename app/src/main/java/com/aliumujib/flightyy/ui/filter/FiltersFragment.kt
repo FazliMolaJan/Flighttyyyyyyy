@@ -125,7 +125,7 @@ class FiltersFragment : BaseFragment(), NavigationResult {
     }
 
 
-    fun formatNumberForAPI(int: Int): String {
+    private fun formatNumberForAPI(int: Int): String {
         val intString = if (int < 10) {
             "0$int"
         } else {
