@@ -1,5 +1,8 @@
 # Flightyyyy
 
+<img src="SCREENDATA/GIF1.gif" width="250" />
+
+
 ### Introduction
 Android app that pulls data from https://api.lufthansa.com/v1/ .
 

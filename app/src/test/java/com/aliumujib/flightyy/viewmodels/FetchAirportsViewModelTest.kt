@@ -4,19 +4,24 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.aliumujib.flightyy.PresentationDataFactory
 import com.aliumujib.flightyy.domain.interactors.airports.FetchAirports
 import com.aliumujib.flightyy.data.model.AirportEntity
+import com.aliumujib.flightyy.domain.executor.PostExecutionThread
 import com.aliumujib.flightyy.domain.models.Airport
+import com.aliumujib.flightyy.domain.repositories.airports.IAirportsRepository
 import com.aliumujib.flightyy.presentation.mappers.AirportMapper
 import com.aliumujib.flightyy.presentation.models.AirportModel
 import com.aliumujib.flightyy.presentation.state.Status
 import com.aliumujib.flightyy.presentation.viewmodels.SearchAirportsViewModel
+import com.aliumujib.flightyy.ui.utils.PostExecutionThreadImpl
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.observers.DisposableObserver
 import junit.framework.Assert.assertEquals
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.mockito.Captor
+import org.mockito.MockitoAnnotations
 import java.lang.RuntimeException
 
 @RunWith(JUnit4::class)
@@ -25,7 +30,11 @@ class FetchAirportsViewModelTest {
     @get:Rule
     val instantExecuterRule = InstantTaskExecutorRule()
 
-    var fetchAirports = mock<FetchAirports>()
+    var thread = mock<PostExecutionThread>()
+
+    var repo = mock<IAirportsRepository>()
+
+    var fetchAirports = FetchAirports(repo, thread)
 
     var modelMapper = AirportMapper()
 
@@ -34,6 +43,10 @@ class FetchAirportsViewModelTest {
     @Captor
     val captor = argumentCaptor<DisposableObserver<List<Airport>>>()
 
+    @Before
+    fun setup(){
+        MockitoAnnotations.initMocks(this)
+    }
 
     @Test
     fun `check that calling search in viewModel returns success when data is returned`() {
