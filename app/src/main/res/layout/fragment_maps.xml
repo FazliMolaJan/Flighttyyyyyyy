@@ -17,6 +17,7 @@
                android:layout_margin="16dp"
                android:src="@drawable/back"
                android:padding="8dp"
+               android:id="@+id/back"
                android:background="@drawable/rectangle_rounder_corners_transparent"
                android:layout_height="36dp"/>
 </FrameLayout>

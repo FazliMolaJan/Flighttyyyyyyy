@@ -26,7 +26,9 @@ import android.widget.TextView
 import com.aliumujib.flightyy.domain.models.Airport
 import com.aliumujib.flightyy.presentation.models.AirportModel
 import com.aliumujib.flightyy.presentation.models.schedule.ArrivalDepartureModel
+import com.aliumujib.flightyy.ui.utils.ext.findNavController
 import com.google.maps.android.ui.IconGenerator
+import kotlinx.android.synthetic.main.fragment_maps.*
 
 
 class MapsFragment : Fragment(), OnMapReadyCallback {
@@ -124,6 +126,10 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
         val mapFragment = childFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        back.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
 }

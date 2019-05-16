@@ -25,6 +25,7 @@ import com.aliumujib.flightyy.presentation.models.schedule.ScheduleModel
 import com.aliumujib.flightyy.ui.adapters.base.BindableItemClickListener
 import com.aliumujib.flightyy.ui.map.MapsFragmentArgs
 import com.aliumujib.flightyy.ui.utils.NavigationCommand
+import com.aliumujib.flightyy.ui.utils.ext.findNavController
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -66,6 +67,11 @@ class ScheduleListFragment : BaseFragment(), BindableItemClickListener<ScheduleM
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
         arguments?.let {
             val origin = ScheduleListFragmentArgs.fromBundle(it).origin
             val destination = ScheduleListFragmentArgs.fromBundle(it).destination
