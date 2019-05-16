@@ -79,6 +79,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+        <ProgressBar android:layout_width="match_parent"
+                     android:indeterminateTint="@color/black"
+                     android:indeterminate="true"
+                     android:visibility="gone"
+                     android:id="@+id/progress_horizontal"
+                     style="?android:progressBarStyleHorizontal"
+                     android:layout_height="wrap_content"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView

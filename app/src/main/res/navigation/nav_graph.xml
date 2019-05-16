@@ -9,8 +9,14 @@
 
 
         <action android:id="@+id/action_filtersFragment_to_airportSearchFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:destination="@id/airportSearchFragment"/>
         <action android:id="@+id/action_filtersFragment_to_scheduleListFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:destination="@id/scheduleListFragment"/>
     </fragment>
 
@@ -23,8 +29,12 @@
 
         <argument android:name="origin" app:argType="com.aliumujib.flightyy.presentation.models.AirportModel"/>
         <argument android:name="destination" app:argType="com.aliumujib.flightyy.presentation.models.AirportModel"/>
-        <argument android:name="date" app:argType="long"/>
-        <action android:id="@+id/action_scheduleListFragment_to_mapsFragment" app:destination="@id/mapsFragment"/>
+        <argument android:name="date" app:argType="string"/>
+        <action android:id="@+id/action_scheduleListFragment_to_mapsFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
+                app:destination="@id/mapsFragment"/>
 
     </fragment>
 

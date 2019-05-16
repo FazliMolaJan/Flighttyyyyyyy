@@ -22,10 +22,13 @@ import javax.inject.Inject
 import androidx.lifecycle.Observer
 import com.aliumujib.flightyy.data.remote.models.Schedule
 import com.aliumujib.flightyy.presentation.models.schedule.ScheduleModel
+import com.aliumujib.flightyy.presentation.state.Status
 import com.aliumujib.flightyy.ui.adapters.base.BindableItemClickListener
 import com.aliumujib.flightyy.ui.map.MapsFragmentArgs
 import com.aliumujib.flightyy.ui.utils.NavigationCommand
 import com.aliumujib.flightyy.ui.utils.ext.findNavController
+import com.aliumujib.flightyy.ui.utils.ext.showSnackbar
+import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -75,11 +78,11 @@ class ScheduleListFragment : BaseFragment(), BindableItemClickListener<ScheduleM
         arguments?.let {
             val origin = ScheduleListFragmentArgs.fromBundle(it).origin
             val destination = ScheduleListFragmentArgs.fromBundle(it).destination
-            val date = Date(ScheduleListFragmentArgs.fromBundle(it).date)
+            val date = ScheduleListFragmentArgs.fromBundle(it).date
 
             origin_text.text = context?.getString(R.string.city_format, origin.code, origin.state)
             destination_text.text = context?.getString(R.string.city_format, destination.code, destination.state)
-            date_text.text = SimpleDateFormat("yyyy-mm-dd", Locale.getDefault()).format(date)
+            date_text.text = date
 
             searchFlightsViewModel.searchFlights(origin, destination, date)
         }
@@ -99,6 +102,16 @@ class ScheduleListFragment : BaseFragment(), BindableItemClickListener<ScheduleM
 
 
         searchFlightsViewModel.liveData.observe(viewLifecycleOwner, Observer {
+            if(it.status == Status.LOADING){
+                progress_horizontal.visibility = View.VISIBLE
+            }else{
+                progress_horizontal.visibility = View.GONE
+            }
+
+            it.message?.let {
+                showSnackbar(it, Snackbar.LENGTH_SHORT)
+            }
+
             it.data?.let { list ->
                 schedulesListAdapter.setData(list)
             }

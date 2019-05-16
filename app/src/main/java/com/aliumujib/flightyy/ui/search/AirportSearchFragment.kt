@@ -65,6 +65,9 @@ class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel
         }
 
         dest_et.onFocusChangeListener = View.OnFocusChangeListener { p0, p1 ->
+            if(p1){
+                airportsAdapter.clearItems()
+            }
             dest_indicator.isChecked = p1
         }
 

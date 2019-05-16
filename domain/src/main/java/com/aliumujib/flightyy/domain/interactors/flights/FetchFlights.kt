@@ -21,13 +21,12 @@ class FetchFlights @Inject constructor(
             throw IllegalStateException("Your params can't be null for this use case")
         }
 
-        val dateFormatter = SimpleDateFormat("yyyy-mm-dd", Locale.getDefault())
-        return schedulesRepository.getFlightSchedules(params.origin, params.destination, dateFormatter.format(params.date))
+        return schedulesRepository.getFlightSchedules(params.origin, params.destination, params.date)
     }
 
-    data class Params constructor(val origin: Airport, val destination: Airport, val date: Date) {
+    data class Params constructor(val origin: Airport, val destination: Airport, val date: String) {
         companion object {
-            fun make(origin: Airport, destination: Airport, date: Date): Params {
+            fun make(origin: Airport, destination: Airport, date: String): Params {
                 return Params(origin, destination, date)
             }
         }

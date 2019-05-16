@@ -15,16 +15,16 @@ class FlightFiltersViewModel @Inject constructor() : BaseViewModel() {
 
     private var selectedOriginAirport: AirportModel? = null
     private var selectedDestinationAirport: AirportModel? = null
-    private var selectedDate: Date? = null
+    private var selectedDate: String? = null
 
 
     private var _originLiveData = mutableLiveDataOf<AirportModel>()
     private var _destinationLiveData = mutableLiveDataOf<AirportModel>()
-    private var _selectedDateLiveData = mutableLiveDataOf<Date>()
+    private var _selectedDateLiveData = mutableLiveDataOf<String>()
 
     val origin: LiveData<AirportModel> = _originLiveData
     val destination: LiveData<AirportModel> = _destinationLiveData
-    val date: LiveData<Date> = _selectedDateLiveData
+    val date: LiveData<String> = _selectedDateLiveData
 
     fun setOriginAndDestination(origin: AirportModel, destination: AirportModel) {
         selectedOriginAirport = origin
@@ -34,7 +34,7 @@ class FlightFiltersViewModel @Inject constructor() : BaseViewModel() {
 
     }
 
-    fun setSelectedDate(date: Date) {
+    fun setSelectedDate(date: String) {
         selectedDate = date
         _selectedDateLiveData.value = date
     }
@@ -61,7 +61,7 @@ class FlightFiltersViewModel @Inject constructor() : BaseViewModel() {
                 FiltersFragmentDirections.actionFiltersFragmentToScheduleListFragment(
                     selectedOriginAirport!!,
                     selectedDestinationAirport!!,
-                    selectedDate!!.time
+                    selectedDate!!
                 )
             )
         }

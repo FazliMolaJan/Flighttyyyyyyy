@@ -32,7 +32,7 @@ class SearchFlightsViewModel @Inject constructor(
         super.onCleared()
     }
 
-    fun searchFlights(origin: AirportModel, destination: AirportModel, date: Date) {
+    fun searchFlights(origin: AirportModel, destination: AirportModel, date: String) {
         _liveData.postValue(Resource(Status.LOADING, null, null))
         val mappedorigin = airportModelMapper.mapToDomain(origin)
         val mappeddest = airportModelMapper.mapToDomain(destination)

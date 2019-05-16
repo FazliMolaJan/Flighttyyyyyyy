@@ -24,14 +24,14 @@ class ScheduleRemote @Inject constructor(
         destination: String,
         fromDateTime: String
     ): Observable<List<ScheduleEntity>> {
-        return apiService.getCharacters(origin, destination, "2019-11-12").map {
+        return apiService.getCharacters(origin, destination, fromDateTime).map {
             it.ScheduleResource.Schedule
         }.map {
             createScheduleEntities(it)
         }
     }
 
-    fun createScheduleEntities(list: List<Schedule>): List<ScheduleEntity> {
+    private fun createScheduleEntities(list: List<Schedule>): List<ScheduleEntity> {
         var scheduleList = mutableListOf<ScheduleEntity>()
         var dateTimeFormatter = SimpleDateFormat("YYYY-MM-DD'T'HH:MM")
 
