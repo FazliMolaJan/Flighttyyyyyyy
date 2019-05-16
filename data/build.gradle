@@ -1,0 +1,58 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android' // here
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    def dataDependencies = rootProject.ext.appDependencies
+    def testDependencies = rootProject.ext.testDependencies
+
+    implementation dataDependencies.jodaTime
+    implementation dataDependencies.javaxInject
+    implementation dataDependencies.javaxAnnotation
+    implementation dataDependencies.appCompat
+    implementation dataDependencies.retrofit
+    implementation dataDependencies.retrofitRxAdapter
+    implementation dataDependencies.refrofitCoroutinesAdapter
+    implementation dataDependencies.coroutines
+    implementation dataDependencies.okhttp3LogginInterceptor
+    implementation dataDependencies.coroutinesAndroid
+    implementation dataDependencies.coroutines
+    implementation project(':domain')
+    implementation dataDependencies.moshi
+    implementation dataDependencies.gson
+    implementation dataDependencies.rxJava
+
+
+    testImplementation testDependencies.konveyor
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.mockitoKotlin
+    testImplementation testDependencies.kotlinJUnit
+    testImplementation testDependencies.mockWebServer
+    testImplementation testDependencies.kotlinRunnerJUnit
+
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+}

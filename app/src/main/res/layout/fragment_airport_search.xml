@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                     android:layout_width="match_parent"
+                                                     android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            app:elevation="3dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                app:navigationIcon="@drawable/back"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+        />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                           android:layout_height="wrap_content">
+
+
+            <com.aliumujib.flightyy.ui.views.RoundedView
+                    android:layout_width="10dp"
+                    android:id="@+id/origin_indicator"
+                    android:layout_height="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/origin_et"
+                    app:layout_constraintTop_toTopOf="@+id/origin_et"
+                    app:layout_constraintEnd_toStartOf="@+id/origin_et"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+
+            <View android:layout_width="1dp"
+                  android:background="@color/mds_black"
+                  android:layout_marginTop="8dp"
+                  android:layout_marginBottom="8dp"
+                  app:layout_constraintTop_toBottomOf="@+id/origin_indicator"
+                  app:layout_constraintEnd_toEndOf="@+id/dest_indicator"
+                  app:layout_constraintStart_toStartOf="@id/dest_indicator"
+                  app:layout_constraintBottom_toTopOf="@+id/dest_indicator"
+                  android:layout_height="0dp"/>
+
+            <com.aliumujib.flightyy.ui.views.RoundedView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/dest_et"
+                    android:id="@+id/dest_indicator"
+                    app:layout_constraintTop_toTopOf="@+id/dest_et"
+                    app:layout_constraintEnd_toStartOf="@+id/dest_et"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+            <com.aliumujib.flightyy.ui.views.TitledEditText
+                    android:layout_width="0dp"
+                    app:editTextTitle="@string/origin"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginEnd="16dp"
+                    android:id="@+id/origin_et"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_height="wrap_content"/>
+
+
+            <com.aliumujib.flightyy.ui.views.TitledEditText
+                    android:layout_width="0dp"
+                    android:layout_marginTop="16dp"
+                    app:editTextTitle="@string/destination"
+                    android:id="@+id/dest_et"
+                    app:layout_constraintTop_toBottomOf="@+id/origin_et"
+                    app:layout_constraintStart_toStartOf="@id/origin_et"
+                    app:layout_constraintEnd_toEndOf="@id/origin_et"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="wrap_content"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/airports_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:navGraph="@navigation/nav_graph"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

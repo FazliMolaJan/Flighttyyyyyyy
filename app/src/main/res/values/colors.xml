@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F2F2F2</color>
+    <color name="colorPrimaryDark">@color/grey_trans</color>
+    <color name="colorAccent">#7552f6</color>
+
+    <color name="colorAccentLight">#EFF8FF</color>
+    <color name="toolbar_shadow">#c0c0c0</color>
+
+    <color name="yellow">#F6A623</color>
+
+    <color name="violet">#673AB7</color>
+    <color name="violet_trans_80">#BF673AB7</color>
+
+    <color name="orange">#F07B3F</color>
+
+    <color name="grey">#949494</color>
+    <color name="red">#FE3824</color>
+    <color name="red_logout">#E95354</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="white_transparent_80">#BFFFFFFF</color>
+
+    <color name="background_color">#F7F9FA</color>
+
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="chrome_grey">#F2F2F2</color>
+    <color name="txt_profile">#2C4058</color>
+
+
+    <!--shimmer-->
+    <color name="demo_light_transparent">#16000000</color>
+    <color name="demo_dark_transparent">#24000000</color>
+
+
+    <color name="black">#000000</color>
+
+    <color name="black_25_transparent">#40000000</color>
+    <color name="black_15_transparent">#20000000</color>
+
+    <color name="transparent">#00000000</color>
+
+
+    <color name="grey_trans">#c7c7c7</color>
+
+
+    <color name="green">#70c050</color>
+    <color name="white_transparent_30">#80FFFFFF</color>
+
+    <color name="black_transparent_70">#AA000000</color>
+    <color name="black_transparent_30">#80000000</color>
+    <color name="black_transparent_10">#33000000</color>
+
+    <color name="on_boarding_transparent">#E9EBEE</color>
+    <color name="colorInterestSelected">#07ADC0</color>
+    <color name="black_transparent">#59000000</color>
+    <color name="subtitle_text">#697A89</color>
+    <color name="redeemers_blue_light">#1A1C2767</color>
+    <color name="divider_color">#E9EBEE</color>
+    <color name="switch_text_selected">#333333</color>
+    <color name="card_horizontal_divider">@color/white</color>
+    <color name="icon_gray">#D2D2D2</color>
+
+    <color name="circle_color_default_gray">#BDBDBD</color>
+
+</resources>

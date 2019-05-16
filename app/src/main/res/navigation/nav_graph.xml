@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
+            app:startDestination="@id/filtersFragment">
+
+    <fragment android:id="@+id/filtersFragment" android:name="com.aliumujib.flightyy.ui.filter.FiltersFragment"
+              android:label="SearchFragment">
+
+
+        <action android:id="@+id/action_filtersFragment_to_airportSearchFragment"
+                app:destination="@id/airportSearchFragment"/>
+        <action android:id="@+id/action_filtersFragment_to_scheduleListFragment"
+                app:destination="@id/scheduleListFragment"/>
+    </fragment>
+
+    <fragment android:id="@+id/airportSearchFragment" android:name="com.aliumujib.flightyy.ui.search.AirportSearchFragment"
+              android:label="">
+
+    </fragment>
+
+    <fragment android:id="@+id/scheduleListFragment"
+              android:name="com.aliumujib.flightyy.ui.flightlist.ScheduleListFragment"
+              android:label="ScheduleListFragment">
+
+        <argument android:name="origin" app:argType="com.aliumujib.flightyy.presentation.models.AirportModel"/>
+        <argument android:name="destination" app:argType="com.aliumujib.flightyy.presentation.models.AirportModel"/>
+        <argument android:name="date" app:argType="long"/>
+
+    </fragment>
+
+</navigation>

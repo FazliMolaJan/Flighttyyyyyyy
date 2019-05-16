@@ -1,0 +1,23 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    def domainDependencies = rootProject.ext.appDependencies
+    def testDependencies = rootProject.ext.testDependencies
+
+    implementation domainDependencies.coroutines
+    implementation domainDependencies.jodaTime
+    implementation domainDependencies.javaxInject
+    implementation domainDependencies.javaxAnnotation
+    implementation domainDependencies.rxJava
+
+    testImplementation testDependencies.konveyor
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.mockitoKotlin
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+}
+
+

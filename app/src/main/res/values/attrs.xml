@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TitledEditText">
+        <attr name="editTextHint" format="reference" localization="suggested" />
+        <attr name="editTextTitle" format="reference" localization="suggested" />
+        <attr name="editTextImageSrc" format="reference" localization="suggested" />
+        <attr name="isPasswordField" format="boolean" />
+        <attr name="isEditable" format="boolean" />
+        <attr name="isClickable" format="boolean" />
+
+    </declare-styleable>
+
+    <declare-styleable name="SolidBackgroundButtonView">
+        <attr name="textColor" format="reference" localization="suggested" />
+        <attr name="backGroundColor" format="reference" localization="suggested" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundedView">
+        <attr name="colorSelected" format="color" />
+        <attr name="colorUnselected" format="color" />
+    </declare-styleable>
+
+</resources>
