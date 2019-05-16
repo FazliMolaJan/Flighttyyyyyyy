@@ -9,17 +9,7 @@ import konveyor.base.randomBuild
 
 object PresentationDataFactory {
 
-    fun makeFilm(): FilmModel {
-        return randomBuild()
-    }
 
-    fun makeSpecie(): SpecieModel {
-        return randomBuild()
-    }
-
-    fun makePlanet(): PlanetModel {
-        return randomBuild()
-    }
 
     fun makeAirportModel(): AirportModel {
         return randomBuild()
@@ -37,14 +27,6 @@ object PresentationDataFactory {
         return categories
     }
 
-    fun makeFilmModelList(count: Int): List<FilmModel> {
-        val categories = mutableListOf<FilmModel>()
-        repeat(count) {
-            categories.add(makeFilm())
-        }
-        return categories
-    }
-
     fun makeAirportModelList(count: Int): List<AirportModel> {
         val articles = mutableListOf<AirportModel>()
         repeat(count) {
@@ -53,9 +35,6 @@ object PresentationDataFactory {
         return articles
     }
 
-    fun makeDetailedCharacterModel(): DetailedCharacterModel {
-        return randomBuild()
-    }
 
     fun makeDetailedCharacter(): ScheduleEntity {
         return randomBuild()

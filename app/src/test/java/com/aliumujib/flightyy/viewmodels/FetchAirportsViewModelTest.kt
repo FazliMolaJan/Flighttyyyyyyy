@@ -36,26 +36,6 @@ class FetchAirportsViewModelTest {
 
 
     @Test
-    fun `check that calling searchDestination in viewModel executes FetchAirports when character size is more than 2`() {
-        searchAirportsViewModel.searchDestination("luke")
-        verify(fetchAirports, times(1)).execute(any())
-    }
-
-
-    @Test
-    fun `check that calling searchOrigin in viewModel filters search list when character size is more than 2`() {
-        searchAirportsViewModel.searchOrigin("luke")
-        verify(fetchAirports, times(1)).execute(any())
-    }
-
-    @Test
-    fun `check that calling search in viewModel filters search list when character size is less than 3`() {
-        searchAirportsViewModel.searchDestination("lu")
-        verifyZeroInteractions(fetchAirports)
-    }
-
-
-    @Test
     fun `check that calling search in viewModel returns success when data is returned`() {
         val listOfAirports = PresentationDataFactory.makeAirportList(2)
         val listOfMappedAirports = PresentationDataFactory.makeAirportModelList(2)
