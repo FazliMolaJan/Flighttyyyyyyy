@@ -41,6 +41,7 @@
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:singleLine="true"
+                android:tag="@string/edit_text"
                 android:imeOptions="actionDone"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"

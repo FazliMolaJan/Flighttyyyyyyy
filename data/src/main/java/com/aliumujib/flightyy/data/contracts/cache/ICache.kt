@@ -1,4 +1,4 @@
-package com.aliumujib.flightyy.data.contracts
+package com.aliumujib.flightyy.data.contracts.cache
 
 
 abstract class ICache<E> {

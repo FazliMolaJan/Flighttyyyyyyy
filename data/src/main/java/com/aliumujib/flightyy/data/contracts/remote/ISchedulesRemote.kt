@@ -1,4 +1,4 @@
-package com.aliumujib.flightyy.data.contracts
+package com.aliumujib.flightyy.data.contracts.remote
 
 import com.aliumujib.flightyy.data.model.schedule.ScheduleEntity
 import io.reactivex.Observable

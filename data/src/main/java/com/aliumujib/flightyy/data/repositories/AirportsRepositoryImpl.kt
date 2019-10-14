@@ -1,6 +1,6 @@
 package com.aliumujib.flightyy.data.repositories
 
-import com.aliumujib.flightyy.data.contracts.ICache
+import com.aliumujib.flightyy.data.contracts.cache.ICache
 import com.aliumujib.flightyy.data.mapper.AirportEntityMapper
 import com.aliumujib.flightyy.data.model.AirportEntity
 import com.aliumujib.flightyy.domain.models.Airport

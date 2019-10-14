@@ -1,7 +1,7 @@
 package com.aliumujib.flightyy.data.repositories
 
 import com.aliumujib.flightyy.data.DummyDataFactory
-import com.aliumujib.flightyy.data.cache.AirportCache
+import com.aliumujib.flightyy.data.cache.airports.AirportCache
 import com.aliumujib.flightyy.data.mapper.AirportEntityMapper
 import com.aliumujib.flightyy.data.model.AirportEntity
 import com.nhaarman.mockito_kotlin.verify

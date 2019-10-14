@@ -2,6 +2,7 @@ package com.aliumujib.flightyy.ui.inject.module.ui
 
 import com.aliumujib.flightyy.domain.executor.PostExecutionThread
 import com.aliumujib.flightyy.ui.MainActivity
+import com.aliumujib.flightyy.ui.auth.LoginFragment
 import com.aliumujib.flightyy.ui.filter.FiltersFragment
 import com.aliumujib.flightyy.ui.flightlist.ScheduleListFragment
 import com.aliumujib.flightyy.ui.search.AirportSearchFragment
@@ -28,5 +29,8 @@ abstract class UIModule {
 
     @ContributesAndroidInjector(modules = [AirportSearchModule::class])
     abstract fun contributesDetailsFragment(): AirportSearchFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributesLoginFragment(): LoginFragment
 
 }

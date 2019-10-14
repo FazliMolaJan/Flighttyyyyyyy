@@ -1,8 +1,8 @@
-package com.aliumujib.flightyy.data.cache
+package com.aliumujib.flightyy.data.cache.airports
 
 import android.content.Context
 import android.util.Log
-import com.aliumujib.flightyy.data.contracts.ICache
+import com.aliumujib.flightyy.data.contracts.cache.ICache
 import com.aliumujib.flightyy.data.model.AirportEntity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

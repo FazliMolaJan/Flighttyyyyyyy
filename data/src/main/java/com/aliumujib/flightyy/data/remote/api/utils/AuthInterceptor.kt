@@ -1,14 +1,14 @@
-package com.aliumujib.flightyy.data.remote.api
+package com.aliumujib.flightyy.data.remote.api.utils
 
 import android.util.Log
-import com.aliumujib.flightyy.BuildConfig
+import com.aliumujib.flightyy.data.contracts.cache.IAuthTokenManager
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
+import javax.inject.Inject
 
 
-
-class AuthInterceptor(var apiKey: String) : Interceptor {
+class AuthInterceptor @Inject constructor(private val authTokenManager: IAuthTokenManager?) : Interceptor {
 
 
     @Throws(IOException::class)
@@ -18,14 +18,12 @@ class AuthInterceptor(var apiKey: String) : Interceptor {
 
         val requestBuilder = request.newBuilder()
 
-        requestBuilder.addHeader("Authorization", "Bearer $apiKey")
+        requestBuilder.addHeader("Authorization", "Bearer ${authTokenManager?.getToken()}")
 
         var response: Response? = null
 
         try {
-
             response = chain.proceed(requestBuilder.build())
-
         } catch (e: Exception) {
             Log.d(TAG, "<-- HTTP FAILED: $e")
             throw e

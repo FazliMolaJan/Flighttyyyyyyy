@@ -1,9 +1,7 @@
 package com.aliumujib.flightyy.data.repositories
 
-import com.aliumujib.flightyy.data.cache.AirlineCache
-import com.aliumujib.flightyy.data.contracts.ICache
+import com.aliumujib.flightyy.data.cache.airlines.AirlineCache
 import com.aliumujib.flightyy.data.mapper.AirlineEntityMapper
-import com.aliumujib.flightyy.data.model.AirlineEntity
 import com.aliumujib.flightyy.domain.models.Airline
 import com.aliumujib.flightyy.domain.repositories.airlines.IAirlinesRepository
 import io.reactivex.Observable

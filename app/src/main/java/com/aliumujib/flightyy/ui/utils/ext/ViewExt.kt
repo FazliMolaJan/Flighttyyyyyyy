@@ -11,7 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.aliumujib.flightyy.ui.views.TitledEditText
 import com.google.android.material.snackbar.Snackbar
-import com.pillr.android.utils.Event
+import com.aliumujib.flightyy.ui.utils.Event
 
 /**
  * Transforms static java function Snackbar.make() to an extension function on View.

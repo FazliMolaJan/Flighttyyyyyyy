@@ -8,7 +8,7 @@ import androidx.navigation.NavDirections
 import com.aliumujib.flightyy.R
 import com.aliumujib.flightyy.presentation.state.Resource
 import com.aliumujib.flightyy.presentation.state.Status
-import com.pillr.android.utils.Event
+import com.aliumujib.flightyy.ui.utils.Event
 import com.aliumujib.flightyy.ui.utils.NavigationCommand
 
 abstract class BaseViewModel : ViewModel() {

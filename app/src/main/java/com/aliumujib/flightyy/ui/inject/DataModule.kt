@@ -1,6 +1,6 @@
 package com.aliumujib.flightyy.ui.inject
 
-import com.aliumujib.flightyy.data.cache.AirportCache
+import com.aliumujib.flightyy.data.cache.airports.AirportCache
 import com.aliumujib.flightyy.data.mapper.AirportEntityMapper
 import com.aliumujib.flightyy.data.repositories.AirlinesRepositoryImpl
 import com.aliumujib.flightyy.data.repositories.AirportsRepositoryImpl

@@ -1,6 +1,6 @@
-package com.aliumujib.flightyy.data.cache
+package com.aliumujib.flightyy.data.cache.airlines
 
-import com.aliumujib.flightyy.data.contracts.ICache
+import com.aliumujib.flightyy.data.contracts.cache.ICache
 import com.aliumujib.flightyy.data.model.AirlineEntity
 import javax.inject.Inject
 import android.content.Context

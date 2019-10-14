@@ -36,11 +36,11 @@ dependencies {
     implementation dataDependencies.refrofitCoroutinesAdapter
     implementation dataDependencies.coroutines
     implementation dataDependencies.okhttp3LogginInterceptor
+    implementation dataDependencies.gson
     implementation dataDependencies.coroutinesAndroid
     implementation dataDependencies.coroutines
     implementation project(':domain')
     implementation dataDependencies.moshi
-    implementation dataDependencies.gson
     implementation dataDependencies.rxJava
     implementation dataDependencies.retrofitGson
 

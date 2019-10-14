@@ -5,6 +5,8 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.Drawable
+import android.os.Bundle
+import android.os.Parcelable
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -52,7 +54,7 @@ class TitledEditText : FrameLayout {
 
         title = view.findViewById(R.id.edit_text_title)
         image = view.findViewById(R.id.hint_image)
-        editText = view.findViewById(R.id.edit_text)
+        editText = view.findViewWithTag(context.getString(R.string.edit_text))
         linearLayout = view.findViewById(R.id.linear_layout)
 
         if (titleText != null) {
@@ -93,6 +95,26 @@ class TitledEditText : FrameLayout {
         if (image.drawable != null) {
             setUnSelectedDrawable()
         }
+    }
+
+    override fun onSaveInstanceState(): Parcelable? {
+
+        val bundle = Bundle()
+        bundle.putParcelable("instanceState", super.onSaveInstanceState())
+        bundle.putString("currentEdit", editText.text.toString())
+        return bundle
+
+    }
+
+    override fun onRestoreInstanceState(state: Parcelable) {
+
+        if (state is Bundle) {
+            editText.setText(state.getString("currentEdit"))
+            super.onRestoreInstanceState(state.getParcelable("instanceState"))
+            return
+        }
+
+        super.onRestoreInstanceState(state)
     }
 
     fun getEditText():EditText{

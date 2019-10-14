@@ -3,6 +3,7 @@ package com.aliumujib.flightyy.ui.inject.module.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.aliumujib.flightyy.presentation.viewmodels.FlightFiltersViewModel
+import com.aliumujib.flightyy.presentation.viewmodels.LoginViewModel
 import com.aliumujib.flightyy.presentation.viewmodels.SearchAirportsViewModel
 import com.aliumujib.flightyy.presentation.viewmodels.SearchFlightsViewModel
 import com.aliumujib.flightyy.ui.inject.ViewModelFactory
@@ -33,6 +34,16 @@ abstract class PresentationModule {
     @ViewModelKey(SearchFlightsViewModel::class)
     abstract fun bindSearchFlightsViewModel(
         viewModel: SearchFlightsViewModel): ViewModel
+
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    abstract fun bindLoginViewModel(
+        viewModel: LoginViewModel): ViewModel
+
+
+
 
 
     @Binds

@@ -1,6 +1,6 @@
 package com.aliumujib.flightyy.data.repositories
 
-import com.aliumujib.flightyy.data.contracts.ISchedulesRemote
+import com.aliumujib.flightyy.data.contracts.remote.ISchedulesRemote
 import com.aliumujib.flightyy.data.mapper.ScheduleEntityMapper
 import com.aliumujib.flightyy.domain.models.Airport
 import com.aliumujib.flightyy.domain.models.schedule.Schedule

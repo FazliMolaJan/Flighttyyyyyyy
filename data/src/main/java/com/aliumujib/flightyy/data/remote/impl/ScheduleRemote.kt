@@ -1,12 +1,12 @@
-package com.aliumujib.flightyy.data.remote
+package com.aliumujib.flightyy.data.remote.impl
 
-import com.aliumujib.flightyy.data.cache.AirlineCache
-import com.aliumujib.flightyy.data.cache.AirportCache
-import com.aliumujib.flightyy.data.contracts.ISchedulesRemote
+import com.aliumujib.flightyy.data.cache.airlines.AirlineCache
+import com.aliumujib.flightyy.data.cache.airports.AirportCache
+import com.aliumujib.flightyy.data.contracts.remote.ISchedulesRemote
 import com.aliumujib.flightyy.data.model.schedule.ArrivalDepartureEntity
 import com.aliumujib.flightyy.data.model.schedule.FlightEntity
 import com.aliumujib.flightyy.data.model.schedule.ScheduleEntity
-import com.aliumujib.flightyy.data.remote.api.ApiService
+import com.aliumujib.flightyy.data.remote.api.retrofit.ApiService
 import com.aliumujib.flightyy.data.remote.models.Schedule
 import io.reactivex.Observable
 import org.joda.time.format.DateTimeFormat
