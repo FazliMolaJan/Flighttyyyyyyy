@@ -1,6 +1,5 @@
 package com.aliumujib.flightyy.data.remote.api.utils
 
-import com.aliumujib.flightyy.BuildConfig
 import com.aliumujib.flightyy.data.remote.api.retrofit.APIServiceFactory
 import com.google.gson.Gson
 import javax.inject.Inject
@@ -14,13 +13,14 @@ class TokenRefresher @Inject constructor(
         val hashMap = HashMap<String, Any>()
         hashMap["client_id"] = clientId
         hashMap["client_secret"] = clientSecret
+        hashMap["grant_type"] = "client_credentials"
         return APIServiceFactory.makeApiService(
             APIServiceFactory.makeSimplerRetrofitInstance(
                 baseURL,
                 gson
             )
         )
-            .login(hashMap).blockingFirst().access_token
+            .nonRxLogin(hashMap).execute().body()?.access_token
     }
 
 }

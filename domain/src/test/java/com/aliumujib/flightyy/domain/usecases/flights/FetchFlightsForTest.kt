@@ -1,4 +1,4 @@
-package com.aliumujib.flightyy.domain.interactors.flights
+package com.aliumujib.flightyy.domain.usecases.flights
 
 import com.aliumujib.flightyy.domain.executor.PostExecutionThread
 import com.aliumujib.flightyy.domain.models.schedule.Schedule
@@ -7,7 +7,6 @@ import com.aliumujib.flightyy.domain.test.DummyDataFactory
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Observable
-import io.reactivex.Scheduler
 import konveyor.base.randomBuild
 import org.junit.Before
 import org.junit.Test

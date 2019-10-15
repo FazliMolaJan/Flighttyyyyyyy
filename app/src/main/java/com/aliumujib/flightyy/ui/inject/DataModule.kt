@@ -4,9 +4,11 @@ import com.aliumujib.flightyy.data.cache.airports.AirportCache
 import com.aliumujib.flightyy.data.mapper.AirportEntityMapper
 import com.aliumujib.flightyy.data.repositories.AirlinesRepositoryImpl
 import com.aliumujib.flightyy.data.repositories.AirportsRepositoryImpl
+import com.aliumujib.flightyy.data.repositories.AuthRepositoryImpl
 import com.aliumujib.flightyy.data.repositories.SchedulesRepositoryImpl
 import com.aliumujib.flightyy.domain.repositories.airlines.IAirlinesRepository
 import com.aliumujib.flightyy.domain.repositories.airports.IAirportsRepository
+import com.aliumujib.flightyy.domain.repositories.auth.IAuthRepository
 import com.aliumujib.flightyy.domain.repositories.schedules.ISchedulesRepository
 import dagger.Module
 import dagger.Provides
@@ -27,6 +29,11 @@ import dagger.Provides
 
     @Provides
      fun bindsAirlinesRepository(repo: AirlinesRepositoryImpl): IAirlinesRepository{
+        return repo
+    }
+
+    @Provides
+    fun bindsAuthRepository(repo: AuthRepositoryImpl): IAuthRepository{
         return repo
     }
 

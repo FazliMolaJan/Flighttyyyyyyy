@@ -3,8 +3,7 @@ package com.aliumujib.flightyy.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.aliumujib.flightyy.domain.interactors.flights.FetchFlights
+import com.aliumujib.flightyy.domain.usecases.flights.FetchFlights
 import com.aliumujib.flightyy.domain.models.schedule.Schedule
 import com.aliumujib.flightyy.presentation.mappers.AirportMapper
 import com.aliumujib.flightyy.presentation.mappers.ScheduleMapper
@@ -14,7 +13,6 @@ import com.aliumujib.flightyy.presentation.state.Resource
 import com.aliumujib.flightyy.presentation.state.Status
 import com.aliumujib.flightyy.ui.base.BaseViewModel
 import io.reactivex.observers.DisposableObserver
-import java.util.*
 import javax.inject.Inject
 
 class SearchFlightsViewModel @Inject constructor(

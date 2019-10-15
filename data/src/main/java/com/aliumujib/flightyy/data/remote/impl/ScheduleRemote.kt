@@ -32,23 +32,23 @@ class ScheduleRemote @Inject constructor(
     }
 
     private fun createScheduleEntities(list: List<Schedule>): List<ScheduleEntity> {
-        var scheduleList = mutableListOf<ScheduleEntity>()
-        var dateTimeFormatter = SimpleDateFormat("YYYY-MM-DD'T'HH:MM")
+        val scheduleList = mutableListOf<ScheduleEntity>()
+        val dateTimeFormatter = SimpleDateFormat("YYYY-MM-DD'T'HH:MM")
 
         list.forEach {
-            var flights = mutableListOf<FlightEntity>()
+            val flights = mutableListOf<FlightEntity>()
             it.Flight.forEach { flight ->
-                var arrival = ArrivalDepartureEntity(
+                val arrival = ArrivalDepartureEntity(
                     airportCache.get(flight.Arrival.AirportCode),
                     dateTimeFormatter.parse(flight.Arrival.ScheduledTimeLocal.DateTime)
                 )
-                var departure = ArrivalDepartureEntity(
+                val departure = ArrivalDepartureEntity(
                     airportCache.get(flight.Departure.AirportCode),
                     dateTimeFormatter.parse(flight.Departure.ScheduledTimeLocal.DateTime)
                 )
-                var airline = airlineCache.get(flight.MarketingCarrier.AirlineID)
+                val airline = airlineCache.get(flight.MarketingCarrier.AirlineID)
 
-                var flightEntity = FlightEntity(
+                val flightEntity = FlightEntity(
                     arrival,
                     departure,
                     airline,
@@ -59,8 +59,8 @@ class ScheduleRemote @Inject constructor(
                 flights.add(flightEntity)
             }
 
-            var dtf = DateTimeFormat.forPattern("mm'H'ss'M'")
-            var scheduleEntity = ScheduleEntity(flights, 0L)
+            val dtf = DateTimeFormat.forPattern("mm'H'ss'M'")
+            val scheduleEntity = ScheduleEntity(flights, 0L)
             scheduleList.add(scheduleEntity)
         }
 

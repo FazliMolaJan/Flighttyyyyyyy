@@ -1,4 +1,4 @@
-package com.aliumujib.flightyy.domain.interactors.airlines
+package com.aliumujib.flightyy.domain.usecases.airlines
 
 import com.aliumujib.flightyy.domain.executor.PostExecutionThread
 import com.aliumujib.flightyy.domain.models.Airline

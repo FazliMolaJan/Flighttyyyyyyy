@@ -2,8 +2,7 @@ package com.aliumujib.flightyy.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.aliumujib.flightyy.PresentationDataFactory
-import com.aliumujib.flightyy.domain.interactors.airports.FetchAirports
-import com.aliumujib.flightyy.data.model.AirportEntity
+import com.aliumujib.flightyy.domain.usecases.airports.FetchAirports
 import com.aliumujib.flightyy.domain.executor.PostExecutionThread
 import com.aliumujib.flightyy.domain.models.Airport
 import com.aliumujib.flightyy.domain.repositories.airports.IAirportsRepository
@@ -11,7 +10,6 @@ import com.aliumujib.flightyy.presentation.mappers.AirportMapper
 import com.aliumujib.flightyy.presentation.models.AirportModel
 import com.aliumujib.flightyy.presentation.state.Status
 import com.aliumujib.flightyy.presentation.viewmodels.SearchAirportsViewModel
-import com.aliumujib.flightyy.ui.utils.PostExecutionThreadImpl
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.observers.DisposableObserver
 import junit.framework.Assert.assertEquals

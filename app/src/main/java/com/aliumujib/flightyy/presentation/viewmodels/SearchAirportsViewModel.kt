@@ -3,7 +3,7 @@ package com.aliumujib.flightyy.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.aliumujib.flightyy.domain.interactors.airports.FetchAirports
+import com.aliumujib.flightyy.domain.usecases.airports.FetchAirports
 import com.aliumujib.flightyy.domain.models.Airport
 import com.aliumujib.flightyy.presentation.mappers.AirportMapper
 import com.aliumujib.flightyy.presentation.models.AirportSearchResults
@@ -20,8 +20,8 @@ class SearchAirportsViewModel @Inject constructor(
     private val modelMapper: AirportMapper
 ) : ViewModel() {
 
-    private val _liveData: SingleLiveData<Resource<List<AirportModel>>> = SingleLiveData()
-    val airportsData: LiveData<Resource<List<AirportModel>>> = _liveData
+    private val _airportsData: SingleLiveData<Resource<List<AirportModel>>> = SingleLiveData()
+    val airportsData: LiveData<Resource<List<AirportModel>>> = _airportsData
 
     private val airportList = mutableListOf<AirportModel>()
 
@@ -67,7 +67,7 @@ class SearchAirportsViewModel @Inject constructor(
 
     private fun searchAirports(query: String) {
         if (query.length < 3) {
-            _liveData.postValue(Resource(Status.ERROR, null, "Your query has to have at least 3 letters."))
+            _airportsData.postValue(Resource(Status.ERROR, null, "Your query has to have at least 3 letters."))
             return
         }
 
@@ -77,7 +77,7 @@ class SearchAirportsViewModel @Inject constructor(
                     airport.state.contains(query, true)
         }
 
-        _liveData.postValue(
+        _airportsData.postValue(
             Resource(
                 Status.SUCCESS,
                 results, null
@@ -110,7 +110,7 @@ class SearchAirportsViewModel @Inject constructor(
 
         override fun onError(e: Throwable) {
             e.printStackTrace()
-            _liveData.postValue(
+            _airportsData.postValue(
                 Resource(
                     Status.ERROR, null,
                     e.localizedMessage

@@ -1,23 +1,21 @@
-package com.aliumujib.flightyy.domain.interactors.airlines
+package com.aliumujib.flightyy.domain.usecases.airlines
 
 
 import com.aliumujib.flightyy.domain.executor.PostExecutionThread
-import com.aliumujib.flightyy.domain.interactors.ObservableUseCase
+import com.aliumujib.flightyy.domain.usecases.base.ObservableUseCase
 import com.aliumujib.flightyy.domain.models.Airline
 import com.aliumujib.flightyy.domain.repositories.airlines.IAirlinesRepository
 import io.reactivex.Observable
 import javax.inject.Inject
 
 class FetchAirlinesForID @Inject constructor(
-    val airlinesRepository: IAirlinesRepository,
+    private val repository: IAirlinesRepository,
     postExecutionThread: PostExecutionThread
 ) : ObservableUseCase<FetchAirlinesForID.Params, Airline>(postExecutionThread) {
 
     public override fun buildUseCaseObservable(params: Params?): Observable<Airline> {
-        if (params == null) {
-            throw IllegalStateException("Your params can't be null for this use case")
-        }
-        return airlinesRepository.getAirlineWithId(params.airlineId)
+        checkNotNull(params) { "Your params can't be null for this use case" }
+        return repository.getAirlineWithId(params.airlineId)
     }
 
     data class Params constructor(val airlineId: String) {

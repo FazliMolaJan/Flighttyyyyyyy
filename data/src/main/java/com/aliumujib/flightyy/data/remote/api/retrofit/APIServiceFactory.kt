@@ -1,29 +1,16 @@
 package com.aliumujib.flightyy.data.remote.api.retrofit
 
-import android.os.Build
-import android.util.Log
-import com.aliumujib.flightyy.data.contracts.cache.IAuthTokenManager
 import com.aliumujib.flightyy.data.remote.api.utils.AccessTokenAuthenticator
 import com.aliumujib.flightyy.data.remote.api.utils.AuthInterceptor
-import com.aliumujib.flightyy.data.remote.models.Schedule
-import com.aliumujib.flightyy.data.remote.models.ScheduleTypeAdapter
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import okhttp3.ConnectionSpec
 import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
-import okhttp3.TlsVersion
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.security.KeyStore
-import java.util.*
 import java.util.concurrent.TimeUnit
-import javax.net.ssl.SSLContext
-import javax.net.ssl.TrustManagerFactory
-import javax.net.ssl.X509TrustManager
-import kotlin.collections.ArrayList
 
 
 object APIServiceFactory {

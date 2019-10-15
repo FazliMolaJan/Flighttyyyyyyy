@@ -3,6 +3,7 @@ package com.aliumujib.flightyy.data.cache
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.aliumujib.flightyy.BuildConfig
 
 
 open class CoreSharedPrefManager(context: Context) {
@@ -51,6 +52,6 @@ open class CoreSharedPrefManager(context: Context) {
 
 
     companion object {
-        const val APP_NAME = "EYOWO"
+        const val APP_NAME = BuildConfig.APPLICATION_ID
     }
 }

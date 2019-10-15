@@ -64,6 +64,8 @@
     <string name="login">LOGIN</string>
     <string name="client_id">Client ID</string>
     <string name="client_secret">Client Secret</string>
+    <string name="please_input_client_id">Please input client ID</string>
+    <string name="please_input_client_secret">Please input client secret</string>
 
 
 </resources>

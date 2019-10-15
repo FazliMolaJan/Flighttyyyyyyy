@@ -1,4 +1,4 @@
-package com.aliumujib.flightyy.domain.interactors.airports
+package com.aliumujib.flightyy.domain.usecases.airports
 
 import com.aliumujib.flightyy.domain.executor.PostExecutionThread
 import com.aliumujib.flightyy.domain.models.Airport
@@ -6,7 +6,6 @@ import com.aliumujib.flightyy.domain.repositories.airports.IAirportsRepository
 import com.aliumujib.flightyy.domain.test.DummyDataFactory
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Observable
-import konveyor.base.randomBuild
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

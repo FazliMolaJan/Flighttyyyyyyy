@@ -1,4 +1,4 @@
-package com.aliumujib.flightyy.domain.interactors
+package com.aliumujib.flightyy.domain.usecases.base
 
 import com.aliumujib.flightyy.domain.executor.PostExecutionThread
 import io.reactivex.Observable

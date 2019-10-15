@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.fragment.app.Fragment
 import androidx.multidex.MultiDexApplication
 import com.aliumujib.flightyy.ui.inject.DaggerApplicationComponent
+import com.facebook.stetho.Stetho
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -11,7 +12,7 @@ import dagger.android.support.HasSupportFragmentInjector
 import timber.log.Timber
 import javax.inject.Inject
 
-class ApplicationClass : MultiDexApplication(), HasActivityInjector , HasSupportFragmentInjector{
+class ApplicationClass : MultiDexApplication(), HasActivityInjector, HasSupportFragmentInjector {
 
     @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>
@@ -38,7 +39,7 @@ class ApplicationClass : MultiDexApplication(), HasActivityInjector , HasSupport
             .inject(this)
 
         initTimber()
-
+        Stetho.initializeWithDefaults(this)
     }
 
     private fun initTimber() {

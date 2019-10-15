@@ -18,7 +18,9 @@ class AuthInterceptor @Inject constructor(private val authTokenManager: IAuthTok
 
         val requestBuilder = request.newBuilder()
 
-        requestBuilder.addHeader("Authorization", "Bearer ${authTokenManager?.getToken()}")
+        authTokenManager?.getToken()?.let {
+            requestBuilder.addHeader("Authorization", "Bearer ${authTokenManager.getToken()}")
+        }
 
         var response: Response? = null
 
