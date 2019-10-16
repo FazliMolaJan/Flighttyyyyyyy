@@ -11,6 +11,7 @@ import com.aliumujib.flightyy.R
 import com.aliumujib.flightyy.presentation.state.Resource
 import com.aliumujib.flightyy.presentation.state.Status
 import com.aliumujib.flightyy.presentation.viewmodels.LoginViewModel
+import com.aliumujib.flightyy.ui.MainActivity
 import com.aliumujib.flightyy.ui.base.BaseFragment
 import com.aliumujib.flightyy.ui.base.BaseViewModel
 import com.aliumujib.flightyy.ui.inject.ViewModelFactory
@@ -61,9 +62,11 @@ class LoginFragment : BaseFragment() {
             when (it) {
                 Status.SUCCESS -> {
                     hideLoadingDialog()
+                    activity?.let { parent ->
+                        MainActivity.start(parent)
+                    }
                 }
                 Status.LOADING -> {
-
                     showLoadingDialog()
                 }
                 else -> {

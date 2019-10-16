@@ -13,6 +13,10 @@ class AuthRepositoryImpl @Inject constructor(
     private val authRemote: IAuthRemote
 ) : IAuthRepository {
 
+    override fun isUserLoggedIn(): Boolean {
+        return userDataManager.getClientId() != null && userDataManager.getClientSecret() != null
+    }
+
 
     override fun login(clientId: String, clientSecret: String): Completable {
         return authRemote.login(clientId, clientSecret).doOnNext {

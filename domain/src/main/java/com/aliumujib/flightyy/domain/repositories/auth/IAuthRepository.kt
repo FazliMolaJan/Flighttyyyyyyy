@@ -6,4 +6,6 @@ interface IAuthRepository {
 
     fun login(clientId: String, clientSecret: String): Completable
 
+    fun isUserLoggedIn(): Boolean
+
 }

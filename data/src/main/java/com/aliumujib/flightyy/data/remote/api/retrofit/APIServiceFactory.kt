@@ -2,6 +2,8 @@ package com.aliumujib.flightyy.data.remote.api.retrofit
 
 import com.aliumujib.flightyy.data.remote.api.utils.AccessTokenAuthenticator
 import com.aliumujib.flightyy.data.remote.api.utils.AuthInterceptor
+import com.aliumujib.flightyy.data.remote.models.Schedule
+import com.aliumujib.flightyy.data.remote.models.ScheduleTypeAdapter
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.Dispatcher
@@ -56,13 +58,13 @@ object APIServiceFactory {
         httpClientBuilder.connectTimeout(60, TimeUnit.SECONDS)
         httpClientBuilder.readTimeout(60, TimeUnit.SECONDS)
         httpClientBuilder.dispatcher(dispatcher)
-
         return httpClientBuilder.build()
     }
 
 
     fun getGson(): Gson {
         return GsonBuilder()
+            .registerTypeAdapter(Schedule::class.java, ScheduleTypeAdapter())
             .create()
     }
 

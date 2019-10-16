@@ -1,5 +1,8 @@
 package com.aliumujib.flightyy.ui
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
@@ -14,7 +17,7 @@ import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var navController : NavController
+    lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -26,7 +29,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
     /***
      *
      * Inspired by
@@ -36,7 +38,8 @@ class MainActivity : AppCompatActivity() {
      * */
 
     fun navigateBackWithResult(result: Bundle) {
-        val childFragmentManager = supportFragmentManager.findFragmentById(R.id.mainHostFragment)?.childFragmentManager
+        val childFragmentManager =
+            supportFragmentManager.findFragmentById(R.id.mainHostFragment)?.childFragmentManager
         var backStackListener: FragmentManager.OnBackStackChangedListener by Delegates.notNull()
         backStackListener = FragmentManager.OnBackStackChangedListener {
             (childFragmentManager?.fragments?.get(0) as NavigationResult).onNavigationResult(result)
@@ -44,6 +47,17 @@ class MainActivity : AppCompatActivity() {
         }
         childFragmentManager?.addOnBackStackChangedListener(backStackListener)
         navController.popBackStack()
+    }
+
+
+    companion object {
+
+        fun start(context: Activity){
+            val intent = Intent(context, MainActivity::class.java)
+            context.startActivity(intent)
+            context.finish()
+        }
+
     }
 
 }
