@@ -1,102 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                     xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                     xmlns:tools="http://schemas.android.com/tools"
-                                                     android:layout_width="match_parent"
-                                                     android:layout_height="match_parent">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            app:elevation="3dp"
+            android:layout_height="wrap_content"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            android:layout_height="wrap_content">
+            app:elevation="3dp">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
-                app:navigationIcon="@drawable/back"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-        />
+                app:navigationIcon="@drawable/back" />
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
-                                                           android:padding="16dp"
-                                                           android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
 
-            <TextView android:layout_width="wrap_content"
-                      android:id="@+id/text1"
-                      app:layout_constraintTop_toTopOf="parent"
-                      app:layout_constraintStart_toStartOf="parent"
-                      android:text="@string/origin"
-                      android:textColor="@color/mds_grey_600"
-                      android:layout_height="wrap_content"/>
+            <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/origin"
+                    android:textColor="@color/mds_grey_600"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView android:layout_width="wrap_content"
-                      android:id="@+id/text2"
-                      app:layout_constraintTop_toTopOf="parent"
-                      app:layout_constraintEnd_toEndOf="parent"
-                      android:text="@string/destination"
-                      android:textColor="@color/mds_grey_600"
-                      android:layout_height="wrap_content"/>
-
-
-            <TextView android:layout_width="wrap_content"
-                      android:id="@+id/origin_text"
-                      android:layout_marginTop="8dp"
-                      android:textColor="@color/black"
-                      android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                      app:layout_constraintTop_toBottomOf="@+id/text1"
-                      app:layout_constraintStart_toStartOf="@+id/text1"
-                      tools:text="San Fransisco"
-                      android:textStyle="bold"
-                      android:layout_height="wrap_content"/>
+            <TextView
+                    android:id="@+id/text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/destination"
+                    android:textColor="@color/mds_grey_600"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView android:layout_width="wrap_content"
-                      android:id="@+id/destination_text"
-                      tools:text="JFK, New York"
-                      android:textStyle="bold"
-                      android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                      android:text="@string/origin"
-                      android:textColor="@color/black"
-                      app:layout_constraintTop_toTopOf="@+id/origin_text"
-                      app:layout_constraintEnd_toEndOf="@+id/text2"
-                      android:layout_height="wrap_content"/>
+            <TextView
+                    android:id="@+id/origin_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/text1"
+                    app:layout_constraintTop_toBottomOf="@+id/text1"
+                    tools:text="San Fransisco" />
 
-            <TextView android:layout_width="wrap_content"
-                      android:id="@+id/date_text"
-                      tools:text="12-13 July"
-                      android:textColor="@color/mds_grey_600"
-                      android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                      android:layout_marginTop="8dp"
-                      android:layout_height="wrap_content"
-                      app:layout_constraintTop_toBottomOf="@+id/origin_text"
-                      app:layout_constraintStart_toStartOf="@+id/origin_text"
-                      android:layout_marginBottom="8dp"
-                      app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                    android:id="@+id/destination_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/origin"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/text2"
+                    app:layout_constraintTop_toTopOf="@+id/origin_text"
+                    tools:text="JFK, New York" />
+
+            <TextView
+                    android:id="@+id/date_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="@color/mds_grey_600"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/origin_text"
+                    app:layout_constraintTop_toBottomOf="@+id/origin_text"
+                    tools:text="12-13 July" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <ProgressBar android:layout_width="match_parent"
-                     android:indeterminateTint="@color/black"
-                     android:indeterminate="true"
-                     android:visibility="gone"
-                     android:id="@+id/progress_horizontal"
-                     style="?android:progressBarStyleHorizontal"
-                     android:layout_height="wrap_content"/>
+        <ProgressBar
+                android:id="@+id/progress_horizontal"
+                style="?android:progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/black"
+                android:visibility="gone" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/schedules_rv"
+
+    <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:navGraph="@navigation/nav_graph"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="parent"/>
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:id="@+id/state_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                <ImageView
+                        android:id="@+id/state_image"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:src="@drawable/ic_error_black_24dp" />
+
+                <TextView
+                        android:id="@+id/state_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/activity_vertical_margin"
+                        android:text="@string/an_error_happened" />
+
+                <Button
+                        android:id="@+id/retry_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_margin="@dimen/activity_horizontal_margin"
+                        android:layout_height="wrap_content"
+                        android:text="@string/retry" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/schedules_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toTopOf="parent"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:navGraph="@navigation/nav_graph" />
+        </FrameLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
