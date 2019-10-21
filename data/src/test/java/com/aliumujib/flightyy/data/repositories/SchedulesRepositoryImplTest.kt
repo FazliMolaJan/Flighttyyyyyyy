@@ -55,13 +55,29 @@ class SchedulesRepositoryImplTest {
     }
 
     @Test
+    fun `check that calling getFlightSchedules on repository returns data`() {
+        val origin = DummyDataFactory.makeRandomAirport()
+        val destination = DummyDataFactory.makeRandomAirport()
+        val datetime = UUID.randomUUID().toString()
+        val dummyDataEntities = DummyDataFactory.makeScheduleEntities(10)
+        val dummyData = scheduleEntityMapper.mapFromEntityList(dummyDataEntities)
+
+        stubSchedulesRemoteResponse(origin.code, destination.code, datetime, dummyDataEntities)
+
+        val testObserver =
+            schedulesRepositoryImpl.getFlightSchedules(origin, destination, datetime).test()
+
+        testObserver.assertValue(dummyData)
+    }
+
+    @Test
     fun `check that calling getFlightSchedules on repository calls remote implementation`() {
         val origin = DummyDataFactory.makeRandomAirport()
         val destination = DummyDataFactory.makeRandomAirport()
         val datetime = UUID.randomUUID().toString()
 
         stubSchedulesRemoteResponse(origin.code, destination.code, datetime)
-        stubSchedulesRepositoryResponse(origin, destination, datetime)
+       stubSchedulesRepositoryResponse(origin, destination, datetime)
 
         schedulesRepositoryImpl.getFlightSchedules(origin, destination, datetime).test()
         verify(schedulesRemote).getSchedules(origin.code, destination.code, datetime)
