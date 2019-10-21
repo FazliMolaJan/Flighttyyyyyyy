@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 
 /**
  *
- * Plenty copy and paste coding supported by
+ * Plenty copy and paste coding made possible by
  *
  * Random gist page
  * https://gist.github.com/Sloy/7a267237f7bc27a2057be744209c1c61

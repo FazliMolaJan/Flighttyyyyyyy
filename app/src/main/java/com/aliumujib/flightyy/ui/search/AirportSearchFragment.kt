@@ -44,7 +44,8 @@ class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel
         AndroidSupportInjection.inject(this)
 
 
-        searchViewModel = ViewModelProviders.of(this, viewModelFactory).get(SearchAirportsViewModel::class.java)
+        searchViewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(SearchAirportsViewModel::class.java)
 
     }
 
@@ -65,7 +66,7 @@ class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel
         }
 
         dest_et.onFocusChangeListener = View.OnFocusChangeListener { p0, p1 ->
-            if(p1){
+            if (p1) {
                 airportsAdapter.clearItems()
             }
             dest_indicator.isChecked = p1

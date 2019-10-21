@@ -11,7 +11,7 @@ import java.nio.charset.Charset
 import javax.inject.Inject
 
 
-open class AirportCache @Inject constructor(var context: Context) : ICache<AirportEntity>() {
+open class AirportCache @Inject constructor( private val context: Context) : ICache<AirportEntity>() {
 
     private var listOfAirports = mutableListOf<AirportEntity>()
     private var mapOfAirports = mutableMapOf<String, AirportEntity>()

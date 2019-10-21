@@ -9,8 +9,8 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class AirportsRepositoryImpl @Inject constructor(
-    var airportsCache: ICache<AirportEntity>,
-    var airportsEntityMapper: AirportEntityMapper
+    private val airportsCache: ICache<AirportEntity>,
+    private val airportsEntityMapper: AirportEntityMapper
 ) : IAirportsRepository {
 
     override fun searchAirports(): Observable<List<Airport>> {

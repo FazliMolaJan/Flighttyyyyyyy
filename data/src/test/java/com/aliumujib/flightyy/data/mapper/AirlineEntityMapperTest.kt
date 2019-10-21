@@ -13,7 +13,7 @@ import kotlin.test.assertEquals
 @RunWith(JUnit4::class)
 class AirlineEntityMapperTest {
 
-    var entityMapper: AirlineEntityMapper = AirlineEntityMapper()
+    private var entityMapper: AirlineEntityMapper = AirlineEntityMapper()
 
     @Before
     fun setup() {
@@ -38,7 +38,7 @@ class AirlineEntityMapperTest {
         assertEqualData(airline, airlineEntity)
     }
 
-    fun assertEqualData(entity: AirlineEntity, domain: Airline) {
+    private fun assertEqualData(entity: AirlineEntity, domain: Airline) {
         assertEquals(entity.id, domain.id)
         assertEquals(entity.active, domain.active)
         assertEquals(entity.alias, domain.alias)

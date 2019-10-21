@@ -13,7 +13,7 @@ import kotlin.test.assertEquals
 @RunWith(JUnit4::class)
 class AirportEntityMapperTest {
 
-    val airportEntityMapper = AirportEntityMapper()
+    private val airportEntityMapper = AirportEntityMapper()
 
     @Before
     fun setup() {
@@ -38,7 +38,7 @@ class AirportEntityMapperTest {
         assertEquality(characterEntity, character)
     }
 
-    fun assertEquality(entity: AirportEntity, character: Airport) {
+    private fun assertEquality(entity: AirportEntity, character: Airport) {
         assertEquals(entity.woeid, character.woeid)
         assertEquals(entity.carriers, character.carriers)
         assertEquals(entity.city, character.city)

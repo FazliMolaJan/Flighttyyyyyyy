@@ -12,8 +12,8 @@ import retrofit2.http.*
 interface ApiService {
 
     @GET("operations/schedules/{origin}/{destination}/{fromDateTime}")
-    fun getCharacters(@Path("origin") origin: String, @Path("destination") destination: String,
-                      @Path("fromDateTime") fromDateTime: String): Observable<SchedulesReponse>
+    fun getFlights(@Path("origin") origin: String, @Path("destination") destination: String,
+                   @Path("fromDateTime") fromDateTime: String): Observable<SchedulesReponse>
 
 
     @FormUrlEncoded
@@ -22,6 +22,6 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("oauth/token")
-    fun nonRxLogin(@FieldMap hashMap: HashMap<String,@JvmSuppressWildcards Any>): Call<LoginResponse>
+    fun syncronousLogin(@FieldMap hashMap: HashMap<String,@JvmSuppressWildcards Any>): Call<LoginResponse>
 
 }

@@ -5,8 +5,8 @@ import com.google.gson.Gson
 import javax.inject.Inject
 
 class TokenRefresher @Inject constructor(
-    var gson: Gson,
-    var baseURL: String
+    private val gson: Gson,
+    private val baseURL: String
 ) {
 
     fun refreshToken(clientId: String, clientSecret: String): String? {
@@ -20,7 +20,7 @@ class TokenRefresher @Inject constructor(
                 gson
             )
         )
-            .nonRxLogin(hashMap).execute().body()?.access_token
+            .syncronousLogin(hashMap).execute().body()?.access_token
     }
 
 }

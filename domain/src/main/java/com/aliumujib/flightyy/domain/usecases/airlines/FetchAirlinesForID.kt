@@ -13,7 +13,7 @@ class FetchAirlinesForID @Inject constructor(
     postExecutionThread: PostExecutionThread
 ) : ObservableUseCase<FetchAirlinesForID.Params, Airline>(postExecutionThread) {
 
-    public override fun buildUseCaseObservable(params: Params?): Observable<Airline> {
+    override fun buildUseCaseObservable(params: Params?): Observable<Airline> {
         checkNotNull(params) { "Your params can't be null for this use case" }
         return repository.getAirlineWithId(params.airlineId)
     }

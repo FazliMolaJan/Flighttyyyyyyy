@@ -56,7 +56,7 @@ data class ScheduledTimeLocal(
 )
 
 data class Terminal(
-    val Name: Int
+    val Name: String
 )
 
 data class Departure(

@@ -49,4 +49,12 @@ object DummyDataFactory {
     }
 
 
+    fun makeAirlineEntities(count: Int): List<AirlineEntity> {
+        val articles = mutableListOf<AirlineEntity>()
+        repeat(count) {
+            articles.add(makeRandomAirlineEntity())
+        }
+        return articles
+    }
+
 }
