@@ -9,7 +9,7 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class SchedulesRepositoryImpl @Inject constructor(
-    val remote: ISchedulesRemote,
+    private val remote: ISchedulesRemote,
     private val entityMapper: ScheduleEntityMapper
 ) : ISchedulesRepository {
 

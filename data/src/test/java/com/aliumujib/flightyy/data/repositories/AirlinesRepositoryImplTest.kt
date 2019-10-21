@@ -4,7 +4,6 @@ import com.aliumujib.flightyy.data.DummyDataFactory
 import com.aliumujib.flightyy.data.cache.airlines.AirlineCache
 import com.aliumujib.flightyy.data.mapper.AirlineEntityMapper
 import com.aliumujib.flightyy.data.model.AirlineEntity
-import com.aliumujib.flightyy.domain.models.Airline
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
