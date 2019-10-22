@@ -71,6 +71,23 @@ class SearchAirportsViewModelTest {
         assertEquals(mappedAirports, searchAirportsViewModel.airportList)
     }
 
+
+    @Test
+    fun `check that calling search in viewModel returns error when query length is less than 3`() {
+        val listOfAirports = PresentationDataFactory.makeAirportList(2)
+
+        searchAirportsViewModel.fetchAirports()
+
+        argumentCaptor<DisposableObserver<List<Airport>>>().apply {
+            verify(fetchAirports).execute(eq(capture()))
+            firstValue.onNext(listOfAirports)
+        }
+
+        searchAirportsViewModel.searchOrigin("BB")
+
+        assertEquals(Status.ERROR, searchAirportsViewModel.airportsData.value?.status)
+    }
+
     @Test
     fun `check that calling search in viewModel returns success when airport is found`() {
         val listOfAirports = PresentationDataFactory.makeAirportList(2)

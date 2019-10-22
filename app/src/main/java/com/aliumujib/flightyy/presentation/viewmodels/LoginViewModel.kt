@@ -20,6 +20,10 @@ class LoginViewModel @Inject constructor(
     val loginStatus: LiveData<Resource<Unit>> = _loginStatus
 
     init {
+        checkLoginStatus()
+    }
+
+    fun checkLoginStatus() {
         if (userIsLoggedIn.execute()) {
             _loginStatus.postValue(Resource.success(Unit))
         }
@@ -28,8 +32,10 @@ class LoginViewModel @Inject constructor(
     fun login(clientId: String, clientSecret: String) {
         if (clientId.isEmpty()) {
             showSnackBarError(R.string.please_input_client_id)
+            _loginStatus.postValue(Resource.error(null))
             return
         } else if (clientSecret.isEmpty()) {
+            _loginStatus.postValue(Resource.error(null))
             showSnackBarError(R.string.please_input_client_secret)
             return
         }

@@ -7,9 +7,9 @@ import javax.inject.Inject
 
 class CheckIfUserIsLoggedIn @Inject constructor(
     private val repository: IAuthRepository
-) : SynchronousUseCase<Nothing, Boolean>() {
+) : SynchronousUseCase<Unit, Boolean>() {
 
-    override fun execute(params: Nothing?): Boolean {
+    override fun execute(params: Unit?): Boolean {
         return repository.isUserLoggedIn()
     }
 
