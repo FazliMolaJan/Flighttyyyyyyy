@@ -34,11 +34,9 @@ class SearchAirportsViewModelTest {
 
     private lateinit var searchAirportsViewModel: SearchAirportsViewModel
 
-
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
-
 
         val listOfAirports = PresentationDataFactory.makeAirportList(2)
         whenever(fetchAirports.buildUseCaseObservable(eq(null))).thenReturn(Observable.just(listOfAirports))
@@ -47,11 +45,10 @@ class SearchAirportsViewModelTest {
             SearchAirportsViewModel(fetchAirports, modelMapper)
     }
 
-
     @Test
     fun `check that fetchAirports executes FetchAirports UseCase`() {
         searchAirportsViewModel.fetchAirports()
-        verify(fetchAirports,times(1)).execute(any(), eq(null))
+        verify(fetchAirports, times(1)).execute(any(), eq(null))
     }
 
     @Test
@@ -70,7 +67,6 @@ class SearchAirportsViewModelTest {
 
         assertEquals(mappedAirports, searchAirportsViewModel.airportList)
     }
-
 
     @Test
     fun `check that calling search in viewModel returns error when query length is less than 3`() {
@@ -105,7 +101,6 @@ class SearchAirportsViewModelTest {
         assertEquals(Status.SUCCESS, searchAirportsViewModel.airportsData.value?.status)
     }
 
-
     @Test
     fun `check that calling search in viewModel returns error when airport is not found`() {
         val listOfAirports = PresentationDataFactory.makeAirportList(2)
@@ -121,7 +116,6 @@ class SearchAirportsViewModelTest {
 
         assertEquals(Status.ERROR, searchAirportsViewModel.airportsData.value?.status)
     }
-
 
     @Test
     fun `check that fetching airports in viewModel returns error when an error occurs`() {
@@ -139,6 +133,4 @@ class SearchAirportsViewModelTest {
     private fun stubAirports(airport: Airport, airportModel: AirportModel) {
         whenever(modelMapper.mapToView(airport)).thenReturn(airportModel)
     }
-
-
 }

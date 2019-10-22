@@ -7,7 +7,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 
-
 abstract class DataBindingAdapter<T>(diffCallback: DiffUtil.ItemCallback<T>, var itemClickListener: BindableItemClickListener<T>) :
         ListAdapter<T, DataBindingViewHolder<T>>(diffCallback) {
 

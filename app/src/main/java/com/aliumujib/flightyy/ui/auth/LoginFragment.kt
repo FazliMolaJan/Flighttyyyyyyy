@@ -1,7 +1,6 @@
 package com.aliumujib.flightyy.ui.auth
 
 import android.os.Bundle
-import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +25,6 @@ import javax.inject.Inject
  */
 class LoginFragment : BaseFragment() {
 
-
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
@@ -34,13 +32,13 @@ class LoginFragment : BaseFragment() {
         ViewModelProviders.of(this, viewModelFactory).get(LoginViewModel::class.java)
     }
 
-
     override fun getViewModel(): BaseViewModel {
         return viewModel
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -75,6 +73,4 @@ class LoginFragment : BaseFragment() {
             }
         }
     }
-
-
 }

@@ -12,6 +12,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
+import androidx.core.content.ContextCompat
 import com.aliumujib.flightyy.R
 import kotlinx.android.synthetic.main.titled_edit_text_layout.view.*
 import org.jetbrains.anko.backgroundResource
@@ -35,7 +36,11 @@ class TitledEditText : FrameLayout {
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
         val inflater = context
             .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -46,7 +51,8 @@ class TitledEditText : FrameLayout {
         val hint: String? = a.getString(R.styleable.TitledEditText_editTextHint)
         val drawable: Drawable? = a.getDrawable(R.styleable.TitledEditText_editTextImageSrc)
         val titleText: String? = a.getString(R.styleable.TitledEditText_editTextTitle)
-        val isPasswordField: Boolean = a.getBoolean(R.styleable.TitledEditText_isPasswordField, false)
+        val isPasswordField: Boolean =
+            a.getBoolean(R.styleable.TitledEditText_isPasswordField, false)
         val isEditable: Boolean = a.getBoolean(R.styleable.TitledEditText_isEditable, true)
         val isClickable: Boolean = a.getBoolean(R.styleable.TitledEditText_isClickable, false)
 
@@ -70,7 +76,6 @@ class TitledEditText : FrameLayout {
 
         editText.isFocusableInTouchMode = !isClickable
 
-
         if (isPasswordField) {
             editText.transformationMethod = PasswordTransformationMethod()
         }
@@ -79,7 +84,7 @@ class TitledEditText : FrameLayout {
             editText.hint = hint
         }
 
-        editText.onFocusChangeListener = OnFocusChangeListener { p0, p1 ->
+        editText.onFocusChangeListener = OnFocusChangeListener { _, p1 ->
             linearLayout.isActivated = p1
             title.isActivated = p1
 
@@ -103,7 +108,6 @@ class TitledEditText : FrameLayout {
         bundle.putParcelable("instanceState", super.onSaveInstanceState())
         bundle.putString("currentEdit", editText.text.toString())
         return bundle
-
     }
 
     override fun onRestoreInstanceState(state: Parcelable) {
@@ -117,7 +121,7 @@ class TitledEditText : FrameLayout {
         super.onRestoreInstanceState(state)
     }
 
-    fun getEditText():EditText{
+    fun getEditText(): EditText {
         return editText
     }
 
@@ -129,17 +133,23 @@ class TitledEditText : FrameLayout {
         editText.setText(text)
     }
 
-    fun setUnSelectedDrawable() {
+    private fun setUnSelectedDrawable() {
         var porterDuffColorFilter =
-            PorterDuffColorFilter(resources.getColor(R.color.grey_trans), PorterDuff.Mode.MULTIPLY)
+            PorterDuffColorFilter(
+                ContextCompat.getColor(context, R.color.grey_trans),
+                PorterDuff.Mode.MULTIPLY
+            )
         image.drawable.colorFilter = porterDuffColorFilter
         image.setBackgroundColor(Color.TRANSPARENT)
         title.textColorResource = R.color.mds_grey_400
         view.linear_layout.backgroundResource = R.drawable.rectangle_rounder_corners_dark_grey
     }
 
-    fun setSelectedDrawable() {
-        var porterDuffColorFilter = PorterDuffColorFilter(resources.getColor(R.color.black), PorterDuff.Mode.MULTIPLY)
+    private fun setSelectedDrawable() {
+        var porterDuffColorFilter = PorterDuffColorFilter(
+            ContextCompat.getColor(context, R.color.black),
+            PorterDuff.Mode.MULTIPLY
+        )
         image.drawable.colorFilter = porterDuffColorFilter
         image.setBackgroundColor(Color.TRANSPARENT)
         title.textColorResource = R.color.black
@@ -150,5 +160,4 @@ class TitledEditText : FrameLayout {
         super.setOnClickListener(l)
         title.setOnClickListener(l)
     }
-
 }

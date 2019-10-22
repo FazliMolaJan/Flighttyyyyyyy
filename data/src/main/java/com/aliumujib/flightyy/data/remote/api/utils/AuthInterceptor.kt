@@ -22,7 +22,7 @@ class AuthInterceptor @Inject constructor(private val authTokenManager: IAuthTok
             requestBuilder.addHeader("Authorization", "Bearer ${authTokenManager.getToken()}")
         }
 
-        var response: Response? = null
+        var response: Response?
 
         try {
             response = chain.proceed(requestBuilder.build())

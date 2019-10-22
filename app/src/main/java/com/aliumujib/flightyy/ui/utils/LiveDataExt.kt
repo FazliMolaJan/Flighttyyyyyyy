@@ -2,6 +2,7 @@ package com.aliumujib.flightyy.ui.utils
 
 import androidx.lifecycle.*
 
+
 /**
  *
  * Plenty copy and paste coding made possible by
@@ -13,7 +14,6 @@ import androidx.lifecycle.*
  * Antonio Leiva
  * https://antonioleiva.com/architecture-components-kotlin/
  * */
-
 
 fun <T> LiveData<T>.nonNullObserve(owner: LifecycleOwner, observer: (t: T) -> Unit) {
     this.observe(owner, Observer {
@@ -35,7 +35,6 @@ fun <T> NonNullMediatorLiveData<T>.observe(owner: LifecycleOwner, observer: (t: 
     })
 }
 
-
 fun <T, R> LiveData<T>.map(transformation: (T) -> R): LiveData<R> {
     return Transformations.map(this, transformation)
 }
@@ -43,7 +42,6 @@ fun <T, R> LiveData<T>.map(transformation: (T) -> R): LiveData<R> {
 fun <A, B, C> LiveData<A>.zipWith(other: LiveData<B>, zipFunc: (A, B) -> C): LiveData<C> {
     return ZippedLiveData<A, B, C>(this, other, zipFunc)
 }
-
 
 fun <T> LiveData<T>.distinct(): LiveData<T> {
     val mediatorLiveData: MediatorLiveData<T> = MediatorLiveData()

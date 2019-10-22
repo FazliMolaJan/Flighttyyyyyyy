@@ -11,7 +11,6 @@ import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
-
 @Module
 abstract class UIModule {
 
@@ -32,5 +31,4 @@ abstract class UIModule {
 
     @ContributesAndroidInjector
     abstract fun contributesLoginFragment(): LoginFragment
-
 }

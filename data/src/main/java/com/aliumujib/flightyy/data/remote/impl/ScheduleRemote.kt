@@ -59,7 +59,6 @@ class ScheduleRemote @Inject constructor(
                 flights.add(flightEntity)
             }
 
-            val dtf = DateTimeFormat.forPattern("mm'H'ss'M'")
             val scheduleEntity = ScheduleEntity(flights, 0L)
             scheduleList.add(scheduleEntity)
         }

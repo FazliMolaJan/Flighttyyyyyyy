@@ -18,7 +18,6 @@ class AirlineMapper @Inject constructor() : Mapper<Airline, AirlineModel> {
         )
     }
 
-
     override fun mapToDomain(view: AirlineModel): Airline {
         return Airline(
             view.active,

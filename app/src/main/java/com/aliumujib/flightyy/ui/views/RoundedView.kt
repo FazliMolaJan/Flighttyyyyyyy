@@ -11,7 +11,6 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.aliumujib.flightyy.R
 
-
 /**
  * Created by abdulmujibaliu on 9/7/17.
  */
@@ -36,7 +35,6 @@ class RoundedView : View {
             invalidate()
         }
 
-
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
 
         val typedArray = context.obtainStyledAttributes(
@@ -53,10 +51,8 @@ class RoundedView : View {
 
         paintColor = uncheckedColor
 
-
         typedArray.recycle()
     }
-
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(
@@ -68,7 +64,6 @@ class RoundedView : View {
     }
 
     protected override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-
     }
 
     protected override fun onDraw(canvas: Canvas) {
@@ -83,7 +78,6 @@ class RoundedView : View {
             (getWidth() / 2).toFloat(), (height / 2).toFloat(),
             (width / 2).toFloat(), paint
         )
-
     }
 
     fun setCheckedCircleColor(color: Int) {
@@ -95,6 +89,4 @@ class RoundedView : View {
         this.uncheckedColor = color
         invalidate()
     }
-
-
 }

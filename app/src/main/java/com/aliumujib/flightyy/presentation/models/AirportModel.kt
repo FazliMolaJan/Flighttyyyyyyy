@@ -25,7 +25,7 @@ data class AirportModel(
     val url: String,
     val woeid: String
 ) : Parcelable {
-    fun location():String = "$city, $state, $country"
+    fun location(): String = "$city, $state, $country"
 
     fun latlng(): LatLng = LatLng(lat, lon)
 }

@@ -1,6 +1,5 @@
 package com.aliumujib.flightyy.presentation.viewmodels
 
-
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aliumujib.flightyy.domain.usecases.flights.FetchFlights
@@ -50,8 +49,7 @@ class SearchFlightsViewModel @Inject constructor(
                         scheduleModelMapper.mapToView(it)
                     }.sortedBy {
                         it.flightModels.size
-                    }
-                    , null
+                    }, null
                 )
             )
         }
@@ -67,7 +65,5 @@ class SearchFlightsViewModel @Inject constructor(
         }
 
         override fun onComplete() {}
-
     }
-
 }

@@ -38,7 +38,6 @@ class RemoteModule {
         return TokenRefresher(gson, BuildConfig.API_URL)
     }
 
-
     @Provides
     fun provideRetrofitInstance(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
         return APIServiceFactory.makeRetrofitInstance(okHttpClient, BuildConfig.API_URL, gson)
@@ -74,8 +73,6 @@ class RemoteModule {
         return APIServiceFactory.makeLoggingInterceptor(BuildConfig.DEBUG)
     }
 
-
-
     @Provides
     fun bindsSchedulesRemote(
         apiService: ApiService,
@@ -88,5 +85,4 @@ class RemoteModule {
             airlineCache
         )
     }
-
 }

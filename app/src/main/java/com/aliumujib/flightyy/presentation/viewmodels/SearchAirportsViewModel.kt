@@ -1,6 +1,5 @@
 package com.aliumujib.flightyy.presentation.viewmodels
 
-
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.aliumujib.flightyy.domain.usecases.airports.FetchAirports
@@ -29,7 +28,6 @@ class SearchAirportsViewModel @Inject constructor(
     private var selectedOriginAirport: AirportModel? = null
     private var selectedDestinationAirport: AirportModel? = null
 
-
     private var _originLiveData = mutableLiveDataOf<AirportModel>()
     private var _destinationLiveData = mutableLiveDataOf<AirportModel>()
 
@@ -45,12 +43,10 @@ class SearchAirportsViewModel @Inject constructor(
 
     private var searchMode = SEARCH_MODE.NONE
 
-
     override fun onCleared() {
         fetchAirports.dispose()
         super.onCleared()
     }
-
 
     fun airports(): List<AirportModel> {
         return _airportList
@@ -63,7 +59,6 @@ class SearchAirportsViewModel @Inject constructor(
         searchMode = SEARCH_MODE.ORIGIN
         searchAirports(query)
     }
-
 
     fun searchDestination(query: String) {
         searchMode = SEARCH_MODE.DEST
@@ -88,14 +83,14 @@ class SearchAirportsViewModel @Inject constructor(
                     airport.state.contains(query, true)
         }
 
-        if(results.isEmpty()){
+        if (results.isEmpty()) {
             _airportsData.postValue(
                 Resource(
                     Status.ERROR,
                     null, "No airports found"
                 )
             )
-        }else{
+        } else {
             _airportsData.postValue(
                 Resource(
                     Status.SUCCESS,
@@ -121,7 +116,6 @@ class SearchAirportsViewModel @Inject constructor(
     }
 
     init {
-
     }
 
     fun fetchAirports() {
@@ -144,8 +138,5 @@ class SearchAirportsViewModel @Inject constructor(
         }
 
         override fun onComplete() {}
-
     }
-
-
 }

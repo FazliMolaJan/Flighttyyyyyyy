@@ -13,28 +13,29 @@ import com.aliumujib.flightyy.domain.repositories.schedules.ISchedulesRepository
 import dagger.Module
 import dagger.Provides
 
-
 @Module
- class DataModule {
+class DataModule {
 
     @Provides
-     fun bindsAirportsRepository(airportCache: AirportCache, airportEntityMapper: AirportEntityMapper): IAirportsRepository{
+    fun bindsAirportsRepository(
+        airportCache: AirportCache,
+        airportEntityMapper: AirportEntityMapper
+    ): IAirportsRepository {
         return AirportsRepositoryImpl(airportCache, airportEntityMapper)
     }
 
     @Provides
-     fun bindsSchedulesRepository(repo: SchedulesRepositoryImpl): ISchedulesRepository{
+    fun bindsSchedulesRepository(repo: SchedulesRepositoryImpl): ISchedulesRepository {
         return repo
     }
 
     @Provides
-     fun bindsAirlinesRepository(repo: AirlinesRepositoryImpl): IAirlinesRepository{
+    fun bindsAirlinesRepository(repo: AirlinesRepositoryImpl): IAirlinesRepository {
         return repo
     }
 
     @Provides
-    fun bindsAuthRepository(repo: AuthRepositoryImpl): IAuthRepository{
+    fun bindsAuthRepository(repo: AuthRepositoryImpl): IAuthRepository {
         return repo
     }
-
 }

@@ -28,6 +28,4 @@ class FlightMapper @Inject constructor(
             view.stops
         )
     }
-
-
 }

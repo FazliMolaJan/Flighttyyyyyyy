@@ -19,5 +19,4 @@ class LoadingDialog : DialogFragment() {
         dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
         return inflater.inflate(R.layout.dialog_loading, container, false)
     }
-
 }

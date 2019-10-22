@@ -1,14 +1,12 @@
 package com.aliumujib.flightyy.ui
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.aliumujib.flightyy.R
 import com.aliumujib.flightyy.ui.utils.NavigationResult
 import dagger.android.AndroidInjection
@@ -26,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         navController = this.findNavController(R.id.mainHostFragment)
-
     }
 
     /***
@@ -43,21 +40,18 @@ class MainActivity : AppCompatActivity() {
         var backStackListener: FragmentManager.OnBackStackChangedListener by Delegates.notNull()
         backStackListener = FragmentManager.OnBackStackChangedListener {
             (childFragmentManager?.fragments?.get(0) as NavigationResult).onNavigationResult(result)
-            childFragmentManager?.removeOnBackStackChangedListener(backStackListener)
+            childFragmentManager.removeOnBackStackChangedListener(backStackListener)
         }
         childFragmentManager?.addOnBackStackChangedListener(backStackListener)
         navController.popBackStack()
     }
 
-
     companion object {
 
-        fun start(context: Activity){
+        fun start(context: Activity) {
             val intent = Intent(context, MainActivity::class.java)
             context.startActivity(intent)
             context.finish()
         }
-
     }
-
 }

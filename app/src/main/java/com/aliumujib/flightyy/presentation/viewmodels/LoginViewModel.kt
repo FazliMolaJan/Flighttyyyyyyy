@@ -1,6 +1,5 @@
 package com.aliumujib.flightyy.presentation.viewmodels
 
-
 import androidx.lifecycle.LiveData
 import com.aliumujib.flightyy.R
 import com.aliumujib.flightyy.domain.usecases.auth.CheckIfUserIsLoggedIn
@@ -44,7 +43,6 @@ class LoginViewModel @Inject constructor(
         logUserIn.execute(LoginObserver(), LogUserIn.Params.make(clientId, clientSecret))
     }
 
-
     inner class LoginObserver : DisposableCompletableObserver() {
 
         override fun onError(e: Throwable) {
@@ -60,8 +58,5 @@ class LoginViewModel @Inject constructor(
                 Resource.success(Unit)
             )
         }
-
     }
-
-
 }

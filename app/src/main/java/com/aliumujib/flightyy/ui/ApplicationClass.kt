@@ -20,7 +20,6 @@ class ApplicationClass : MultiDexApplication(), HasActivityInjector, HasSupportF
     @Inject
     lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
 
-
     override fun activityInjector(): AndroidInjector<Activity> {
         return activityInjector
     }
@@ -45,5 +44,4 @@ class ApplicationClass : MultiDexApplication(), HasActivityInjector, HasSupportF
     private fun initTimber() {
         Timber.plant(Timber.DebugTree())
     }
-
 }

@@ -1,10 +1,12 @@
 package com.aliumujib.flightyy.presentation.state
 
-class Resource<out T> constructor(val status: Status,
-                                  val data: T?,
-                                  val message: String?) {
+class Resource<out T> constructor(
+    val status: Status,
+    val data: T?,
+    val message: String?
+) {
 
-    companion object{
+    companion object {
         fun <T> success(data: T): Resource<T> {
             return Resource(Status.SUCCESS, data, null)
         }
@@ -17,5 +19,4 @@ class Resource<out T> constructor(val status: Status,
             return Resource(Status.LOADING, null, null)
         }
     }
-
 }

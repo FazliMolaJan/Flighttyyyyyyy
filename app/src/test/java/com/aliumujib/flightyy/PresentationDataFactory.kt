@@ -3,19 +3,16 @@ package com.aliumujib.flightyy
 import com.aliumujib.flightyy.domain.models.Airport
 import com.aliumujib.flightyy.domain.models.schedule.Flight
 import com.aliumujib.flightyy.domain.models.schedule.Schedule
-import com.aliumujib.flightyy.presentation.models.*
+import com.aliumujib.flightyy.presentation.models.AirportModel
 import com.aliumujib.flightyy.presentation.models.schedule.FlightModel
 import com.aliumujib.flightyy.presentation.models.schedule.ScheduleModel
 import konveyor.base.randomBuild
 
 object PresentationDataFactory {
 
-
-
     fun makeAirportModel(): AirportModel {
         return randomBuild()
     }
-
 
     fun makeIntegerList(count: Int): List<Int> {
         val categories = mutableListOf<Int>()
@@ -33,7 +30,6 @@ object PresentationDataFactory {
         return articles
     }
 
-
     fun makeScheduleList(count: Int): List<Schedule> {
         val list = mutableListOf<Schedule>()
         repeat(count) {
@@ -42,7 +38,6 @@ object PresentationDataFactory {
         return list
     }
 
-
     fun makeScheduleModelList(count: Int): List<ScheduleModel> {
         val list = mutableListOf<ScheduleModel>()
         repeat(count) {
@@ -50,7 +45,6 @@ object PresentationDataFactory {
         }
         return list
     }
-
 
     fun makeFlightList(count: Int): List<Flight> {
         val list = mutableListOf<Flight>()
@@ -75,5 +69,4 @@ object PresentationDataFactory {
         }
         return mutableList
     }
-
 }

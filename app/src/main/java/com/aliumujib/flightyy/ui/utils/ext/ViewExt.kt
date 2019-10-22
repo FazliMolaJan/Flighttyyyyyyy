@@ -49,8 +49,6 @@ fun Fragment.setupStringSnackbar(
 fun Fragment.findNavController(): NavController =
     NavHostFragment.findNavController(this)
 
-
-
 fun disableViewsClicability(views: Array<View>) {
     views.forEach {
         if (it is EditText) {
@@ -82,9 +80,7 @@ fun checkIfViewsIsEmpty(views: Array<TitledEditText>): Boolean {
     return true
 }
 
-
 fun checKIfIsLollipop(): Boolean {
     // Check if we're running on Android 5.0 or higher
     return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
 }
-

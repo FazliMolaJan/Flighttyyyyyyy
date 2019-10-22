@@ -1,29 +1,21 @@
 package com.aliumujib.flightyy.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.aliumujib.flightyy.PresentationDataFactory
-import com.aliumujib.flightyy.domain.usecases.airports.FetchAirports
-import com.aliumujib.flightyy.domain.models.Airport
 import com.aliumujib.flightyy.domain.usecases.auth.CheckIfUserIsLoggedIn
 import com.aliumujib.flightyy.domain.usecases.auth.LogUserIn
-import com.aliumujib.flightyy.presentation.mappers.AirportMapper
-import com.aliumujib.flightyy.presentation.models.AirportModel
 import com.aliumujib.flightyy.presentation.state.Status
 import com.aliumujib.flightyy.presentation.viewmodels.LoginViewModel
-import com.aliumujib.flightyy.presentation.viewmodels.SearchAirportsViewModel
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Completable
-import io.reactivex.Observable
 import io.reactivex.observers.DisposableCompletableObserver
-import io.reactivex.observers.DisposableObserver
-import junit.framework.Assert.assertEquals
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.mockito.*
-import java.lang.RuntimeException
+import org.mockito.Mock
+import org.mockito.MockitoAnnotations
 import java.util.*
 
 @RunWith(JUnit4::class)
@@ -39,7 +31,6 @@ class LoginViewModelTest {
     lateinit var userIsLoggedIn: CheckIfUserIsLoggedIn
 
     private lateinit var loginViewModel: LoginViewModel
-
 
     @Before
     fun setup() {
@@ -78,7 +69,6 @@ class LoginViewModelTest {
         assertEquals(Status.ERROR, loginViewModel.loginStatus.value?.status)
     }
 
-
     @Test
     fun `check that calling login with correct parameters successfully emits a success event`() {
         val id = UUID.randomUUID().toString()
@@ -107,7 +97,6 @@ class LoginViewModelTest {
         assertEquals(Status.ERROR, loginViewModel.loginStatus.value?.status)
     }
 
-
     @Test
     fun `check that user is successfully logged into the app if CheckIfUserIsLoggedIn executes as true`() {
         whenever(userIsLoggedIn.execute()).thenReturn(true)
@@ -121,5 +110,4 @@ class LoginViewModelTest {
         loginViewModel.checkLoginStatus()
         assertEquals(null, loginViewModel.loginStatus.value?.status)
     }
-
 }

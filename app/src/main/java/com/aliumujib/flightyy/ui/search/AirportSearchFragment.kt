@@ -47,7 +47,6 @@ class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel
         super.onCreate(savedInstanceState)
         AndroidSupportInjection.inject(this)
 
-
         searchViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(SearchAirportsViewModel::class.java)
 
@@ -55,7 +54,8 @@ class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -65,12 +65,11 @@ class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        origin_et.onFocusChangeListener = View.OnFocusChangeListener { p0, p1 ->
+        origin_et.onFocusChangeListener = View.OnFocusChangeListener { _, p1 ->
             origin_indicator.isChecked = p1
         }
 
-        dest_et.onFocusChangeListener = View.OnFocusChangeListener { p0, p1 ->
+        dest_et.onFocusChangeListener = View.OnFocusChangeListener { _, p1 ->
             if (p1) {
                 airportsAdapter.clearItems()
             }
@@ -94,7 +93,6 @@ class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel
                 searchViewModel.searchOrigin(it)
             })
 
-
         compositeDisposable.add(RxTextView.afterTextChangeEvents(dest_et.getEditText())
             .filter {
                 it.view().text.toString().length > 3
@@ -107,15 +105,13 @@ class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel
                 searchViewModel.searchDestination(it)
             })
 
-
         searchViewModel.airportsData.observe(viewLifecycleOwner, Observer {
             handleSearchData(it)
         })
 
-
         searchViewModel.origin.observe(viewLifecycleOwner, Observer {
             if (it == null) {
-                //origin_et.setText("")
+                // origin_et.setText("")
             } else {
                 origin_et.setText(it.name)
             }
@@ -123,12 +119,11 @@ class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel
 
         searchViewModel.destination.observe(viewLifecycleOwner, Observer {
             if (it == null) {
-                //dest_et.setText("")
+                // dest_et.setText("")
             } else {
                 dest_et.setText(it.name)
             }
         })
-
 
         searchViewModel.results.observe(viewLifecycleOwner, Observer {
             var bundle = Bundle()
@@ -151,12 +146,11 @@ class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel
                     }
                 }
                 else -> {
-                    //Handle loading
+                    // Handle loading
                 }
             }
         }
     }
-
 
     private val onFocusChangedListener = View.OnFocusChangeListener { p0, p1 ->
         if (p1 and (p0?.id == R.id.origin_et)) {
@@ -167,5 +161,4 @@ class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel
             dest_indicator.isChecked = true
         }
     }
-
 }

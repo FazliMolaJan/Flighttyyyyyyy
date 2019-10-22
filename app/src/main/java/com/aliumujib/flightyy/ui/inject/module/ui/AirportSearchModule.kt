@@ -1,7 +1,6 @@
 package com.aliumujib.flightyy.ui.inject.module.ui
 
 import com.aliumujib.flightyy.R
-import com.aliumujib.flightyy.domain.models.schedule.Flight
 import com.aliumujib.flightyy.presentation.models.AirportModel
 import com.aliumujib.flightyy.ui.adapters.base.BindableItemClickListener
 import com.aliumujib.flightyy.ui.adapters.base.SingleLayoutAdapter
@@ -18,8 +17,7 @@ class AirportSearchModule {
     }
 
     @Provides
-    fun providesClickListener(airportSearchFragment: AirportSearchFragment):BindableItemClickListener<AirportModel>{
+    fun providesClickListener(airportSearchFragment: AirportSearchFragment): BindableItemClickListener<AirportModel> {
         return airportSearchFragment
     }
-
 }

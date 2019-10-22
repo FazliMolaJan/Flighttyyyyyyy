@@ -1,8 +1,6 @@
 package com.aliumujib.flightyy.ui.flightlist
 
-
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,18 +60,16 @@ class ScheduleListFragment : BaseFragment(), BindableItemClickListener<ScheduleM
 
         viewModel =
             ViewModelProviders.of(this, viewModelFactory).get(SearchFlightsViewModel::class.java)
-
     }
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_schedule_list, container, false)
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -83,7 +79,6 @@ class ScheduleListFragment : BaseFragment(), BindableItemClickListener<ScheduleM
         initViews()
 
         initRecyclerView()
-
 
         observe(viewModel.schedules, ::handleSchedules)
     }
@@ -170,6 +165,4 @@ class ScheduleListFragment : BaseFragment(), BindableItemClickListener<ScheduleM
         state_view.visibility = View.VISIBLE
         retry_btn.visibility = View.VISIBLE
     }
-
-
 }

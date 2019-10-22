@@ -2,24 +2,23 @@ package com.aliumujib.flightyy.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.aliumujib.flightyy.PresentationDataFactory
-import com.aliumujib.flightyy.domain.models.Airport
 import com.aliumujib.flightyy.domain.models.schedule.Schedule
 import com.aliumujib.flightyy.domain.usecases.flights.FetchFlights
 import com.aliumujib.flightyy.presentation.mappers.*
 import com.aliumujib.flightyy.presentation.models.AirportModel
 import com.aliumujib.flightyy.presentation.state.Status
 import com.aliumujib.flightyy.presentation.viewmodels.SearchFlightsViewModel
-import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Observable
 import io.reactivex.observers.DisposableObserver
-import junit.framework.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.mockito.*
-import java.lang.RuntimeException
+import org.mockito.Mock
+import org.mockito.MockitoAnnotations
+import com.nhaarman.mockito_kotlin.*
+import org.junit.Assert.assertEquals
 import java.util.*
 
 @RunWith(JUnit4::class)
@@ -39,7 +38,6 @@ class SearchFlightsViewModelTest {
 
     private lateinit var searchFlightsViewModel: SearchFlightsViewModel
 
-
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
@@ -54,7 +52,6 @@ class SearchFlightsViewModelTest {
         searchFlightsViewModel =
             SearchFlightsViewModel(fetchFlights, airportMapper, scheduleMapper)
     }
-
 
     @Test
     fun `check that searchFlights executes FetchFlights UseCase`() {
@@ -123,11 +120,8 @@ class SearchFlightsViewModelTest {
         return Triple(origin, destination, dateTime)
     }
 
-
     @Test
     fun `check that calling searchFlights in viewModel returns error when an error occurs`() {
-
-        val listOfSchedules = PresentationDataFactory.makeScheduleList(2)
 
         val (origin, destination, dateTime) = callSearchMethod()
 
@@ -145,5 +139,4 @@ class SearchFlightsViewModelTest {
 
         assertEquals(Status.ERROR, searchFlightsViewModel.schedules.value?.status)
     }
-
 }
