@@ -10,11 +10,15 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aliumujib.flightyy.R
 import com.aliumujib.flightyy.presentation.models.AirportModel
+import com.aliumujib.flightyy.presentation.state.Resource
+import com.aliumujib.flightyy.presentation.state.Status
 import com.aliumujib.flightyy.presentation.viewmodels.SearchAirportsViewModel
 import com.aliumujib.flightyy.ui.MainActivity
 import com.aliumujib.flightyy.ui.adapters.base.BindableItemClickListener
 import com.aliumujib.flightyy.ui.adapters.base.SingleLayoutAdapter
 import com.aliumujib.flightyy.ui.inject.ViewModelFactory
+import com.aliumujib.flightyy.ui.utils.ext.showSnackbar
+import com.google.android.material.snackbar.Snackbar
 import com.jakewharton.rxbinding2.widget.RxTextView
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.disposables.CompositeDisposable
@@ -47,6 +51,7 @@ class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel
         searchViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(SearchAirportsViewModel::class.java)
 
+        searchViewModel.fetchAirports()
     }
 
     override fun onCreateView(
@@ -104,9 +109,7 @@ class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel
 
 
         searchViewModel.airportsData.observe(viewLifecycleOwner, Observer {
-            it.data?.let { airports ->
-                airportsAdapter.setData(airports)
-            }
+            handleSearchData(it)
         })
 
 
@@ -134,6 +137,24 @@ class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel
             }
             (activity as MainActivity).navigateBackWithResult(bundle)
         })
+    }
+
+    private fun handleSearchData(it: Resource<List<AirportModel>>?) {
+        it?.let {
+            when {
+                it.status == Status.SUCCESS -> it.data?.let { airports ->
+                    airportsAdapter.setData(airports)
+                }
+                it.status == Status.ERROR -> {
+                    it.message?.let { message ->
+                        showSnackbar(message, Snackbar.LENGTH_LONG)
+                    }
+                }
+                else -> {
+                    //Handle loading
+                }
+            }
+        }
     }
 
 

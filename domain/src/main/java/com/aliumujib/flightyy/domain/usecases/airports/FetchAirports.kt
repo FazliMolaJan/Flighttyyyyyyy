@@ -8,13 +8,13 @@ import com.aliumujib.flightyy.domain.repositories.airports.IAirportsRepository
 import io.reactivex.Observable
 import javax.inject.Inject
 
-open class FetchAirports @Inject constructor(
+class FetchAirports @Inject constructor(
     private val repository: IAirportsRepository,
     postExecutionThread: PostExecutionThread
-) : ObservableUseCase<Nothing, List<Airport>>(postExecutionThread) {
+) : ObservableUseCase<Unit, List<Airport>>(postExecutionThread) {
 
 
-    override fun buildUseCaseObservable(params: Nothing?): Observable<List<Airport>> {
+    override fun buildUseCaseObservable(params: Unit?): Observable<List<Airport>> {
         return repository.searchAirports()
     }
 

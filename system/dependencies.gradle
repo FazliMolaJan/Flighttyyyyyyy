@@ -56,12 +56,12 @@ ext {
     //Testing
     jUnitVersion = '4.12'
     assertJVersion = '1.7.1'
-    mockitoVersion = '2.8.9'
     espressoContribVersion = '3.1.0'
     testingSupportLibVersion = '0.1'
     mockWebServerVersion = '3.6.0'
     javaxInjectVersion = '1'
     mockitoKotlinVersion = '1.5.0'
+    mockitoInlineVersion = '2.28.2'
     konveyorVersion = "1.0.3"
     kotlinVersion = '1.2.10'
     espressoVersion = '3.0.0'
@@ -165,6 +165,7 @@ ext {
             junit                : "junit:junit:${jUnitVersion}",
             assertj              : "org.assertj:assertj-core:${assertJVersion}",
             mockito              : "org.mockito:mockito-core:${mockitoVersion}",
+            mockitoInline        : "org.mockito:mockito-inline:${mockitoInlineVersion}",
             mockitoKotlin        : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
             mockWebServer        : "com.squareup.okhttp3:mockwebserver:${mockWebServerVersion}",
             konveyor             : "com.github.vacxe:konveyor:$konveyorVersion",
@@ -184,6 +185,7 @@ ext {
             daggerAndroidCompiler: "com.google.dagger:dagger-android-processor:${daggerVersion}",
             dagger               : "com.google.dagger:dagger:${daggerVersion}",
             robolectric          : "org.robolectric:robolectric:${robolectricVersion}",
-            archTesting          : "android.arch.core:core-testing:${roomVersion}"
+            archTesting          : "androidx.arch.core:core-testing:2.1.0",
+            byteBuddy            : "net.bytebuddy:byte-buddy:1.10.1"
     ]
 }
