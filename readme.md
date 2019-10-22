@@ -53,4 +53,5 @@ I had a lot of fun building this app. There are some improvements I could make.
 - Write more tests for UI </br>
 - Use MockWebServer to test `Remote` layer.</br>
 - Shared element transitions.</br>
+- Add CI.</br>
 - Explore Unidirectional data flow and MVI
