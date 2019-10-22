@@ -40,7 +40,6 @@ class SearchAirportsViewModelTest {
         MockitoAnnotations.initMocks(this)
 
 
-
         val listOfAirports = PresentationDataFactory.makeAirportList(2)
         whenever(fetchAirports.buildUseCaseObservable(eq(null))).thenReturn(Observable.just(listOfAirports))
 
@@ -52,7 +51,7 @@ class SearchAirportsViewModelTest {
     @Test
     fun `check that fetchAirports executes FetchAirports UseCase`() {
         searchAirportsViewModel.fetchAirports()
-        verify(fetchAirports).execute(any(), eq(null))
+        verify(fetchAirports,times(1)).execute(any(), eq(null))
     }
 
     @Test
@@ -61,7 +60,6 @@ class SearchAirportsViewModelTest {
         val mappedAirports = listOfAirports.map {
             modelMapper.mapToView(it)
         }
-
 
         searchAirportsViewModel.fetchAirports()
 

@@ -1,10 +1,11 @@
 package com.aliumujib.flightyy
 
-import com.aliumujib.flightyy.data.model.schedule.ScheduleEntity
-import com.aliumujib.flightyy.data.model.AirlineEntity
-import com.aliumujib.flightyy.data.model.AirportEntity
 import com.aliumujib.flightyy.domain.models.Airport
+import com.aliumujib.flightyy.domain.models.schedule.Flight
+import com.aliumujib.flightyy.domain.models.schedule.Schedule
 import com.aliumujib.flightyy.presentation.models.*
+import com.aliumujib.flightyy.presentation.models.schedule.FlightModel
+import com.aliumujib.flightyy.presentation.models.schedule.ScheduleModel
 import konveyor.base.randomBuild
 
 object PresentationDataFactory {
@@ -15,11 +16,8 @@ object PresentationDataFactory {
         return randomBuild()
     }
 
-    fun makeCharacter(): AirportEntity {
-        return randomBuild()
-    }
 
-    fun makeIntergerList(count: Int): List<Int> {
+    fun makeIntegerList(count: Int): List<Int> {
         val categories = mutableListOf<Int>()
         repeat(count) {
             categories.add(randomBuild())
@@ -36,16 +34,38 @@ object PresentationDataFactory {
     }
 
 
-    fun makeDetailedCharacter(): ScheduleEntity {
-        return randomBuild()
+    fun makeScheduleList(count: Int): List<Schedule> {
+        val list = mutableListOf<Schedule>()
+        repeat(count) {
+            list.add(randomBuild())
+        }
+        return list
     }
 
-    fun makeFilmList(count: Int): List<AirlineEntity> {
-        val categories = mutableListOf<AirlineEntity>()
+
+    fun makeScheduleModelList(count: Int): List<ScheduleModel> {
+        val list = mutableListOf<ScheduleModel>()
         repeat(count) {
-            categories.add(randomBuild())
+            list.add(randomBuild())
         }
-        return categories
+        return list
+    }
+
+
+    fun makeFlightList(count: Int): List<Flight> {
+        val list = mutableListOf<Flight>()
+        repeat(count) {
+            list.add(randomBuild())
+        }
+        return list
+    }
+
+    fun makeFlightModelList(count: Int): List<FlightModel> {
+        val list = mutableListOf<FlightModel>()
+        repeat(count) {
+            list.add(randomBuild())
+        }
+        return list
     }
 
     fun makeAirportList(count: Int): List<Airport> {
