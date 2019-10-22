@@ -18,6 +18,7 @@ import com.aliumujib.flightyy.ui.inject.ViewModelFactory
 import com.aliumujib.flightyy.ui.utils.NavigationCommand
 import com.aliumujib.flightyy.ui.utils.NavigationResult
 import com.aliumujib.flightyy.ui.utils.ext.showSnackbar
+import com.aliumujib.flightyy.ui.utils.observe
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_filters.*
@@ -91,14 +92,17 @@ class FiltersFragment : BaseFragment(), NavigationResult {
             // navigate(NavigationCommand.To(ActionOnlyNavDirections(R.id.action_filtersFragment_to_airportSearchFragment)))
         }
 
-        flightFiltersViewModel.destination.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            dest_et.setText(it.name)
+        observe(flightFiltersViewModel.destination, {
+            dest_et.setText(it?.name)
         })
 
-        flightFiltersViewModel.origin.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            origin_et.setText(it.name)
+        observe(flightFiltersViewModel.origin,{
+            origin_et.setText(it?.name)
         })
+
     }
+
+
 
     private fun showTimePicker(callback: (date: Date, string: String) -> Unit) {
         // Use the current date as the default date in the picker

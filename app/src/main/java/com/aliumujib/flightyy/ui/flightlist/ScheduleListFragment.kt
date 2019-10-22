@@ -159,6 +159,7 @@ class ScheduleListFragment : BaseFragment(), BindableItemClickListener<ScheduleM
     }
 
     private fun showErrorState(data: Resource<List<ScheduleModel>>) {
+
         progress_horizontal.visibility = View.GONE
         state_image.imageResource = R.drawable.ic_error_black_24dp
         state_text.text = data.message

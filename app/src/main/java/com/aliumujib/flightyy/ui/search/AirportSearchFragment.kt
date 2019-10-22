@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aliumujib.flightyy.R
 import com.aliumujib.flightyy.presentation.models.AirportModel
+import com.aliumujib.flightyy.presentation.models.AirportSearchResults
 import com.aliumujib.flightyy.presentation.state.Resource
 import com.aliumujib.flightyy.presentation.state.Status
 import com.aliumujib.flightyy.presentation.viewmodels.SearchAirportsViewModel
@@ -18,6 +19,7 @@ import com.aliumujib.flightyy.ui.adapters.base.BindableItemClickListener
 import com.aliumujib.flightyy.ui.adapters.base.SingleLayoutAdapter
 import com.aliumujib.flightyy.ui.inject.ViewModelFactory
 import com.aliumujib.flightyy.ui.utils.ext.showSnackbar
+import com.aliumujib.flightyy.ui.utils.observe
 import com.google.android.material.snackbar.Snackbar
 import com.jakewharton.rxbinding2.widget.RxTextView
 import dagger.android.support.AndroidSupportInjection
@@ -105,33 +107,30 @@ class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel
                 searchViewModel.searchDestination(it)
             })
 
-        searchViewModel.airportsData.observe(viewLifecycleOwner, Observer {
-            handleSearchData(it)
-        })
 
+
+        observe(searchViewModel.airportsData, ::handleSearchData)
+        observeAirports()
+        observe(searchViewModel.results, ::sendDataBack)
+
+    }
+
+    private fun observeAirports() {
         searchViewModel.origin.observe(viewLifecycleOwner, Observer {
-            if (it == null) {
-                // origin_et.setText("")
-            } else {
-                origin_et.setText(it.name)
-            }
+            origin_et.setText(it?.name)
         })
 
         searchViewModel.destination.observe(viewLifecycleOwner, Observer {
-            if (it == null) {
-                // dest_et.setText("")
-            } else {
-                dest_et.setText(it.name)
-            }
+            dest_et.setText(it?.name)
         })
+    }
 
-        searchViewModel.results.observe(viewLifecycleOwner, Observer {
-            var bundle = Bundle()
-            bundle.apply {
-                putParcelable("results", it)
-            }
-            (activity as MainActivity).navigateBackWithResult(bundle)
-        })
+    private fun sendDataBack(it: AirportSearchResults?) {
+        var bundle = Bundle()
+        bundle.apply {
+            putParcelable("results", it)
+        }
+        (activity as MainActivity).navigateBackWithResult(bundle)
     }
 
     private fun handleSearchData(it: Resource<List<AirportModel>>?) {
