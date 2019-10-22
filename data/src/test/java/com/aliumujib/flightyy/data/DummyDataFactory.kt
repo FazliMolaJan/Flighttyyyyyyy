@@ -9,6 +9,7 @@ import com.aliumujib.flightyy.domain.models.Airline
 import com.aliumujib.flightyy.domain.models.Airport
 import com.aliumujib.flightyy.domain.models.schedule.Schedule
 import konveyor.base.randomBuild
+import java.util.*
 
 object DummyDataFactory {
 
@@ -29,7 +30,26 @@ object DummyDataFactory {
     }
 
     fun makeRandomAirportEntity(): AirportEntity {
-        return randomBuild()
+        return AirportEntity(
+            randomBuild(),
+            randomBuild(),
+            randomBuild(),
+            randomBuild(),
+            randomBuild(),
+            randomBuild(),
+            randomBuild(),
+            randomBuild(),
+            Random().nextDouble().toString(),
+            Random().nextDouble().toString(),
+            randomBuild(),
+            randomBuild(),
+            randomBuild(),
+            randomBuild(),
+            randomBuild(),
+            randomBuild(),
+            randomBuild(),
+            randomBuild()
+        )
     }
 
 
