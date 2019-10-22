@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import com.aliumujib.flightyy.BuildConfig
 
 
+@Suppress("UNCHECKED_CAST", "SameParameterValue")
 open class CoreSharedPrefManager(context: Context) {
 
     val sharedPreferences: SharedPreferences = context.getSharedPreferences(

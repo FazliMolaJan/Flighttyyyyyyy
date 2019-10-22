@@ -9,8 +9,8 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class SchedulesRepositoryImpl @Inject constructor(
-    var remote: ISchedulesRemote,
-    var entityMapper: ScheduleEntityMapper
+    private val remote: ISchedulesRemote,
+    private val entityMapper: ScheduleEntityMapper
 ) : ISchedulesRepository {
 
     override fun getFlightSchedules(origin: Airport, destination: Airport, date: String): Observable<List<Schedule>> {

@@ -27,9 +27,7 @@ abstract class BaseFragment : Fragment() {
 
         setupSnackbar(this, getViewModel().snackBarError, Snackbar.LENGTH_LONG)
         setupStringSnackbar(this, getViewModel().snackBarStringError, Snackbar.LENGTH_LONG)
-
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,14 +54,12 @@ abstract class BaseFragment : Fragment() {
         })
     }
 
-
-    fun navigate(navigationCommand: NavigationCommand){
+    fun navigate(navigationCommand: NavigationCommand) {
         when (navigationCommand) {
             is NavigationCommand.To -> findNavController().navigate(navigationCommand.directions, getExtras())
             is NavigationCommand.Back -> findNavController().navigateUp()
         }
     }
-
 
     /**
      * Observe a [Resource.Status] [Event] [LiveData].
@@ -83,15 +79,11 @@ abstract class BaseFragment : Fragment() {
         })
     }
 
-
     open fun showLoading() {
-
     }
 
     open fun hideLoading() {
-
     }
-
 
     /**
      * [FragmentNavigatorExtras] mainly used to enable Shared Element transition

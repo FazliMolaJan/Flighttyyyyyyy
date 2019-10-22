@@ -41,20 +41,16 @@ class SchedulesListAdapter(var clickListener: BindableItemClickListener<Schedule
         holder.bindViews(parent)
     }
 
-
     var items by Delegates.observable<List<ScheduleModel>>(listOf()) { _, oldValue, newValue ->
         DiffUtil
             .calculateDiff(DiffUtilCallback(oldValue, newValue))
             .dispatchUpdatesTo(this)
     }
 
-
     override fun setData(data: List<ScheduleModel>) {
         items = data
     }
-
 }
-
 
 class ScheduleViewHolder(
     itemView: View,
@@ -62,15 +58,14 @@ class ScheduleViewHolder(
     private var viewPool: RecyclerView.RecycledViewPool
 ) : RecyclerView.ViewHolder(itemView) {
 
-
     fun bindViews(scheduleModel: ScheduleModel) {
 
         itemView.flights.apply {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             setRecycledViewPool(viewPool)
 
-            //CLICKS
-            val flightAdapter = SingleLayoutAdapter(R.layout.flight_item,object :BindableItemClickListener<FlightModel>{
+            // CLICKS
+            val flightAdapter = SingleLayoutAdapter(R.layout.flight_item, object : BindableItemClickListener<FlightModel> {
                 override fun onItemClicked(data: FlightModel) {
                     clickListener.onItemClicked(scheduleModel)
                 }
@@ -89,7 +84,8 @@ class ScheduleViewHolder(
 
     companion object {
         fun create(
-            @LayoutRes layoutID: Int, parent: ViewGroup,
+            @LayoutRes layoutID: Int,
+            parent: ViewGroup,
             clickListener: BindableItemClickListener<ScheduleModel>,
             viewPool: RecyclerView.RecycledViewPool
         ): ScheduleViewHolder {

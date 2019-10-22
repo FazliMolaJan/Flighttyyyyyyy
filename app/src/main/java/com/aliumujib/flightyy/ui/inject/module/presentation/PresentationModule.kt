@@ -13,7 +13,6 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import kotlin.reflect.KClass
 
-
 @Module
 abstract class PresentationModule {
 
@@ -26,32 +25,26 @@ abstract class PresentationModule {
     @IntoMap
     @ViewModelKey(FlightFiltersViewModel::class)
     abstract fun bindFlightFiltersViewModel(
-        viewModel: FlightFiltersViewModel): ViewModel
-
+        viewModel: FlightFiltersViewModel
+    ): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(SearchFlightsViewModel::class)
     abstract fun bindSearchFlightsViewModel(
-        viewModel: SearchFlightsViewModel): ViewModel
-
+        viewModel: SearchFlightsViewModel
+    ): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(LoginViewModel::class)
     abstract fun bindLoginViewModel(
-        viewModel: LoginViewModel): ViewModel
-
-
-
-
+        viewModel: LoginViewModel
+    ): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
-
 }
-
-
 
 @MustBeDocumented
 @Target(AnnotationTarget.FUNCTION)

@@ -8,8 +8,8 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class AirlinesRepositoryImpl @Inject constructor(
-    var iCache: AirlineCache,
-    var airlineEntityMapper: AirlineEntityMapper
+    private val iCache: AirlineCache,
+    private val airlineEntityMapper: AirlineEntityMapper
 ) : IAirlinesRepository {
 
 

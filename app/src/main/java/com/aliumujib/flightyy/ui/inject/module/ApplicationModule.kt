@@ -8,10 +8,6 @@ import dagger.Module
 @Module
 abstract class ApplicationModule {
 
-
     @Binds
     abstract fun bindsContext(applicationClass: ApplicationClass): Context
-
-
-
 }

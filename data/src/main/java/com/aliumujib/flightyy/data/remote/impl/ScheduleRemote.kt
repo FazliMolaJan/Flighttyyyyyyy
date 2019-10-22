@@ -14,9 +14,9 @@ import java.text.SimpleDateFormat
 import javax.inject.Inject
 
 class ScheduleRemote @Inject constructor(
-    var apiService: ApiService,
-    var airportCache: AirportCache,
-    var airlineCache: AirlineCache
+    private val apiService: ApiService,
+    private val airportCache: AirportCache,
+    private val airlineCache: AirlineCache
 ) : ISchedulesRemote {
 
     override fun getSchedules(
@@ -24,7 +24,7 @@ class ScheduleRemote @Inject constructor(
         destination: String,
         fromDateTime: String
     ): Observable<List<ScheduleEntity>> {
-        return apiService.getCharacters(origin, destination, fromDateTime).map {
+        return apiService.getFlights(origin, destination, fromDateTime).map {
             it.ScheduleResource.Schedule
         }.map {
             createScheduleEntities(it)
@@ -59,7 +59,6 @@ class ScheduleRemote @Inject constructor(
                 flights.add(flightEntity)
             }
 
-            val dtf = DateTimeFormat.forPattern("mm'H'ss'M'")
             val scheduleEntity = ScheduleEntity(flights, 0L)
             scheduleList.add(scheduleEntity)
         }

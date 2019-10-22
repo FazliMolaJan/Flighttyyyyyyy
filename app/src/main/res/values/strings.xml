@@ -66,6 +66,9 @@
     <string name="client_secret">Client Secret</string>
     <string name="please_input_client_id">Please input client ID</string>
     <string name="please_input_client_secret">Please input client secret</string>
+    <string name="retry">RETRY</string>
+    <string name="no_data_available">No data available</string>
+    <string name="an_error_occured">An error occured</string>
 
 
 </resources>

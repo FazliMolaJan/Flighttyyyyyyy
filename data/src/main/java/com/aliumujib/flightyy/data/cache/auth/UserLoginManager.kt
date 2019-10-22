@@ -6,7 +6,7 @@ import com.aliumujib.flightyy.data.contracts.cache.IAuthTokenManager
 import com.aliumujib.flightyy.data.contracts.cache.IUserLoginManager
 import javax.inject.Inject
 
-class UserLoginManager @Inject constructor(var context: Context) : IUserLoginManager,
+class UserLoginManager @Inject constructor(private val context: Context) : IUserLoginManager,
     CoreSharedPrefManager(context) {
 
     override fun saveClientSecret(secret: String?) {

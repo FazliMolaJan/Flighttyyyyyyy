@@ -1,14 +1,11 @@
 package com.aliumujib.flightyy.presentation.viewmodels
 
-
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import com.aliumujib.flightyy.R
 import com.aliumujib.flightyy.presentation.models.AirportModel
 import com.aliumujib.flightyy.ui.base.BaseViewModel
 import com.aliumujib.flightyy.ui.filter.FiltersFragmentDirections
 import com.aliumujib.flightyy.ui.utils.mutableLiveDataOf
-import java.util.*
 import javax.inject.Inject
 
 class FlightFiltersViewModel @Inject constructor() : BaseViewModel() {
@@ -16,7 +13,6 @@ class FlightFiltersViewModel @Inject constructor() : BaseViewModel() {
     private var selectedOriginAirport: AirportModel? = null
     private var selectedDestinationAirport: AirportModel? = null
     private var selectedDate: String? = null
-
 
     private var _originLiveData = mutableLiveDataOf<AirportModel>()
     private var _destinationLiveData = mutableLiveDataOf<AirportModel>()
@@ -31,7 +27,6 @@ class FlightFiltersViewModel @Inject constructor() : BaseViewModel() {
         selectedDestinationAirport = destination
         _originLiveData.value = origin
         _destinationLiveData.value = destination
-
     }
 
     fun setSelectedDate(date: String) {
@@ -66,6 +61,4 @@ class FlightFiltersViewModel @Inject constructor() : BaseViewModel() {
             )
         }
     }
-
-
 }

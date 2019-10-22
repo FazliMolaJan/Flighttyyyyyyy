@@ -10,7 +10,6 @@ import com.aliumujib.flightyy.data.contracts.cache.IUserLoginManager
 import dagger.Module
 import dagger.Provides
 
-
 @Module
 class CacheModule {
 
@@ -33,5 +32,4 @@ class CacheModule {
     fun providesUserLoginManager(context: Context): IUserLoginManager {
         return UserLoginManager(context)
     }
-
 }

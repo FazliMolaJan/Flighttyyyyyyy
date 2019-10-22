@@ -1,6 +1,5 @@
 package com.aliumujib.flightyy.presentation.viewmodels
 
-
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.aliumujib.flightyy.domain.usecases.airports.FetchAirports
@@ -23,11 +22,11 @@ class SearchAirportsViewModel @Inject constructor(
     private val _airportsData: SingleLiveData<Resource<List<AirportModel>>> = SingleLiveData()
     val airportsData: LiveData<Resource<List<AirportModel>>> = _airportsData
 
-    private val airportList = mutableListOf<AirportModel>()
+    private val _airportList = mutableListOf<AirportModel>()
+    val airportList: List<AirportModel> = _airportList
 
     private var selectedOriginAirport: AirportModel? = null
     private var selectedDestinationAirport: AirportModel? = null
-
 
     private var _originLiveData = mutableLiveDataOf<AirportModel>()
     private var _destinationLiveData = mutableLiveDataOf<AirportModel>()
@@ -36,7 +35,7 @@ class SearchAirportsViewModel @Inject constructor(
     val destination: LiveData<AirportModel?> = _destinationLiveData
 
     private val _results: SingleLiveData<AirportSearchResults> = SingleLiveData()
-     val results: LiveData<AirportSearchResults> = _results
+    val results: LiveData<AirportSearchResults> = _results
 
     private enum class SEARCH_MODE(val value: Int) {
         ORIGIN(1), DEST(2), NONE(-3)
@@ -44,12 +43,14 @@ class SearchAirportsViewModel @Inject constructor(
 
     private var searchMode = SEARCH_MODE.NONE
 
-
     override fun onCleared() {
         fetchAirports.dispose()
         super.onCleared()
     }
 
+    fun airports(): List<AirportModel> {
+        return _airportList
+    }
 
     fun searchOrigin(query: String) {
         selectedDestinationAirport = null
@@ -59,7 +60,6 @@ class SearchAirportsViewModel @Inject constructor(
         searchAirports(query)
     }
 
-
     fun searchDestination(query: String) {
         searchMode = SEARCH_MODE.DEST
         searchAirports(query)
@@ -67,22 +67,37 @@ class SearchAirportsViewModel @Inject constructor(
 
     private fun searchAirports(query: String) {
         if (query.length < 3) {
-            _airportsData.postValue(Resource(Status.ERROR, null, "Your query has to have at least 3 letters."))
+            _airportsData.postValue(
+                Resource(
+                    Status.ERROR,
+                    null,
+                    "Your query has to have at least 3 letters."
+                )
+            )
             return
         }
 
-        val results = airportList.filter { airport ->
+        val results = _airportList.filter { airport ->
             return@filter airport.city.contains(query, true) ||
                     airport.name.contains(query, true) ||
                     airport.state.contains(query, true)
         }
 
-        _airportsData.postValue(
-            Resource(
-                Status.SUCCESS,
-                results, null
+        if (results.isEmpty()) {
+            _airportsData.postValue(
+                Resource(
+                    Status.ERROR,
+                    null, "No airports found"
+                )
             )
-        )
+        } else {
+            _airportsData.postValue(
+                Resource(
+                    Status.SUCCESS,
+                    results, null
+                )
+            )
+        }
     }
 
     fun setAirportForCurrentMode(data: AirportModel) {
@@ -95,17 +110,21 @@ class SearchAirportsViewModel @Inject constructor(
         }
 
         if ((selectedDestinationAirport != null) and (selectedOriginAirport != null)) {
-            _results.value = AirportSearchResults(selectedOriginAirport!!, selectedDestinationAirport!!)
+            _results.value =
+                AirportSearchResults(selectedOriginAirport!!, selectedDestinationAirport!!)
         }
     }
 
     init {
+    }
+
+    fun fetchAirports() {
         fetchAirports.execute(AirportListSubscriber())
     }
 
     inner class AirportListSubscriber : DisposableObserver<List<Airport>>() {
         override fun onNext(t: List<Airport>) {
-            airportList.addAll(t.map { modelMapper.mapToView(it) })
+            _airportList.addAll(t.map { modelMapper.mapToView(it) })
         }
 
         override fun onError(e: Throwable) {
@@ -119,8 +138,5 @@ class SearchAirportsViewModel @Inject constructor(
         }
 
         override fun onComplete() {}
-
     }
-
-
 }

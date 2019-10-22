@@ -49,15 +49,13 @@ fun Context.getColorHexString(@ColorRes resId: Int): String {
     return String.format("#%06X", 0xFFFFFF and colorInt)
 }
 
-
 fun RecyclerView.removeAllDecorations() {
     while (this.itemDecorationCount > 0) {
         this.removeItemDecoration(this.getItemDecorationAt(0))
     }
 }
 
-
-//fun Toolbar.hide() {
+// fun Toolbar.hide() {
 //    this.animate()
 //        .translationY(0f)
 //        .alpha(0.0f)
@@ -67,10 +65,10 @@ fun RecyclerView.removeAllDecorations() {
 //                visibility = View.GONE
 //            }
 //        });
-//}
+// }
 //
 //
-//fun Toolbar.show() {
+// fun Toolbar.show() {
 //    visibility = View.VISIBLE
 //    alpha = 0.0f
 //
@@ -78,12 +76,12 @@ fun RecyclerView.removeAllDecorations() {
 //        .translationY(this.height.toFloat())
 //        .alpha(1.0f)
 //        .setListener(null)
-//}
+// }
 
 fun View.shakyShaky() {
     val animShake = AnimationUtils.loadAnimation(this.context, R.anim.shake)
     val v = this.context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+    if (SDK_INT >= Build.VERSION_CODES.O) {
         v!!.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
     } else {
         v!!.vibrate(500)
@@ -136,7 +134,6 @@ fun View.setMargins(
     layoutParams = lp
 }
 
-
 fun View.setPaddings(
     left: Int = this.paddingLeft,
     top: Int = this.paddingTop,
@@ -152,7 +149,6 @@ fun Any.delay(function: () -> Unit, timeMillis: Long = 1000) {
         function.invoke()
     }, timeMillis)
 }
-
 
 fun Any.delayForASecond(function: () -> Unit) {
     val handler = Handler()
@@ -178,7 +174,6 @@ fun String.toCamelCase(): String {
     return camelCaseString
 }
 
-
 fun String.isAvailable(): Boolean {
     return this != "N/A"
 }
@@ -186,7 +181,6 @@ fun String.isAvailable(): Boolean {
 fun MutableLiveData<Void>.call() {
     value = null
 }
-
 
 fun View.hideKeyBoard() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -250,15 +244,14 @@ fun AppCompatActivity.showSystemUI() {
 
 fun Activity.setTransparentStatusBar() {
     window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    if (SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         window.statusBarColor = Color.TRANSPARENT
     }
 }
 
-
 fun Activity.setStatusBarColorAsPrimaryDark() {
     window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    if (SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         window.statusBarColor = ContextCompat.getColor(this, R.color.grey_trans)
     }
 }
@@ -292,7 +285,6 @@ fun Drawable.mutateColor(colorCode: String) {
     }
 }
 
-
 fun Any.getRelativeDateUtils(now: Long, past: Long): String {
     var seconds = TimeUnit.MILLISECONDS.toSeconds(now - past)
     var minutes = TimeUnit.MILLISECONDS.toMinutes(now - past)
@@ -320,14 +312,12 @@ inline val @receiver:ColorInt Int.darken
     @ColorInt
     get() = ColorUtils.blendARGB(this, Color.BLACK, 0.2f)
 
-//TAG in the companion object for fragments  exists because https://discuss.kotlinlang.org/t/static-extension-methods-for-java-classes/2190
+// TAG in the companion object for fragments  exists because https://discuss.kotlinlang.org/t/static-extension-methods-for-java-classes/2190
 fun Fragment.TAG(): String = javaClass.canonicalName
-
 
 fun ViewGroup.inflate(layout: Int): View {
     val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     return layoutInflater.inflate(layout, this, false)
-
 }
 
 fun Activity.showSnackbar(
@@ -432,7 +422,6 @@ fun Context.readJsonFromFilePath(path: String): String {
     return line ?: ""
 }
 
-
 fun View.clickWithDebounce(debounceTime: Long = 600L, action: () -> Unit) {
     this.setOnClickListener(object : View.OnClickListener {
         private var lastClickTime: Long = 0
@@ -445,7 +434,6 @@ fun View.clickWithDebounce(debounceTime: Long = 600L, action: () -> Unit) {
         }
     })
 }
-
 
 fun Context.getCurrentLocale(): Locale {
     return ConfigurationCompat.getLocales(Resources.getSystem().configuration)[0]
@@ -460,9 +448,8 @@ fun Drawable.mutateColor(colorInt: Int) {
     }
 }
 
-
 fun Activity.setStatusBarColor(@ColorRes color: Int) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    if (SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         window.statusBarColor = ContextCompat.getColor(this, color)
     }
 }

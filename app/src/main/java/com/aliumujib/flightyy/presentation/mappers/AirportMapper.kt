@@ -13,11 +13,11 @@ class AirportMapper @Inject constructor() : Mapper<Airport, AirportModel> {
             domain.code,
             domain.country,
             domain.direct_flights,
-            domain.elev ?: "",
-            domain.email ?: "",
+            domain.elev,
+            domain.email,
             domain.icao,
-            domain.lat.toDouble(),
-            domain.lon.toDouble(),
+            domain.lat,
+            domain.lon,
             domain.name,
             domain.phone,
             domain.runway_length,
@@ -39,8 +39,8 @@ class AirportMapper @Inject constructor() : Mapper<Airport, AirportModel> {
             view.elev,
             view.email,
             view.icao,
-            view.lat.toString(),
-            view.lon.toString(),
+            view.lat,
+            view.lon,
             view.name,
             view.phone,
             view.runway_length,
@@ -51,6 +51,4 @@ class AirportMapper @Inject constructor() : Mapper<Airport, AirportModel> {
             view.woeid
         )
     }
-
-
 }

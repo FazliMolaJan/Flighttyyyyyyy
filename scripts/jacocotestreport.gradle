@@ -1,0 +1,67 @@
+apply plugin: 'jacoco'
+
+
+def fileFilter = [
+        '**/R.class',
+        '**/R$*.class',
+        '**/BuildConfig.*',
+        '**/Manifest*.*',
+        '**/*Test*.*',
+        'android/**/*.*',
+
+        //Butterknife hack for multi-modules poroject
+        '**/R2.class',
+        '**/R2$*.class',
+        '**/*_ViewBinding*.*',
+
+        //Dagger 2
+        '**/*Dagger*Component*.*',
+        '**/*Module.*',
+        '**/*Module$*.*',
+        '**/*MembersInjector*.*',
+        '**/*_Factory*.*',
+        '**/*Provide*Factory*.*',
+
+        //Autofactory
+        '**/*Factory.*',
+
+        //Classes I intentionally don't want to test
+        '**/*Activity.*',
+        '**/App.class',
+        '**/*Adapter.*',
+        '**/*ViewHolder*.*',
+        '**/api/response/*.*',
+        '**/data/model/*.*',
+]
+
+task testDebugUnitTestCoverage(type: JacocoReport) {
+    group = 'Reporting'
+    description = "Generate Jacoco coverage reports for the debug build. Only unit tests."
+
+    //Make sure that tests from all modules are run before coverage report
+    dependsOn ':app:testDebugUnitTest'
+    dependsOn ':domain:compileTestJava'
+    dependsOn ':data:testDebugUnitTest'
+
+    classDirectories = files([
+            fileTree(dir: "$project.rootDir/app/build/intermediates/javac/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/domain/build/intermediates/javac/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/data/build/intermediates/javac/debug", excludes: fileFilter)
+    ])
+
+    def coverageSourceDirs = [
+            "$project.rootDir/app/src/main/java",
+            "$project.rootDir/data/src/main/java",
+            "$project.rootDir/domain/src/main/java"]
+
+    additionalSourceDirs = files(coverageSourceDirs)
+    sourceDirectories = files(coverageSourceDirs)
+    executionData = fileTree(dir: project.rootDir, includes: [
+            'app/build/jacoco/testDebugUnitTest.exec',
+            'data/build/jacoco/testDebugUnitTest.exec',
+            'domain/build/jacoco/testDebugUnitTest.exec'])
+
+    reports {
+        html.enabled = true
+    }
+}

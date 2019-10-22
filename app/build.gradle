@@ -3,9 +3,20 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'kotlin-allopen'
+apply plugin: 'jacoco-android'
+
+apply from: "../scripts/ktlint.gradle"
+
+allOpen {
+    // allows mocking for classes w/o directly opening them for release builds
+    annotation 'com.aliumujib.flightyy.OpenClass'
+}
+
 
 android {
     compileSdkVersion 28
+
     defaultConfig {
         applicationId "com.aliumujib.flightyy"
         minSdkVersion 21
@@ -106,7 +117,6 @@ dependencies {
 
     kapt appDependencies.roomCompiler
 
-
     testImplementation(
             testDependencies.junit,
             testDependencies.assertj,
@@ -117,8 +127,8 @@ dependencies {
             testDependencies.robolectric,
             testDependencies.archTesting,
             testDependencies.konveyor,
-            testDependencies.kotlinRunnerJUnit
-    )
+            testDependencies.byteBuddy,
+            testDependencies.kotlinRunnerJUnit)
 
 
     // Instrumentation test dependencies

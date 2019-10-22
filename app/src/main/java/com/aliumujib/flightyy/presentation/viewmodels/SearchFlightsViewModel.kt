@@ -1,6 +1,5 @@
 package com.aliumujib.flightyy.presentation.viewmodels
 
-
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.aliumujib.flightyy.domain.usecases.flights.FetchFlights
@@ -21,9 +20,9 @@ class SearchFlightsViewModel @Inject constructor(
     private val scheduleModelMapper: ScheduleMapper
 ) : BaseViewModel() {
 
-    private val _liveData: MutableLiveData<Resource<List<ScheduleModel>>> =
+    private val _schedules: MutableLiveData<Resource<List<ScheduleModel>>> =
         MutableLiveData()
-    val liveData: LiveData<Resource<List<ScheduleModel>>> = _liveData
+    val schedules: LiveData<Resource<List<ScheduleModel>>> = _schedules
 
     override fun onCleared() {
         fetchFlights.dispose()
@@ -31,7 +30,7 @@ class SearchFlightsViewModel @Inject constructor(
     }
 
     fun searchFlights(origin: AirportModel, destination: AirportModel, date: String) {
-        _liveData.postValue(Resource(Status.LOADING, null, null))
+        _schedules.postValue(Resource(Status.LOADING, null, null))
         val mappedorigin = airportModelMapper.mapToDomain(origin)
         val mappeddest = airportModelMapper.mapToDomain(destination)
 
@@ -43,22 +42,21 @@ class SearchFlightsViewModel @Inject constructor(
 
     inner class FetchScheduleDetailsSubscriber : DisposableObserver<List<Schedule>>() {
         override fun onNext(t: List<Schedule>) {
-            _liveData.postValue(
+            _schedules.postValue(
                 Resource(
                     Status.SUCCESS,
                     t.map {
                         scheduleModelMapper.mapToView(it)
                     }.sortedBy {
                         it.flightModels.size
-                    }
-                    , null
+                    }, null
                 )
             )
         }
 
         override fun onError(e: Throwable) {
             e.printStackTrace()
-            _liveData.postValue(
+            _schedules.postValue(
                 Resource(
                     Status.ERROR, null,
                     e.localizedMessage
@@ -67,7 +65,5 @@ class SearchFlightsViewModel @Inject constructor(
         }
 
         override fun onComplete() {}
-
     }
-
 }

@@ -20,7 +20,6 @@ class SolidBackgroundButtonView : AppCompatTextView {
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
 
-
         val a = context.obtainStyledAttributes(attrs, R.styleable.SolidBackgroundButtonView, 0, 0)
 
         val btnTextColor: Int? = a.getColor(R.styleable.SolidBackgroundButtonView_textColor, Color.WHITE)
@@ -38,8 +37,6 @@ class SolidBackgroundButtonView : AppCompatTextView {
         padding = context.dpToPx(16)
         setTypeface(typeface, Typeface.BOLD)
 
-
         a.recycle()
     }
-
 }

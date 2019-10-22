@@ -11,7 +11,7 @@ import java.io.IOException
 import java.nio.charset.Charset
 
 
-class AirlineCache @Inject constructor(var context: Context) : ICache<AirlineEntity>() {
+open class AirlineCache @Inject constructor(private val context: Context) : ICache<AirlineEntity>() {
 
     private var listOfAirlines = mutableListOf<AirlineEntity>()
     private var mapOfAirlines = mutableMapOf<String, AirlineEntity>()

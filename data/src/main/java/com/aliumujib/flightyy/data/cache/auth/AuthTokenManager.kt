@@ -5,7 +5,7 @@ import com.aliumujib.flightyy.data.cache.CoreSharedPrefManager
 import com.aliumujib.flightyy.data.contracts.cache.IAuthTokenManager
 import javax.inject.Inject
 
-class AuthTokenManager @Inject constructor(var context: Context) : IAuthTokenManager,
+class AuthTokenManager @Inject constructor( private val context: Context) : IAuthTokenManager,
     CoreSharedPrefManager(context) {
 
     init {

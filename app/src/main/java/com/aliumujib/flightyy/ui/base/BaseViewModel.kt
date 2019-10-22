@@ -29,7 +29,6 @@ abstract class BaseViewModel : ViewModel() {
     private val _loading = MutableLiveData<Event<Status>>()
     val loading: LiveData<Event<Status>> = _loading
 
-
     fun setStatus(status: Status) {
         _loading.value = Event(status)
     }

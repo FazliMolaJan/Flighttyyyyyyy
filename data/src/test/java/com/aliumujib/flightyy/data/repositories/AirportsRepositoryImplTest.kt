@@ -16,7 +16,7 @@ class AirportsRepositoryImplTest {
     lateinit var airportsRepositoryImpl: AirportsRepositoryImpl
 
     @Mock
-    lateinit var airlinesCache: AirportCache
+    lateinit var airportsCache: AirportCache
 
     var entityMapper: AirportEntityMapper = AirportEntityMapper()
 
@@ -26,43 +26,24 @@ class AirportsRepositoryImplTest {
 
         airportsRepositoryImpl =
                 AirportsRepositoryImpl(
-                    airlinesCache,
+                    airportsCache,
                     entityMapper
                 )
 
-//        stubArticleCacheResponse()
-
     }
-
 
     @Test
     fun `check that calling searchAirports on repository calls cache implementation`() {
         stubAirportCacheResponse()
         airportsRepositoryImpl.searchAirports().test()
-        verify(airlinesCache).fetchAll()
+        verify(airportsCache).fetchAll()
     }
 
 
-//
-//    @Test
-//    fun `check that calling getCharacterDetails on repository returns confam or correct data`() {
-//        val character = DummyDataFactory.makeRandomStarWarsCharacter()
-//        stubgetCharacterDetailsResponse(character)
-//        val detailedCharacter = characterRepositoryImpl.getCharacterDetails(character).blockingFirst()
-//        assertEquals(detailedCharacter.id, character.id)
-//        assertEquals(detailedCharacter.specie.id, character.specieId)
-//        assertEquals(detailedCharacter.homeWorld.id, character.homeWorldId)
-//        val detailedFilmIds = detailedCharacter.airlines.map {
-//            it.id
-//        }
-//        assertEquals(detailedFilmIds, character.filmIds)
-//    }
-
-
-    fun stubAirportCacheResponse(
+    private fun stubAirportCacheResponse(
         list: List<AirportEntity> = DummyDataFactory.makeAirportEntities(10)
     ) {
-        whenever(airlinesCache.fetchAll())
+        whenever(airportsCache.fetchAll())
             .thenReturn(list)
     }
 

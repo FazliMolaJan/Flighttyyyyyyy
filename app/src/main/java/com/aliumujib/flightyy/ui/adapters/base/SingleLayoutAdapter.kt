@@ -1,6 +1,5 @@
 package com.aliumujib.flightyy.ui.adapters.base
 
-
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
@@ -15,7 +14,6 @@ import kotlin.properties.Delegates.observable
 
 class SingleLayoutAdapter<T>(@LayoutRes private val resId: Int, val itemClickListener: BindableItemClickListener<T>? = null) :
     RecyclerView.Adapter<SingleLayoutAdapter.ViewHolder<T>>(), BindableAdapter<T> {
-
 
     override fun setData(data: List<T>) {
         items = data
@@ -51,5 +49,4 @@ class SingleLayoutAdapter<T>(@LayoutRes private val resId: Int, val itemClickLis
             executePendingBindings()
         }
     }
-
 }

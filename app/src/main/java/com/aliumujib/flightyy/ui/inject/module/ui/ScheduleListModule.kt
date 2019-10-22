@@ -16,8 +16,7 @@ class ScheduleListModule {
     }
 
     @Provides
-    fun providesClickListener(scheduleListFragment:ScheduleListFragment): BindableItemClickListener<ScheduleModel> {
+    fun providesClickListener(scheduleListFragment: ScheduleListFragment): BindableItemClickListener<ScheduleModel> {
         return scheduleListFragment
     }
-
 }

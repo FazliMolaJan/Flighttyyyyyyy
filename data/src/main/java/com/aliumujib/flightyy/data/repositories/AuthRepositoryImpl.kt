@@ -14,7 +14,7 @@ class AuthRepositoryImpl @Inject constructor(
 ) : IAuthRepository {
 
     override fun isUserLoggedIn(): Boolean {
-        return userDataManager.getClientId() != null && userDataManager.getClientSecret() != null
+        return userDataManager.getClientId() != null && userDataManager.getClientSecret() != null && tokenManager.getToken() != null
     }
 
 

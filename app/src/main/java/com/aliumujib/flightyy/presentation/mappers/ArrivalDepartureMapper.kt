@@ -8,7 +8,6 @@ class ArrivalDepartureMapper @Inject constructor(
     var airportMapper: AirportMapper
 ) : Mapper<ArrivalDeparture, ArrivalDepartureModel> {
 
-
     override fun mapToDomain(view: ArrivalDepartureModel): ArrivalDeparture {
         return ArrivalDeparture(
             airportMapper.mapToDomain(view.airportModel),
@@ -22,7 +21,4 @@ class ArrivalDepartureMapper @Inject constructor(
             domain.scheduledTime
         )
     }
-
-
-
 }

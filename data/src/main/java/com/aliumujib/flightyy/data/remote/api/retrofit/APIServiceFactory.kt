@@ -2,7 +2,10 @@ package com.aliumujib.flightyy.data.remote.api.retrofit
 
 import com.aliumujib.flightyy.data.remote.api.utils.AccessTokenAuthenticator
 import com.aliumujib.flightyy.data.remote.api.utils.AuthInterceptor
+import com.aliumujib.flightyy.data.remote.api.utils.CustomRxJava2CallAdapterFactory
 import com.aliumujib.flightyy.data.remote.models.Schedule
+import com.aliumujib.flightyy.data.remote.models.ScheduleResource
+import com.aliumujib.flightyy.data.remote.models.ScheduleResourceTypeAdapter
 import com.aliumujib.flightyy.data.remote.models.ScheduleTypeAdapter
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -31,7 +34,6 @@ object APIServiceFactory {
         return Retrofit.Builder()
             .baseUrl(apiURL)
             .client(httpClientBuilder.build())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
@@ -41,6 +43,7 @@ object APIServiceFactory {
             .baseUrl(apiURL)
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addCallAdapterFactory(CustomRxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
@@ -65,6 +68,7 @@ object APIServiceFactory {
     fun getGson(): Gson {
         return GsonBuilder()
             .registerTypeAdapter(Schedule::class.java, ScheduleTypeAdapter())
+            .registerTypeAdapter(ScheduleResource::class.java, ScheduleResourceTypeAdapter())
             .create()
     }
 
