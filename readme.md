@@ -9,14 +9,6 @@ Android app that pulls data from https://api.lufthansa.com/v1/ .
 ### Build Instructions
 - Run with Android Studio 3.6 canary 11 and above</br>
 
-I had a lot of fun building this app. There are some improvements I could make.
-
-- Add some sweet animations to the polylines been drawn on the map screen</br>
-- Write more tests for UI </br>
-- Use MockWebServer to test `Remote` layer.</br>
-- Shared element transitions.</br>
-- Explore Unidirectional data flow and MVI
-
 ### Used libraries
 **Dagger2** - Dagger2 was used for dependency injection.</br>
 **RxJava2** - RxJava2 was used for thread management and data stream management.</br>
