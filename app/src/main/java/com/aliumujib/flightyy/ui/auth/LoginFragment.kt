@@ -1,10 +1,10 @@
 package com.aliumujib.flightyy.ui.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.aliumujib.flightyy.R
 import com.aliumujib.flightyy.presentation.state.Resource
@@ -16,7 +16,10 @@ import com.aliumujib.flightyy.ui.base.BaseViewModel
 import com.aliumujib.flightyy.ui.inject.ViewModelFactory
 import com.aliumujib.flightyy.ui.utils.ext.hideLoadingDialog
 import com.aliumujib.flightyy.ui.utils.ext.showLoadingDialog
+import com.aliumujib.flightyy.ui.utils.ext.showSnackbar
 import com.aliumujib.flightyy.ui.utils.observe
+import com.google.android.material.snackbar.Snackbar
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_auth.*
 import javax.inject.Inject
 
@@ -36,6 +39,13 @@ class LoginFragment : BaseFragment() {
         return viewModel
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        AndroidSupportInjection.inject(this)
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -52,6 +62,13 @@ class LoginFragment : BaseFragment() {
 
         login_button.setOnClickListener {
             viewModel.login(client_id.getText(), client_secret.getText())
+        }
+    }
+
+
+    override fun showError(string: String?) {
+        string?.let {
+            showSnackbar(string, Snackbar.LENGTH_LONG)
         }
     }
 

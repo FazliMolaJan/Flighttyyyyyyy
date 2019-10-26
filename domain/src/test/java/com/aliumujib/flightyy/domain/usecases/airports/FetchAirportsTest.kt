@@ -5,7 +5,7 @@ import com.aliumujib.flightyy.domain.models.Airport
 import com.aliumujib.flightyy.domain.repositories.airports.IAirportsRepository
 import com.aliumujib.flightyy.domain.test.DummyDataFactory
 import com.nhaarman.mockito_kotlin.whenever
-import io.reactivex.Observable
+import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -30,23 +30,23 @@ class FetchAirportsTest {
 
     @Test
     fun `confirm that calling searchAirports completes`() {
-        stubSearchAirports(Observable.just(DummyDataFactory.makeAirportList(2)))
-        val testObserver = fetchAirports.buildUseCaseObservable().test()
+        stubSearchAirports(Single.just(DummyDataFactory.makeAirportList(2)))
+        val testObserver = fetchAirports.buildUseCaseSingle().test()
         testObserver.assertComplete()
     }
 
     @Test
     fun `confirm that calling searchAirports returns data`() {
         val list = DummyDataFactory.makeAirportList(10)
-        stubSearchAirports(Observable.just(list))
-        val testObserver = fetchAirports.buildUseCaseObservable().test()
+        stubSearchAirports(Single.just(list))
+        val testObserver = fetchAirports.buildUseCaseSingle().test()
         testObserver.assertValue(list)
     }
 
 
-    private fun stubSearchAirports(observable: Observable<List<Airport>>) {
+    private fun stubSearchAirports(single: Single<List<Airport>>) {
         whenever(airportsRepository.searchAirports())
-            .thenReturn(observable)
+            .thenReturn(single)
     }
 
 }

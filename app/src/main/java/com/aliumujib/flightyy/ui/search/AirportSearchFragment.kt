@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +16,8 @@ import com.aliumujib.flightyy.presentation.viewmodels.SearchAirportsViewModel
 import com.aliumujib.flightyy.ui.MainActivity
 import com.aliumujib.flightyy.ui.adapters.base.BindableItemClickListener
 import com.aliumujib.flightyy.ui.adapters.base.SingleLayoutAdapter
+import com.aliumujib.flightyy.ui.base.BaseFragment
+import com.aliumujib.flightyy.ui.base.BaseViewModel
 import com.aliumujib.flightyy.ui.inject.ViewModelFactory
 import com.aliumujib.flightyy.ui.utils.ext.showSnackbar
 import com.aliumujib.flightyy.ui.utils.observe
@@ -28,7 +29,12 @@ import kotlinx.android.synthetic.main.fragment_airport_search.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel> {
+class AirportSearchFragment : BaseFragment(), BindableItemClickListener<AirportModel> {
+
+
+    override fun getViewModel(): BaseViewModel {
+        return searchViewModel
+    }
 
     override fun onItemClicked(data: AirportModel) {
         airportsAdapter.clearItems()
@@ -107,12 +113,9 @@ class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel
                 searchViewModel.searchDestination(it)
             })
 
-
-
         observe(searchViewModel.airportsData, ::handleSearchData)
         observeAirports()
         observe(searchViewModel.results, ::sendDataBack)
-
     }
 
     private fun observeAirports() {
@@ -148,6 +151,13 @@ class AirportSearchFragment : Fragment(), BindableItemClickListener<AirportModel
                     // Handle loading
                 }
             }
+        }
+    }
+
+
+    override fun showError(string: String?) {
+        string?.let {
+            showSnackbar(string, Snackbar.LENGTH_LONG)
         }
     }
 

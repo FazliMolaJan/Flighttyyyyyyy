@@ -7,7 +7,9 @@
 Android app that pulls data from https://api.lufthansa.com/v1/ .
 
 ### Build Instructions
+- Goto https://developer.lufthansa.com, sign up and obtain a client ID and client secret</br>
 - Run with Android Studio 3.6 canary 11 and above</br>
+- Login with obtained credentials
 
 ### Used libraries
 **Dagger2** - Dagger2 was used for dependency injection.</br>

@@ -1,23 +1,23 @@
 package com.aliumujib.flightyy.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import com.aliumujib.flightyy.domain.usecases.airports.FetchAirports
 import com.aliumujib.flightyy.domain.models.Airport
+import com.aliumujib.flightyy.domain.usecases.airports.FetchAirports
 import com.aliumujib.flightyy.presentation.mappers.AirportMapper
-import com.aliumujib.flightyy.presentation.models.AirportSearchResults
 import com.aliumujib.flightyy.presentation.models.AirportModel
+import com.aliumujib.flightyy.presentation.models.AirportSearchResults
 import com.aliumujib.flightyy.presentation.state.Resource
 import com.aliumujib.flightyy.presentation.state.Status
+import com.aliumujib.flightyy.ui.base.BaseViewModel
 import com.aliumujib.flightyy.ui.utils.SingleLiveData
 import com.aliumujib.flightyy.ui.utils.mutableLiveDataOf
-import io.reactivex.observers.DisposableObserver
+import io.reactivex.observers.DisposableSingleObserver
 import javax.inject.Inject
 
 class SearchAirportsViewModel @Inject constructor(
     private val fetchAirports: FetchAirports,
     private val modelMapper: AirportMapper
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _airportsData: SingleLiveData<Resource<List<AirportModel>>> = SingleLiveData()
     val airportsData: LiveData<Resource<List<AirportModel>>> = _airportsData
@@ -122,8 +122,9 @@ class SearchAirportsViewModel @Inject constructor(
         fetchAirports.execute(AirportListSubscriber())
     }
 
-    inner class AirportListSubscriber : DisposableObserver<List<Airport>>() {
-        override fun onNext(t: List<Airport>) {
+    inner class AirportListSubscriber : DisposableSingleObserver<List<Airport>>() {
+
+        override fun onSuccess(t: List<Airport>) {
             _airportList.addAll(t.map { modelMapper.mapToView(it) })
         }
 
@@ -137,6 +138,5 @@ class SearchAirportsViewModel @Inject constructor(
             )
         }
 
-        override fun onComplete() {}
     }
 }

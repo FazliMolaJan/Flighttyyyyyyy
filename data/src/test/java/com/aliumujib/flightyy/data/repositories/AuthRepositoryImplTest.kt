@@ -5,7 +5,7 @@ import com.aliumujib.flightyy.data.contracts.cache.IUserLoginManager
 import com.aliumujib.flightyy.data.contracts.remote.IAuthRemote
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
-import io.reactivex.Observable
+import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -84,7 +84,7 @@ class AuthRepositoryImplTest {
                 clientId,
                 clientSecret
             )
-        ).thenReturn(Observable.just(token))
+        ).thenReturn(Single.just(token))
     }
 
 
