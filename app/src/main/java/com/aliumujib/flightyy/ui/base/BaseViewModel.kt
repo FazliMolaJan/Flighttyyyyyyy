@@ -25,10 +25,6 @@ abstract class BaseViewModel : ViewModel() {
         _error.value = resourceId
     }
 
-    fun showError(error: String) {
-        _stringError.value = error
-    }
-
     /**
      * Convenient method to handle navigation from a [ViewModel]
      */

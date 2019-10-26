@@ -7,8 +7,9 @@
 Android app that pulls data from https://api.lufthansa.com/v1/ .
 
 ### Build Instructions
-- Goto https://developer.lufthansa.com, sign up and obtain a client ID and client secret</br>
-- Run with Android Studio 3.6 canary 11 and above</br>
+- Goto https://developer.lufthansa.com, sign up and obtain a client ID and client secret. </br>
+- Supply your google API key to the `MAPS_API_KEY` variable in the app build.gradle file. </br>
+- Run with Android Studio 3.6 canary 11 and above. </br>
 - Login with obtained credentials
 
 ### Used libraries

@@ -160,14 +160,4 @@ class AirportSearchFragment : BaseFragment(), BindableItemClickListener<AirportM
             showSnackbar(string, Snackbar.LENGTH_LONG)
         }
     }
-
-    private val onFocusChangedListener = View.OnFocusChangeListener { p0, p1 ->
-        if (p1 and (p0?.id == R.id.origin_et)) {
-            origin_indicator.isChecked = true
-            dest_indicator.isChecked = false
-        } else if (p1 and (p0?.id == R.id.dest_et)) {
-            origin_indicator.isChecked = false
-            dest_indicator.isChecked = true
-        }
-    }
 }

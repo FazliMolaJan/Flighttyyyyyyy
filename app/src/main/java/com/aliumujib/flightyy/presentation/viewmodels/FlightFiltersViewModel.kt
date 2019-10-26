@@ -20,7 +20,6 @@ class FlightFiltersViewModel @Inject constructor() : BaseViewModel() {
 
     val origin: LiveData<AirportModel> = _originLiveData
     val destination: LiveData<AirportModel> = _destinationLiveData
-    val date: LiveData<String> = _selectedDateLiveData
 
     fun setOriginAndDestination(origin: AirportModel, destination: AirportModel) {
         selectedOriginAirport = origin

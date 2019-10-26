@@ -15,7 +15,10 @@ class ScheduleResourceTypeAdapter : JsonDeserializer<ScheduleResource> {
             var scheduleResource = it.get("Schedule")
             if (scheduleResource is JsonArray) {
                 val listType = object : TypeToken<List<Schedule>?>() {}.type
-                schedules.addAll(Gson().fromJson(scheduleResource, listType))
+                val gson = GsonBuilder()
+                    .registerTypeAdapter(Schedule::class.java, ScheduleTypeAdapter())
+                    .create()
+                schedules.addAll(gson.fromJson(scheduleResource, listType))
             } else {
                 val listType = object : TypeToken<Schedule?>() {}.type
                 val flight = Gson().fromJson<Schedule>(scheduleResource, listType)
