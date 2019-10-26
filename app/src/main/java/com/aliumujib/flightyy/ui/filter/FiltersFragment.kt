@@ -143,7 +143,7 @@ class FiltersFragment : BaseFragment(), NavigationResult {
 
     private fun formatNumberForAPI(int: Int): String {
         return if (int < 10) {
-            "$int".padStart(0, '0')
+            "0$int"
         } else {
             "$int"
         }

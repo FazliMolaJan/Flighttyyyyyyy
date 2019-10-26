@@ -130,7 +130,4 @@ class SearchAirportsViewModelTest {
         assertEquals(Status.ERROR, searchAirportsViewModel.airportsData.value?.status)
     }
 
-    private fun stubAirports(airport: Airport, airportModel: AirportModel) {
-        whenever(modelMapper.mapToView(airport)).thenReturn(airportModel)
-    }
 }

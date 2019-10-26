@@ -13,13 +13,6 @@ import java.util.*
 
 object DummyDataFactory {
 
-    fun makeRandomFlightEntity(): FlightEntity {
-        return randomBuild()
-    }
-
-    fun makeRandomArrivalDepartureEntity(): ArrivalDepartureEntity {
-        return randomBuild()
-    }
 
     fun makeRandomAirlineEntity(): AirlineEntity {
         return randomBuild()
@@ -89,12 +82,5 @@ object DummyDataFactory {
         return schedules
     }
 
-    fun makeAirlineEntities(count: Int): List<AirlineEntity> {
-        val articles = mutableListOf<AirlineEntity>()
-        repeat(count) {
-            articles.add(makeRandomAirlineEntity())
-        }
-        return articles
-    }
 
 }

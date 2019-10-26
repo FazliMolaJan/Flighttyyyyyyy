@@ -32,30 +32,6 @@ object DummyDataFactory {
         return articles
     }
 
-    fun makeFlightList(count: Int): List<Flight> {
-        val articles = mutableListOf<Flight>()
-        repeat(count) {
-            articles.add(makeFlight())
-        }
-        return articles
-    }
-
-    fun makeIntergerList(count: Int): List<Int> {
-        val categories = mutableListOf<Int>()
-        repeat(count) {
-            categories.add(randomBuild())
-        }
-        return categories
-    }
-
-    fun makeAirlineList(count: Int): List<Airline> {
-        val categories = mutableListOf<Airline>()
-        repeat(count) {
-            categories.add(makeAirline())
-        }
-        return categories
-    }
-
     fun makeAirportList(count: Int): List<Airport> {
         val articles = mutableListOf<Airport>()
         repeat(count) {
