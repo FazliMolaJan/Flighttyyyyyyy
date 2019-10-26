@@ -2,7 +2,6 @@ package com.aliumujib.flightyy.ui.utils
 
 import androidx.lifecycle.*
 
-
 /**
  *
  * Plenty copy and paste coding made possible by

@@ -6,7 +6,7 @@ import com.aliumujib.flightyy.domain.repositories.airlines.IAirlinesRepository
 import com.aliumujib.flightyy.domain.test.DummyDataFactory
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.whenever
-import io.reactivex.Observable
+import io.reactivex.Single
 import konveyor.base.randomBuild
 import org.junit.Before
 import org.junit.Test
@@ -33,8 +33,8 @@ class FetchAirlinesForIDTest {
 
     @Test
     fun `confirm that calling getAirlineWithId completes`() {
-        stubGetAirline(Observable.just(DummyDataFactory.makeAirline()))
-        val testObserver = getAirlines.buildUseCaseObservable(
+        stubGetAirline(Single.just(DummyDataFactory.makeAirline()))
+        val testObserver = getAirlines.buildUseCaseSingle(
             FetchAirlinesForID.Params.make(randomBuild())
         ).test()
         testObserver.assertComplete()
@@ -43,8 +43,8 @@ class FetchAirlinesForIDTest {
     @Test
     fun `confirm that calling getAirlineWithId returns data`() {
         val list = DummyDataFactory.makeAirline()
-        stubGetAirline(Observable.just(list))
-        val testObserver = getAirlines.buildUseCaseObservable(
+        stubGetAirline(Single.just(list))
+        val testObserver = getAirlines.buildUseCaseSingle(
             FetchAirlinesForID.Params.make(randomBuild())
         ).test()
         testObserver.assertValue(list)
@@ -53,12 +53,12 @@ class FetchAirlinesForIDTest {
     @Test(expected = IllegalStateException::class)
     fun `confirm that using FetchAirlinesForID without params throws an exception`() {
         val projects = DummyDataFactory.makeAirline()
-        stubGetAirline(Observable.just(projects))
-        val testObserver = getAirlines.buildUseCaseObservable().test()
+        stubGetAirline(Single.just(projects))
+        val testObserver = getAirlines.buildUseCaseSingle().test()
         testObserver.assertValue(projects)
     }
 
-    private fun stubGetAirline(observable: Observable<Airline>) {
+    private fun stubGetAirline(observable: Single<Airline>) {
         whenever(airlinesRepository.getAirlineWithId(any()))
             .thenReturn(observable)
     }

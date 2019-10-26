@@ -1,22 +1,17 @@
 package com.aliumujib.flightyy.data.repositories
 
 import com.aliumujib.flightyy.data.DummyDataFactory
-import com.aliumujib.flightyy.data.cache.airlines.AirlineCache
-import com.aliumujib.flightyy.data.cache.airports.AirportCache
 import com.aliumujib.flightyy.data.contracts.remote.ISchedulesRemote
 import com.aliumujib.flightyy.data.mapper.*
-import com.aliumujib.flightyy.data.model.AirportEntity
 import com.aliumujib.flightyy.data.model.schedule.ScheduleEntity
 import com.aliumujib.flightyy.domain.models.Airport
 import com.aliumujib.flightyy.domain.models.schedule.Schedule
-import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
-import io.reactivex.Observable
+import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 import java.util.*
 
@@ -90,7 +85,7 @@ class SchedulesRepositoryImplTest {
         list: List<Schedule> = DummyDataFactory.makeSchedules(10)
     ) {
         whenever(schedulesRepositoryImpl.getFlightSchedules(origin, destination, datetime))
-            .thenReturn(Observable.just(list))
+            .thenReturn(Single.just(list))
     }
 
     private fun stubSchedulesRemoteResponse(
@@ -100,7 +95,7 @@ class SchedulesRepositoryImplTest {
         list: List<ScheduleEntity> = DummyDataFactory.makeScheduleEntities(10)
     ) {
         whenever(schedulesRemote.getSchedules(origin, destination, datetime))
-            .thenReturn(Observable.just(list))
+            .thenReturn(Single.just(list))
     }
 
 }

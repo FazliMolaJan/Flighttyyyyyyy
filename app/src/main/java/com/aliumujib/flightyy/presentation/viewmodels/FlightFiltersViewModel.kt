@@ -37,19 +37,19 @@ class FlightFiltersViewModel @Inject constructor() : BaseViewModel() {
     fun verifyData() {
         when {
             selectedOriginAirport == null -> {
-                showSnackBarError(R.string.please_select_your_origin_airport)
+                showError(R.string.please_select_your_origin_airport)
                 return
             }
             selectedDestinationAirport == null -> {
-                showSnackBarError(R.string.please_select_your_dest_airport)
+                showError(R.string.please_select_your_dest_airport)
                 return
             }
             selectedDate == null -> {
-                showSnackBarError(R.string.please_select_your_date)
+                showError(R.string.please_select_your_date)
                 return
             }
             selectedOriginAirport!!.name == selectedDestinationAirport!!.name -> {
-                showSnackBarError(R.string.please_select_two_airports)
+                showError(R.string.please_select_two_airports)
                 return
             }
             else -> navigate(

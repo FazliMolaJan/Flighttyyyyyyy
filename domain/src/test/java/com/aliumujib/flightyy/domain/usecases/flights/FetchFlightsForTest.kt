@@ -6,7 +6,7 @@ import com.aliumujib.flightyy.domain.repositories.schedules.ISchedulesRepository
 import com.aliumujib.flightyy.domain.test.DummyDataFactory
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.whenever
-import io.reactivex.Observable
+import io.reactivex.Single
 import konveyor.base.randomBuild
 import org.junit.Before
 import org.junit.Test
@@ -32,8 +32,8 @@ class FetchFlightsForTest {
 
     @Test
     fun `confirm that calling getFlightSchedules completes`() {
-        stubGetSchedule(Observable.just(DummyDataFactory.makeFlightSchedule(10)))
-        val testObserver = getPlanets.buildUseCaseObservable(
+        stubGetSchedule(Single.just(DummyDataFactory.makeFlightSchedule(10)))
+        val testObserver = getPlanets.buildUseCaseSingle(
             FetchFlights.Params.make(
                 randomBuild(), randomBuild(), randomBuild()
             )
@@ -45,22 +45,22 @@ class FetchFlightsForTest {
     @Test
     fun `confirm that calling getFlightSchedules returns data`() {
         val schedules = DummyDataFactory.makeFlightSchedule(10)
-        stubGetSchedule(Observable.just(schedules))
-        val testObserver = getPlanets.buildUseCaseObservable(FetchFlights.Params.make(randomBuild(), randomBuild(), randomBuild())).test()
+        stubGetSchedule(Single.just(schedules))
+        val testObserver = getPlanets.buildUseCaseSingle(FetchFlights.Params.make(randomBuild(), randomBuild(), randomBuild())).test()
         testObserver.assertValue(schedules)
     }
 
     @Test(expected = IllegalStateException::class)
     fun `confirm that using FetchPlanetsWithID without params throws an exception`() {
         val planet = DummyDataFactory.makeFlightSchedule(10)
-        stubGetSchedule(Observable.just(planet))
-        val testObserver = getPlanets.buildUseCaseObservable().test()
+        stubGetSchedule(Single.just(planet))
+        val testObserver = getPlanets.buildUseCaseSingle().test()
         testObserver.assertValue(planet)
     }
 
-    private fun stubGetSchedule(observable: Observable<List<Schedule>>) {
+    private fun stubGetSchedule(single: Single<List<Schedule>>) {
         whenever(schedulesRepository.getFlightSchedules(any(), any(), any()))
-            .thenReturn(observable)
+            .thenReturn(single)
     }
 
 }

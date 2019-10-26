@@ -19,11 +19,11 @@ class AuthRepositoryImpl @Inject constructor(
 
 
     override fun login(clientId: String, clientSecret: String): Completable {
-        return authRemote.login(clientId, clientSecret).doOnNext {
+        return authRemote.login(clientId, clientSecret).doAfterSuccess {
             tokenManager.saveToken(it)
             userDataManager.saveClientId(clientId)
             userDataManager.saveClientSecret(clientSecret)
-        }.ignoreElements()
+        }.toCompletable()
     }
 
 }

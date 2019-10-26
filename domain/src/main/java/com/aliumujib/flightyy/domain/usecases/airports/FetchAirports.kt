@@ -2,19 +2,19 @@ package com.aliumujib.flightyy.domain.usecases.airports
 
 
 import com.aliumujib.flightyy.domain.executor.PostExecutionThread
-import com.aliumujib.flightyy.domain.usecases.base.ObservableUseCase
 import com.aliumujib.flightyy.domain.models.Airport
 import com.aliumujib.flightyy.domain.repositories.airports.IAirportsRepository
-import io.reactivex.Observable
+import com.aliumujib.flightyy.domain.usecases.base.SingleUseCase
+import io.reactivex.Single
 import javax.inject.Inject
 
 class FetchAirports @Inject constructor(
     private val repository: IAirportsRepository,
     postExecutionThread: PostExecutionThread
-) : ObservableUseCase<Unit, List<Airport>>(postExecutionThread) {
+) : SingleUseCase<Unit, List<Airport>>(postExecutionThread) {
 
 
-    override fun buildUseCaseObservable(params: Unit?): Observable<List<Airport>> {
+    override fun buildUseCaseSingle(params: Unit?): Single<List<Airport>> {
         return repository.searchAirports()
     }
 

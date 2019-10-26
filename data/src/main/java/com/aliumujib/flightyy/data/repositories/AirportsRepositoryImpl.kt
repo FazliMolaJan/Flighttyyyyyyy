@@ -5,7 +5,7 @@ import com.aliumujib.flightyy.data.mapper.AirportEntityMapper
 import com.aliumujib.flightyy.data.model.AirportEntity
 import com.aliumujib.flightyy.domain.models.Airport
 import com.aliumujib.flightyy.domain.repositories.airports.IAirportsRepository
-import io.reactivex.Observable
+import io.reactivex.Single
 import javax.inject.Inject
 
 class AirportsRepositoryImpl @Inject constructor(
@@ -13,8 +13,8 @@ class AirportsRepositoryImpl @Inject constructor(
     private val airportsEntityMapper: AirportEntityMapper
 ) : IAirportsRepository {
 
-    override fun searchAirports(): Observable<List<Airport>> {
-        return Observable.just(airportsEntityMapper.mapFromEntityList(airportsCache.fetchAll()))
+    override fun searchAirports(): Single<List<Airport>> {
+        return Single.just(airportsEntityMapper.mapFromEntityList(airportsCache.fetchAll()))
     }
 
 }

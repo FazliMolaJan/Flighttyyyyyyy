@@ -8,8 +8,7 @@ import com.aliumujib.flightyy.data.model.schedule.FlightEntity
 import com.aliumujib.flightyy.data.model.schedule.ScheduleEntity
 import com.aliumujib.flightyy.data.remote.api.retrofit.ApiService
 import com.aliumujib.flightyy.data.remote.models.Schedule
-import io.reactivex.Observable
-import org.joda.time.format.DateTimeFormat
+import io.reactivex.Single
 import java.text.SimpleDateFormat
 import javax.inject.Inject
 
@@ -23,7 +22,7 @@ class ScheduleRemote @Inject constructor(
         origin: String,
         destination: String,
         fromDateTime: String
-    ): Observable<List<ScheduleEntity>> {
+    ): Single<List<ScheduleEntity>> {
         return apiService.getFlights(origin, destination, fromDateTime).map {
             it.ScheduleResource.Schedule
         }.map {

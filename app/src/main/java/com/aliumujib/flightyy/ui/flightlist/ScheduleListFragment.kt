@@ -8,27 +8,27 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aliumujib.flightyy.R
+import com.aliumujib.flightyy.presentation.models.schedule.ScheduleModel
+import com.aliumujib.flightyy.presentation.state.Resource
+import com.aliumujib.flightyy.presentation.state.Status
 import com.aliumujib.flightyy.presentation.viewmodels.SearchFlightsViewModel
+import com.aliumujib.flightyy.ui.adapters.base.BindableItemClickListener
 import com.aliumujib.flightyy.ui.adapters.schedules.SchedulesListAdapter
 import com.aliumujib.flightyy.ui.base.BaseFragment
 import com.aliumujib.flightyy.ui.base.BaseViewModel
 import com.aliumujib.flightyy.ui.inject.ViewModelFactory
+import com.aliumujib.flightyy.ui.utils.NavigationCommand
 import com.aliumujib.flightyy.ui.utils.SpacingItemDecoration
 import com.aliumujib.flightyy.ui.utils.ext.dpToPx
-import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.fragment_schedule_list.*
-import javax.inject.Inject
-import com.aliumujib.flightyy.presentation.models.schedule.ScheduleModel
-import com.aliumujib.flightyy.presentation.state.Resource
-import com.aliumujib.flightyy.presentation.state.Status
-import com.aliumujib.flightyy.ui.adapters.base.BindableItemClickListener
-import com.aliumujib.flightyy.ui.utils.NavigationCommand
 import com.aliumujib.flightyy.ui.utils.ext.findNavController
 import com.aliumujib.flightyy.ui.utils.ext.showSnackbar
 import com.aliumujib.flightyy.ui.utils.observe
 import com.google.android.material.snackbar.Snackbar
+import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.fragment_schedule_list.*
 import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.textResource
+import javax.inject.Inject
 
 class ScheduleListFragment : BaseFragment(), BindableItemClickListener<ScheduleModel> {
 
@@ -143,6 +143,13 @@ class ScheduleListFragment : BaseFragment(), BindableItemClickListener<ScheduleM
                 }
                 schedulesListAdapter.setData(list)
             }
+        }
+    }
+
+
+    override fun showError(string: String?) {
+        string?.let {
+            showSnackbar(string, Snackbar.LENGTH_LONG)
         }
     }
 

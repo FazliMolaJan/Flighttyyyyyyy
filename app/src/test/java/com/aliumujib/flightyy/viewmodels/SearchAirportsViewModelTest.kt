@@ -2,23 +2,23 @@ package com.aliumujib.flightyy.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.aliumujib.flightyy.PresentationDataFactory
-import com.aliumujib.flightyy.domain.usecases.airports.FetchAirports
 import com.aliumujib.flightyy.domain.models.Airport
+import com.aliumujib.flightyy.domain.usecases.airports.FetchAirports
 import com.aliumujib.flightyy.presentation.mappers.AirportMapper
 import com.aliumujib.flightyy.presentation.models.AirportModel
 import com.aliumujib.flightyy.presentation.state.Status
 import com.aliumujib.flightyy.presentation.viewmodels.SearchAirportsViewModel
 import com.nhaarman.mockito_kotlin.*
-import io.reactivex.Observable
-import io.reactivex.observers.DisposableObserver
+import io.reactivex.Single
+import io.reactivex.observers.DisposableSingleObserver
 import junit.framework.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.mockito.*
-import java.lang.RuntimeException
+import org.mockito.Mock
+import org.mockito.MockitoAnnotations
 import java.util.*
 
 @RunWith(JUnit4::class)
@@ -39,7 +39,7 @@ class SearchAirportsViewModelTest {
         MockitoAnnotations.initMocks(this)
 
         val listOfAirports = PresentationDataFactory.makeAirportList(2)
-        whenever(fetchAirports.buildUseCaseObservable(eq(null))).thenReturn(Observable.just(listOfAirports))
+        whenever(fetchAirports.buildUseCaseSingle(eq(null))).thenReturn(Single.just(listOfAirports))
 
         searchAirportsViewModel =
             SearchAirportsViewModel(fetchAirports, modelMapper)
@@ -60,9 +60,9 @@ class SearchAirportsViewModelTest {
 
         searchAirportsViewModel.fetchAirports()
 
-        argumentCaptor<DisposableObserver<List<Airport>>>().apply {
+        argumentCaptor<DisposableSingleObserver<List<Airport>>>().apply {
             verify(fetchAirports).execute(eq(capture()))
-            firstValue.onNext(listOfAirports)
+            firstValue.onSuccess(listOfAirports)
         }
 
         assertEquals(mappedAirports, searchAirportsViewModel.airportList)
@@ -74,9 +74,9 @@ class SearchAirportsViewModelTest {
 
         searchAirportsViewModel.fetchAirports()
 
-        argumentCaptor<DisposableObserver<List<Airport>>>().apply {
+        argumentCaptor<DisposableSingleObserver<List<Airport>>>().apply {
             verify(fetchAirports).execute(eq(capture()))
-            firstValue.onNext(listOfAirports)
+            firstValue.onSuccess(listOfAirports)
         }
 
         searchAirportsViewModel.searchOrigin("BB")
@@ -90,9 +90,9 @@ class SearchAirportsViewModelTest {
 
         searchAirportsViewModel.fetchAirports()
 
-        argumentCaptor<DisposableObserver<List<Airport>>>().apply {
+        argumentCaptor<DisposableSingleObserver<List<Airport>>>().apply {
             verify(fetchAirports).execute(eq(capture()))
-            firstValue.onNext(listOfAirports)
+            firstValue.onSuccess(listOfAirports)
         }
 
         val filterFor = searchAirportsViewModel.airportList[0]
@@ -107,9 +107,9 @@ class SearchAirportsViewModelTest {
 
         searchAirportsViewModel.fetchAirports()
 
-        argumentCaptor<DisposableObserver<List<Airport>>>().apply {
+        argumentCaptor<DisposableSingleObserver<List<Airport>>>().apply {
             verify(fetchAirports).execute(eq(capture()))
-            firstValue.onNext(listOfAirports)
+            firstValue.onSuccess(listOfAirports)
         }
 
         searchAirportsViewModel.searchOrigin(UUID.randomUUID().toString())
@@ -122,7 +122,7 @@ class SearchAirportsViewModelTest {
 
         searchAirportsViewModel.fetchAirports()
 
-        argumentCaptor<DisposableObserver<List<Airport>>>().apply {
+        argumentCaptor<DisposableSingleObserver<List<Airport>>>().apply {
             verify(fetchAirports).execute(eq(capture()))
             firstValue.onError(RuntimeException())
         }

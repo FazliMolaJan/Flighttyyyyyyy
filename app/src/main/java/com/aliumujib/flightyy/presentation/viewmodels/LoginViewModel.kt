@@ -30,12 +30,12 @@ class LoginViewModel @Inject constructor(
 
     fun login(clientId: String, clientSecret: String) {
         if (clientId.isEmpty()) {
-            showSnackBarError(R.string.please_input_client_id)
+            showError(R.string.please_input_client_id)
             _loginStatus.postValue(Resource.error(null))
             return
         } else if (clientSecret.isEmpty()) {
             _loginStatus.postValue(Resource.error(null))
-            showSnackBarError(R.string.please_input_client_secret)
+            showError(R.string.please_input_client_secret)
             return
         }
 
@@ -47,7 +47,7 @@ class LoginViewModel @Inject constructor(
 
         override fun onError(e: Throwable) {
             e.printStackTrace()
-            showSnackBarError(R.string.error_occured)
+            showError(R.string.error_occured)
             _loginStatus.postValue(
                 Resource.error(e.message)
             )

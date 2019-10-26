@@ -1,11 +1,11 @@
 package com.aliumujib.flightyy.domain.repositories.airports
 
 import com.aliumujib.flightyy.domain.models.Airport
-import io.reactivex.Observable
+import io.reactivex.Single
 
 
 interface IAirportsRepository {
 
-    fun searchAirports(): Observable<List<Airport>>
+    fun searchAirports(): Single<List<Airport>>
 
 }

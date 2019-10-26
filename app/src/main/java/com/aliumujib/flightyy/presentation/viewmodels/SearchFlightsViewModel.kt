@@ -2,8 +2,8 @@ package com.aliumujib.flightyy.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.aliumujib.flightyy.domain.usecases.flights.FetchFlights
 import com.aliumujib.flightyy.domain.models.schedule.Schedule
+import com.aliumujib.flightyy.domain.usecases.flights.FetchFlights
 import com.aliumujib.flightyy.presentation.mappers.AirportMapper
 import com.aliumujib.flightyy.presentation.mappers.ScheduleMapper
 import com.aliumujib.flightyy.presentation.models.AirportModel
@@ -11,7 +11,7 @@ import com.aliumujib.flightyy.presentation.models.schedule.ScheduleModel
 import com.aliumujib.flightyy.presentation.state.Resource
 import com.aliumujib.flightyy.presentation.state.Status
 import com.aliumujib.flightyy.ui.base.BaseViewModel
-import io.reactivex.observers.DisposableObserver
+import io.reactivex.observers.DisposableSingleObserver
 import javax.inject.Inject
 
 class SearchFlightsViewModel @Inject constructor(
@@ -40,8 +40,8 @@ class SearchFlightsViewModel @Inject constructor(
         )
     }
 
-    inner class FetchScheduleDetailsSubscriber : DisposableObserver<List<Schedule>>() {
-        override fun onNext(t: List<Schedule>) {
+    inner class FetchScheduleDetailsSubscriber : DisposableSingleObserver<List<Schedule>>() {
+        override fun onSuccess(t: List<Schedule>) {
             _schedules.postValue(
                 Resource(
                     Status.SUCCESS,
@@ -63,7 +63,5 @@ class SearchFlightsViewModel @Inject constructor(
                 )
             )
         }
-
-        override fun onComplete() {}
     }
 }

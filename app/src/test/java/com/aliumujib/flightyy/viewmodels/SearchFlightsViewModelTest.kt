@@ -8,8 +8,10 @@ import com.aliumujib.flightyy.presentation.mappers.*
 import com.aliumujib.flightyy.presentation.models.AirportModel
 import com.aliumujib.flightyy.presentation.state.Status
 import com.aliumujib.flightyy.presentation.viewmodels.SearchFlightsViewModel
-import io.reactivex.Observable
-import io.reactivex.observers.DisposableObserver
+import com.nhaarman.mockito_kotlin.*
+import io.reactivex.Single
+import io.reactivex.observers.DisposableSingleObserver
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -17,8 +19,6 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
-import com.nhaarman.mockito_kotlin.*
-import org.junit.Assert.assertEquals
 import java.util.*
 
 @RunWith(JUnit4::class)
@@ -43,8 +43,8 @@ class SearchFlightsViewModelTest {
         MockitoAnnotations.initMocks(this)
 
         val listOfSchedules = PresentationDataFactory.makeScheduleList(2)
-        whenever(fetchFlights.buildUseCaseObservable(eq(null))).thenReturn(
-            Observable.just(
+        whenever(fetchFlights.buildUseCaseSingle(eq(null))).thenReturn(
+            Single.just(
                 listOfSchedules
             )
         )
@@ -75,7 +75,7 @@ class SearchFlightsViewModelTest {
 
         val (origin, destination, dateTime) = callSearchMethod()
 
-        argumentCaptor<DisposableObserver<List<Schedule>>>().apply {
+        argumentCaptor<DisposableSingleObserver<List<Schedule>>>().apply {
             verify(fetchFlights).execute(
                 capture(),
                 eq(FetchFlights.Params.make(
@@ -84,7 +84,7 @@ class SearchFlightsViewModelTest {
                     dateTime
                 ))
             )
-            firstValue.onNext(list)
+            firstValue.onSuccess(list)
         }
 
         assertEquals(mapped, searchFlightsViewModel.schedules.value?.data)
@@ -96,7 +96,7 @@ class SearchFlightsViewModelTest {
 
         val (origin, destination, dateTime) = callSearchMethod()
 
-        argumentCaptor<DisposableObserver<List<Schedule>>>().apply {
+        argumentCaptor<DisposableSingleObserver<List<Schedule>>>().apply {
             verify(fetchFlights).execute(
                 capture(),
                 eq(FetchFlights.Params.make(
@@ -105,7 +105,7 @@ class SearchFlightsViewModelTest {
                     dateTime
                 ))
             )
-            firstValue.onNext(listOfSchedules)
+            firstValue.onSuccess(listOfSchedules)
         }
 
         assertEquals(Status.SUCCESS, searchFlightsViewModel.schedules.value?.status)
@@ -125,7 +125,7 @@ class SearchFlightsViewModelTest {
 
         val (origin, destination, dateTime) = callSearchMethod()
 
-        argumentCaptor<DisposableObserver<List<Schedule>>>().apply {
+        argumentCaptor<DisposableSingleObserver<List<Schedule>>>().apply {
             verify(fetchFlights).execute(
                 capture(),
                 eq(FetchFlights.Params.make(

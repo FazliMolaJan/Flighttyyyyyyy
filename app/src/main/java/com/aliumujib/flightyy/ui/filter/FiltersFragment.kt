@@ -22,8 +22,7 @@ import com.aliumujib.flightyy.ui.utils.observe
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_filters.*
-import java.util.Date
-import java.util.Calendar
+import java.util.*
 import javax.inject.Inject
 
 class FiltersFragment : BaseFragment(), NavigationResult {
@@ -39,10 +38,12 @@ class FiltersFragment : BaseFragment(), NavigationResult {
 
     override fun onNavigationResult(result: Bundle) {
         val resultBundle = result.getParcelable<AirportSearchResults>("results")
-        flightFiltersViewModel.setOriginAndDestination(
-            resultBundle.origin,
-            resultBundle.destination
-        )
+        resultBundle?.let {
+            flightFiltersViewModel.setOriginAndDestination(
+                resultBundle.origin,
+                resultBundle.destination
+            )
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,13 +97,10 @@ class FiltersFragment : BaseFragment(), NavigationResult {
             dest_et.setText(it?.name)
         })
 
-        observe(flightFiltersViewModel.origin,{
+        observe(flightFiltersViewModel.origin, {
             origin_et.setText(it?.name)
         })
-
     }
-
-
 
     private fun showTimePicker(callback: (date: Date, string: String) -> Unit) {
         // Use the current date as the default date in the picker
@@ -136,13 +134,19 @@ class FiltersFragment : BaseFragment(), NavigationResult {
         } ?: showSnackbar(resources.getString(R.string.an_error_occured), Snackbar.LENGTH_LONG)
     }
 
+
+    override fun showError(string: String?) {
+        string?.let {
+            showSnackbar(string, Snackbar.LENGTH_LONG)
+        }
+    }
+
     private fun formatNumberForAPI(int: Int): String {
-        val intString = if (int < 10) {
-            "0$int"
+        return if (int < 10) {
+            "$int".padStart(0, '0')
         } else {
             "$int"
         }
-        return intString
     }
 
     override fun getExtras(): FragmentNavigator.Extras {
